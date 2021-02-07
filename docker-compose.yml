@@ -15,6 +15,8 @@ services:
       - mediafiles:/app/mediafiles
     ports:
       - 8000:8000
+    depends_on:
+      - postgres
   frontend:
     build: ./frontend
     image: frontend:custom
@@ -28,6 +30,18 @@ services:
       - mediafiles:/app/mediafiles
     ports:
       - 3000:3000
+  postgres:
+    image: postgres:13.1-alpine
+    container_name: postgres
+    restart: unless-stopped
+    networks:
+      - postgres_network
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    env_file:
+      - .env.postgres      
   nginx:
     build: ./nginx
     image: nginx:custom
