@@ -4,6 +4,7 @@ $ docker build --rm -t frontend:custom frontend
 
 $ docker run -it --rm backend:custom ls -al
 $ docker run -it --rm frontend:custom ls -al
+$ docker run -it --rm nginx:custom ls -al /usr/share/nginx/html
 
 $ docker run --rm -p 3000:3000 frontend:custom 
 

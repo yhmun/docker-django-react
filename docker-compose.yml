@@ -26,10 +26,13 @@ services:
       - postgres_network
       - nginx_network
     volumes:
+      - html:/app/build
       - staticfiles:/app/staticfiles
       - mediafiles:/app/mediafiles
     ports:
       - 3000:3000
+    depends_on:
+      - nginx
   postgres:
     image: postgres:13.1-alpine
     container_name: postgres
@@ -41,7 +44,7 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data/
     env_file:
-      - .env.postgres      
+      - .env.postgres
   nginx:
     build: ./nginx
     image: nginx:custom
@@ -50,6 +53,7 @@ services:
     networks:
       - nginx_network
     volumes:
+      - html:/usr/share/nginx/html
       - staticfiles:/app/staticfiles
       - mediafiles:/app/mediafiles
     ports:
@@ -58,6 +62,8 @@ services:
       - backend
 
 volumes:
+  html:
+    external: true
   postgres:
     external: true
   staticfiles:
