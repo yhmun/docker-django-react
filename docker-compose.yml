@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  backend:
+    build: ./backend
+    image: backend:custom
+    container_name: backend
+    restart: unless-stopped
+    entrypoint: /app/entrypoint.sh
+    networks:
+      - postgres_network
+    volumes:
+      - staticfiles:/app/staticfiles
+      - mediafiles:/app/mediafiles
+    ports:
+      - 8000:8000
+
+volumes:
+  postgres:
+    external: true
+  staticfiles:
+    external: true
+  mediafiles:
+    external: true
+
+networks:
+  postgres_network:
+    driver: bridge
