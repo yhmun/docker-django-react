@@ -53,7 +53,7 @@ services:
     networks:
       - nginx_network
     volumes:
-      - html:/usr/share/nginx/html
+      - html:/app/html
       - staticfiles:/app/staticfiles
       - mediafiles:/app/mediafiles
     ports:
