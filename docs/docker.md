@@ -63,17 +63,17 @@ $ mkdir -p /Users/yhmun/OneDrive/Volumes/mediafiles
 
 $ docker volume create --driver local \
     --opt type=none \
-    --opt device=/Users/yhmun/OneDrive/Volumes/postgres \
+    --opt device=/Users/yhmun/Develop/volumes/postgres \
     --opt o=bind postgres
 
 $ docker volume create --driver local \
     --opt type=none \
-    --opt device=/Users/yhmun/OneDrive/Volumes/staticfiles \
+    --opt device=/Users/yhmun/Develop/volumes/staticfiles \
     --opt o=bind staticfiles
 
 $ docker volume create --driver local \
     --opt type=none \
-    --opt device=/Users/yhmun/OneDrive/Volumes/mediafiles \
+    --opt device=/Users/yhmun/Develop/volumes/mediafiles \
     --opt o=bind mediafiles
 
 ## Production Environment
