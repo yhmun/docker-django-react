@@ -1,18 +1,6 @@
 version: '3.7'
 
 services:
-  frontend:
-    build: ./frontend
-    image: frontend:custom
-    container_name: frontend
-    restart: unless-stopped
-    networks:
-      - postgres_network
-    volumes:
-      - staticfiles:/app/staticfiles
-      - mediafiles:/app/mediafiles
-    ports:
-      - 3000:3000  
   backend:
     build: ./backend
     image: backend:custom
@@ -21,11 +9,39 @@ services:
     entrypoint: /app/entrypoint.sh
     networks:
       - postgres_network
+      - nginx_network
     volumes:
       - staticfiles:/app/staticfiles
       - mediafiles:/app/mediafiles
     ports:
       - 8000:8000
+  frontend:
+    build: ./frontend
+    image: frontend:custom
+    container_name: frontend
+    restart: unless-stopped
+    networks:
+      - postgres_network
+      - nginx_network
+    volumes:
+      - staticfiles:/app/staticfiles
+      - mediafiles:/app/mediafiles
+    ports:
+      - 3000:3000
+  nginx:
+    build: ./nginx
+    image: nginx:custom
+    container_name: nginx
+    restart: unless-stopped
+    networks:
+      - nginx_network
+    volumes:
+      - staticfiles:/app/staticfiles
+      - mediafiles:/app/mediafiles
+    ports:
+      - 80:80
+    depends_on:
+      - backend
 
 volumes:
   postgres:
@@ -37,4 +53,6 @@ volumes:
 
 networks:
   postgres_network:
+    driver: bridge
+  nginx_network:
     driver: bridge
