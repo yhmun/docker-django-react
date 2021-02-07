@@ -1,8 +1,11 @@
 ## Docker Commands
 $ docker build --rm -t backend:custom backend
+$ docker build --rm -t frontend:custom frontend
 
 $ docker run -it --rm backend:custom ls -al
-$ docker run -it --rm backend:custom /bin/bash
+$ docker run -it --rm frontend:custom ls -al
+
+$ docker run --rm -p 3000:3000 frontend:custom 
 
 $ docker images
 $ docker image prune -a
@@ -40,8 +43,10 @@ $ docker-compose build
 $ docker-compose up -d
 $ docker-compose up -d --build
 $ docker-compose up -d --build backend
+$ docker-compose up -d --build backend
 
 $ docker-compose logs -f
+$ docker-compose exec backend ls -a
 
 $ docker-compose exec web /bin/bash
 $ docker-compose exec web python manage.py createsuperuser
