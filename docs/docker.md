@@ -51,7 +51,6 @@ $ docker-compose exec backend ls -a
 
 $ docker-compose exec backend /bin/bash
 $ docker-compose exec backend ./manage.py createsuperuser
-$ docker-compose exec backend ./manage.py migrate
 $ docker-compose exec backend ./manage.py migrate --noinput
 $ docker-compose exec backend ./manage.py collectstatic --no-input --clear
 $ docker-compose exec postgres psql --username=root --dbname=site_db
