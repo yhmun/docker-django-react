@@ -10,7 +10,6 @@ $ source venv/bin/activate
 (venv) $ django-admin startproject server .
 (venv) $ python manage.py runserver
 (vend) $ deactivate
-$ cd ..
 
 ## Frontend: React
 $ node -v
