@@ -48,23 +48,13 @@ $ docker-compose up -d --build backend
 $ docker-compose logs -f
 $ docker-compose exec backend ls -a
 
-$ docker-compose exec web /bin/bash
-$ docker-compose exec web python manage.py createsuperuser
-$ docker-compose exec web python manage.py migrate
-$ docker-compose exec web python manage.py migrate --noinput
-$ docker-compose exec web python manage.py collectstatic --no-input --clear
-$ docker-compose exec postgres psql --username=user --dbname=web_dev
-$ docker-compose exec postgres psql --username=root --dbname=web_prod
-$ docker-compose exec nginx ls /home/app/web
-
-$ docker-compose -f docker-compose.prod.yml down -v
-$ docker-compose -f docker-compose.prod.yml build
-$ docker-compose -f docker-compose.prod.yml up -d --build
-$ docker-compose -f docker-compose.prod.yml up -d --build web
-$ docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
-$ docker-compose -f docker-compose.prod.yml exec web python manage.py createsuperuser
-$ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
-
+$ docker-compose exec backend /bin/bash
+$ docker-compose exec backend ./manage.py createsuperuser
+$ docker-compose exec backend ./manage.py migrate
+$ docker-compose exec backend ./manage.py migrate --noinput
+$ docker-compose exec backend ./manage.py collectstatic --no-input --clear
+$ docker-compose exec postgres psql --username=root --dbname=site_db
+$ docker-compose exec nginx ls -a /app
 
 ## Local Environment
 $ mkdir -p /Users/yhmun/OneDrive/Volumes/postgres
