@@ -1,6 +1,18 @@
 version: '3.7'
 
 services:
+  frontend:
+    build: ./frontend
+    image: frontend:custom
+    container_name: frontend
+    restart: unless-stopped
+    networks:
+      - postgres_network
+    volumes:
+      - staticfiles:/app/staticfiles
+      - mediafiles:/app/mediafiles
+    ports:
+      - 3000:3000  
   backend:
     build: ./backend
     image: backend:custom
