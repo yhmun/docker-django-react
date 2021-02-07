@@ -72,9 +72,10 @@ $ sudo usermod -aG docker ${USER}
 $ exit
 ```
 
-### Python package
+### Development packages
 ```
 $ sudo apt-get -y install python3-pip python3-venv
+$ sudo apt-get -y install nodejs npm
 ```
 
 ### Git setup
@@ -85,4 +86,5 @@ $ git config --global user.name "name"
 $ git config --global user.email "example@gmail.com"
 $ git clone git@github.com:mcodegeeks/django-portfolio-2.git
 ```
+
 
