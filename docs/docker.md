@@ -4,7 +4,6 @@ $ docker build --rm -t frontend:custom frontend
 
 $ docker run -it --rm backend:custom ls -al
 $ docker run -it --rm frontend:custom ls -al
-$ docker run -it --rm nginx:custom ls -al /usr/share/nginx/html
 
 $ docker run --rm -p 3000:3000 frontend:custom 
 
@@ -12,7 +11,6 @@ $ docker images
 $ docker image prune -a
 
 $ docker rmi backend:custom
-$ docker rmi nginx:custom
 
 $ docker ps -a
 $ docker rm -f backend
@@ -47,6 +45,8 @@ $ docker-compose up -d --build backend
 $ docker-compose up -d --build backend
 
 $ docker-compose logs -f
+
+$ docker-compose exec frontend ls -a build
 $ docker-compose exec backend ls -a
 
 $ docker-compose exec backend /bin/bash
@@ -55,17 +55,11 @@ $ docker-compose exec backend ./manage.py migrate
 $ docker-compose exec backend ./manage.py migrate --noinput
 $ docker-compose exec backend ./manage.py collectstatic --no-input --clear
 $ docker-compose exec postgres psql --username=root --dbname=site_db
-$ docker-compose exec nginx ls -a /app
 
 ## Local Environment
 $ mkdir -p /Users/yhmun/OneDrive/Volumes/postgres
 $ mkdir -p /Users/yhmun/OneDrive/Volumes/staticfiles
 $ mkdir -p /Users/yhmun/OneDrive/Volumes/mediafiles
-
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/Users/yhmun/OneDrive/Volumes/html \
-    --opt o=bind html
 
 $ docker volume create --driver local \
     --opt type=none \
@@ -83,7 +77,6 @@ $ docker volume create --driver local \
     --opt o=bind mediafiles
 
 ## Production Environment
-$ sudo mkdir -p /var/opt/volumes/html
 $ sudo mkdir -p /var/opt/volumes/postgres
 $ sudo mkdir -p /var/opt/volumes/staticfiles
 $ sudo mkdir -p /var/opt/volumes/mediafiles

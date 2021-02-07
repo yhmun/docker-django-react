@@ -9,7 +9,6 @@ services:
     entrypoint: /app/entrypoint.sh
     networks:
       - postgres_network
-      - nginx_network
     volumes:
       - staticfiles:/app/staticfiles
       - mediafiles:/app/mediafiles
@@ -22,17 +21,13 @@ services:
     image: frontend:custom
     container_name: frontend
     restart: unless-stopped
-    networks:
-      - postgres_network
-      - nginx_network
     volumes:
-      - html:/app/build
-      - staticfiles:/app/staticfiles
-      - mediafiles:/app/mediafiles
+      - staticfiles:/usr/share/nginx/staticfiles
+      - mediafiles:/usr/share/nginx/mediafiles
     ports:
       - 3000:3000
     depends_on:
-      - nginx
+      - backend
   postgres:
     image: postgres:13.1-alpine
     container_name: postgres
@@ -45,25 +40,8 @@ services:
       - postgres:/var/lib/postgresql/data/
     env_file:
       - .env.postgres
-  nginx:
-    build: ./nginx
-    image: nginx:custom
-    container_name: nginx
-    restart: unless-stopped
-    networks:
-      - nginx_network
-    volumes:
-      - html:/app/html
-      - staticfiles:/app/staticfiles
-      - mediafiles:/app/mediafiles
-    ports:
-      - 80:80
-    depends_on:
-      - backend
 
 volumes:
-  html:
-    external: true
   postgres:
     external: true
   staticfiles:
@@ -73,6 +51,4 @@ volumes:
 
 networks:
   postgres_network:
-    driver: bridge
-  nginx_network:
     driver: bridge
