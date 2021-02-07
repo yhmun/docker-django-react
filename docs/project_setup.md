@@ -14,9 +14,11 @@ $ cd ..
 
 ## Frontend: React
 $ node -v
-v14.15.4
+v14.15.4  # mac
+v10.19.0  # ubuntu 20.04
 $ npm -v
-6.14.10
+6.14.10   # mac
+6.14.4    # ubuntu 20.04
 $ npx create-react-app frontend
 $ cd frontend
 $ npm start
