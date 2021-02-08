@@ -16,6 +16,7 @@ RUN pip install --no-cache gunicorn
 
 # copy django project
 COPY . .
+COPY .env ./server
 
 # run entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

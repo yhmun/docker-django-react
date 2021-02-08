@@ -21,8 +21,6 @@ services:
     volumes:
       - backend:/usr/src/app/static
       - media:/usr/src/app/media
-    env_file:
-      - ./backend/.env
     command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
     depends_on:
       - postgres
