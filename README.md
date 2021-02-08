@@ -40,10 +40,10 @@ $ docker volume create --driver local \
 
 ### Production environment
 ```
-$ mkdir -p /var/opt/volumes/postgres
-$ mkdir -p /var/opt/volumes/backend
-$ mkdir -p /var/opt/volumes/frontend
-$ mkdir -p /var/opt/volumes/media
+$ sudo mkdir -p /var/opt/volumes/postgres
+$ sudo mkdir -p /var/opt/volumes/backend
+$ sudo mkdir -p /var/opt/volumes/frontend
+$ sudo mkdir -p /var/opt/volumes/media
 
 $ docker volume create --driver local \
     --opt type=none \
