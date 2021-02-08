@@ -31,8 +31,14 @@ $ source venv/bin/activate
 
 ## Backend: Django Apps
 ```
+# https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
+(vend) $ mkdir -p apps/blog
+(vend) $ django-admin startapp blog apps/blog
+(vend) $ python manage.py makemigrations blog
+(vend) $ python manage.py migrate blog
+
 # https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react
-(vend) $ mkdir -p apps/todo 
+(vend) $ mkdir -p apps/todo
 (vend) $ django-admin startapp todo apps/todo
 (vend) $ python manage.py makemigrations todo
 (vend) $ python manage.py migrate todo

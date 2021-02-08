@@ -14,3 +14,5 @@ RUN npm install
 COPY . .
 
 RUN npm run build
+
+CMD ["serve", "-l", "3000", "-s", "."]

@@ -48,13 +48,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'apps.blog',
     'apps.todo',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    # Add cors middleware (the order is important!)
+    'corsheaders.middleware.CorsMiddleware',   
+ 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -140,8 +144,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+# For development purposes.
+CORS_ORIGIN_ALLOW_ALL = True
+
 # we whitelist localhost:3000 because that's where frontend will be served
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-    'http://localhost:8000'
-)
+#CORS_ORIGIN_WHITELIST = (
+#    'http://localhost:3000',
+#    'http://localhost:8000'
+#)

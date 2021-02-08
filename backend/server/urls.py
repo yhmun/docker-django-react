@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from apps.blog.views import PostView
 from apps.todo.views import TodoView
 
 router = routers.DefaultRouter()
+router.register(r'posts', PostView, 'post')
 router.register(r'todos', TodoView, 'todo')
 
 urlpatterns = [

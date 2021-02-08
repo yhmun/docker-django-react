@@ -21,7 +21,7 @@ services:
     volumes:
       - backend:/usr/src/app/static
       - media:/usr/src/app/media
-    command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn server.wsgi:application --bind 0.0.0.0:8000 -w 2
     depends_on:
       - postgres
   frontend:
@@ -36,7 +36,6 @@ services:
       - media:/usr/src/app/media
     env_file:
       - ./frontend/.env
-    command: serve -s build -l 3000
     depends_on:
       - backend
   nginx:
