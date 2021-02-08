@@ -25,7 +25,7 @@ SQL_HOST=postgres
 SQL_PORT=5432
 ```
 ```
-$ vi ./backend/server/.env
+$ vi ./backend/server/.env  # only for local dev env
 DEBUG=True
 SECRET_KEY=<secret_key>
 DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
