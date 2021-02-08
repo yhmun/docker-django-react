@@ -10,6 +10,31 @@ Portfolio Website: Docker + Django + React + Postgres + Nginx + Gunicorn
 
 ## Setting up
 
+### Add environmental files
+```
+$ vi ./backend/.env
+DEBUG=1
+SECRET_KEY=<secret_key>
+DJANGO_ALLOWED_HOSTS=<domain> localhost 127.0.0.1 [::1]
+SQL_ENGINE=django.db.backends.postgresql
+SQL_DATABASE=<database>
+SQL_TEST_DATABASE=<test_database>
+SQL_USER=<user>
+SQL_PASSWORD=<password>
+SQL_HOST=postgres
+SQL_PORT=5432
+```
+```
+$ vi ./frontend/.env
+
+```
+```
+$ vi ./postgres/.env
+POSTGRES_USER=<username>
+POSTGRES_PASSWORD=<password>
+POSTGRES_DB=<database>
+```
+
 ### Local environment
 ```
 $ mkdir -p /Users/yhmun/Develop/volumes/postgres
