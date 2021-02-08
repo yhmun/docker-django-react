@@ -9,9 +9,7 @@ $ npm -v
 $ npx create-react-app frontend
 $ cd frontend
 $ npm start
-$ npm install --save bootstrap
-$ npm install --save reactstrap
-$ npm install --save axios
+$ npm install --save antd redux axios react-redux redux-thunk redux-logger bootstrap reactstrap
 ```
 
 ## Backend: Django
