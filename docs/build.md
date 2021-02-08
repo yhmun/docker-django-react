@@ -9,7 +9,6 @@ $ npm -v
 $ npx create-react-app frontend
 $ cd frontend
 $ npm start
-$ npm install --save antd redux axios react-redux redux-thunk redux-logger bootstrap reactstrap
 ```
 
 ## Backend: Django
@@ -40,6 +39,14 @@ $ source venv/bin/activate
 (vend) $ django-admin startapp todo apps/todo
 (vend) $ python manage.py makemigrations todo
 (vend) $ python manage.py migrate todo
+```
+
+## Frontend: React Apps
+```
+# https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
+$ npm install --save antd redux axios react-redux redux-thunk redux-logger bootstrap reactstrap
+$ mkdir -p src/reducx
+$ mkdir -p src/containers
 ```
 
 ### PyPi packages
