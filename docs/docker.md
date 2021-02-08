@@ -60,6 +60,9 @@ $ docker exec -it                   # Run a command in a running container
 
 $ docker exec -it backend /bin/bash
 $ docker exec -it postgres psql --username='' --dbname=''
+
+$ docker exec -it postgres /bin/bash
+rm -rf /var/lib/postgresql/data/pg_stat_tmp/global.stat
 ```
 
 ### Run 
