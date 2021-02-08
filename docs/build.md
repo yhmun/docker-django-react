@@ -10,6 +10,8 @@ $ npx create-react-app frontend
 $ cd frontend
 $ npm start
 $ npm install --save bootstrap
+$ npm install --save reactstrap
+$ npm install --save axios
 ```
 
 ## Backend: Django
