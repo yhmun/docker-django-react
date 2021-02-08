@@ -8,5 +8,5 @@ const middlewares = [thunk, logger]
 export default function configureStore(initialState) {
     const store = createStore(reducer, initialState,
         applyMiddleware(...middlewares));
-    return store
+    return store;
 }

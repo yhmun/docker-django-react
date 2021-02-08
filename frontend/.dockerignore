@@ -2,6 +2,8 @@
 .gitignore
 .dockerignore
 .env
+.env.sh
+.env-config.js
 .DS_Store
 
 Dockerfile

@@ -5,4 +5,4 @@ const Types = {
     CREATE_POST: "CREATE_POST"
 };
 
-export default Types
+export default Types;

@@ -6,6 +6,7 @@ v10.19.0  # ubuntu 20.04
 $ npm -v
 6.14.10   # mac
 6.14.4    # ubuntu 20.04
+$ sudo npm install --global yarn
 $ npx create-react-app frontend
 $ cd frontend
 $ npm start

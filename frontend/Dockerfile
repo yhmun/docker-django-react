@@ -7,8 +7,7 @@ WORKDIR /usr/src/app
 COPY ./package.json .
 COPY ./package-lock.json .
 
-RUN npm install -g npm@latest
-RUN npm install -g serve
+RUN npm install -g npm@latest yarn serve
 RUN npm install
 
 COPY . .

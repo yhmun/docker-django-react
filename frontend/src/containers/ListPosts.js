@@ -26,7 +26,7 @@ class ListPosts extends React.Component {
         return (
             <Col span={12} offset={6}>
                 {posts.map(p => (
-                    <Row gutter={[48, 48]}>
+                    <Row key={p.id} gutter={[48, 48]}>
                         <Col span={24}>
                             <Card key={p.id} 
                                   title={p.title} 

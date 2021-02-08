@@ -8,7 +8,7 @@ class CreateNewPost extends React.Component {
 
     onFinish(values) {
         console.log(values);
-        this.props.createPosts(values, this.info());
+        this.props.createPost(values, this.info());
     }
 
     info() {
