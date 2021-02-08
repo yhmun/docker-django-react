@@ -1,54 +1,66 @@
 version: '3.7'
 
 services:
-  backend:
-    build: ./backend
-    image: backend:custom
-    container_name: backend
-    restart: unless-stopped
-    entrypoint: /app/entrypoint.sh
-    networks:
-      - postgres_network
-    volumes:
-      - staticfiles:/app/staticfiles
-      - mediafiles:/app/mediafiles
-    ports:
-      - 8000:8000
-    depends_on:
-      - postgres
-  frontend:
-    build: ./frontend
-    image: frontend:custom
-    container_name: frontend
-    restart: unless-stopped
-    volumes:
-      - staticfiles:/usr/share/nginx/staticfiles
-      - mediafiles:/usr/share/nginx/mediafiles
-    ports:
-      - 80:80
-    depends_on:
-      - backend
   postgres:
-    image: postgres:13.1-alpine
     container_name: postgres
+    image: postgres:13.1-alpine
     restart: unless-stopped
-    networks:
-      - postgres_network
     ports:
       - 5432:5432
     volumes:
       - postgres:/var/lib/postgresql/data/
     env_file:
-      - .env.postgres
+      - ./postgres/.env
+  backend:
+    container_name: backend
+    image: backend:custom
+    build: ./backend
+    restart: unless-stopped
+    expose:
+      - 8000
+    volumes:
+      - backend:/usr/src/app/static
+      - media:/usr/src/app/media
+    env_file:
+      - ./backend/.env
+    command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
+    depends_on:
+      - postgres
+  frontend:
+    container_name: frontend
+    image: frontend:custom
+    build: ./frontend
+    restart: unless-stopped
+    expose:
+      - 3000
+    volumes:
+      - frontend:/usr/src/app/build/static
+      - media:/usr/src/app/media
+    env_file:
+      - ./frontend/.env
+    command: serve -s build -l 3000
+    depends_on:
+      - backend
+  nginx:
+    container_name: nginx
+    image: nginx:custom
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - backend:/usr/src/app/backend
+      - frontend:/usr/src/app/frontend
+      - media:/usr/src/app/media
+    depends_on:
+      - frontend
 
 volumes:
   postgres:
     external: true
-  staticfiles:
+  backend:
     external: true
-  mediafiles:
+  frontend:
     external: true
-
-networks:
-  postgres_network:
-    driver: bridge
+  media:
+    external: true
