@@ -100,7 +100,7 @@ $ docker-compose up -d --build
 
 ### Backend: Django
 ```
-$ cd ./django
+$ cd ./backend
 $ python3 -m venv venv
 $ source venv/bin/activate
 (venv) $ pip install --upgrade pip
@@ -111,7 +111,7 @@ $ source venv/bin/activate
 
 ### Frontend: React
 ```
-$ cd ./react
+$ cd ./frontend
 $ npm install
 $ npm start
 $ npm run build
