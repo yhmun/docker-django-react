@@ -1,96 +1,130 @@
 ## Docker Commands
-$ docker build --rm -t backend:custom backend
-$ docker build --rm -t frontend:custom frontend
 
-$ docker run -it --rm backend:custom ls -al
-$ docker run -it --rm frontend:custom ls -al
+### List
+```
+$ docker ps -a                      # List containers
+$ docker images                     # List images
+$ docker volume ls                  # List volumes
+$ docker network ls                 # List networks
+```
 
-$ docker run --rm -p 3000:3000 frontend:custom 
-
-$ docker images
-$ docker image prune -a
-
-$ docker rmi backend:custom
-
-$ docker ps -a
-$ docker rm -f backend
-
-$ docker cp ./backend/mediafiles backend:/app/
-$ docker rm backend:/app/mediafiles/
-
-$ docker volume ls
-$ docker volume prune
-
-$ docker network ls
-$ docker network prune
-
-$ docker system prune -a
-
+## Inspect
+```
 $ docker volume inspect postgres
-$ docker volume inspect staticfiles
-$ docker volume inspect mediafiles
+$ docker volume inspect backend
+$ docker volume inspect frontend
+$ docker volume inspect media
+```
+
+## Create
+```
+$ docker volume create              # Create a volume
+$ dpcler network create             # Create a network
+
+$ docker network create -d bridge bridge_network
+```
+
+### Remove
+```
+$ docker rm -f                      # Remove one or more containers
+$ docker rmi                        # Remove one or more images
+$ docker image prune -a             # Remove all unused local images
+$ docker volume rm                  # Remove one or more volumes
+$ docker system prune -a            # Remove unused data
+$ docker volume prune               # Remove all unused local volumes
+$ docker network prune              # Remove all unused networks
+
+$ docker rm -f backend
+$ docker rm backend:/usr/src/app/media
+$ docker cp ./media backend:/usr/src/app/media
+$ docker rmi backend:custom
+```
+
+```
+$ docker pull NAME[:TAG|@DIGEST]    # Pull an image or a repository from a registry
+
+$ docker pull postgres:13.1-alpine
+```
+
+### Build
+```
+$ docker build                      # Build an image from a Dockerfile
+
+$ docker build --rm -t backend:custom ./backend
+$ docker build --rm -t react:custom ./react
+```
+
+### Excute
+```
+$ docker exec -it                   # Run a command in a running container
+
+$ docker exec -it backend /bin/bash
+$ docker exec -it postgres psql --username='' --dbname=''
+```
+
+### Run 
+```
+$ docker run                        # Run a command in a new container
+
+$ docker run --name postgres --env-file ./postgres/.env --net=bridge_network -p 5432:5432 -d --rm postgres:13.1-alpine
+$ docker run --name backend --env-file ./backend/.env --net=bridge_network -p 8000:8000 --rm backend:custom gunicorn server.wsgi:application --bind 0.0.0.0:8000
+$ docker run --name backend --env-file ./backend/.env --net=bridge_network -p 8000:8000 --rm backend:custom python manage.py runserver
+$ docker run -it --rm backend:custom /bin/bash
+```
 
 ## Docker-Compose Commands
-$ docker-compose pull
 
-$ docker-compose down -v
-$ docker-compose down --rmi all
-$ docker-compose down --rmi local   
+### Pull
+```
+$ docker-compose pull                   # Pull service images
+```
 
-$ docker-compose build
+### Build
+```
+$ docker-compose build                  # Build or rebuild services.
+```
 
-$ docker-compose up -d
-$ docker-compose up -d --build
-$ docker-compose up -d --build backend
-$ docker-compose up -d --build backend
+### Execute
+```
+$ docker-compose exec                   # Execute a command in a running container
 
-$ docker-compose logs -f
+$ docker-compose exec postgres psql --username='' --dbname=''
 
 $ docker-compose exec frontend ls -a build
-$ docker-compose exec backend ls -a
 
 $ docker-compose exec backend /bin/bash
-$ docker-compose exec backend ./manage.py createsuperuser
-$ docker-compose exec backend ./manage.py migrate --noinput
-$ docker-compose exec backend ./manage.py collectstatic --no-input --clear
-$ docker-compose exec postgres psql --username=root --dbname=site_db
+$ docker-compose exec backend python manage.py createsuperuser
+$ docker-compose exec backend python manage.py migrate --noinput
+$ docker-compose exec backend python manage.py collectstatic --no-input --clear
+$ docker-compose exec backend ls -a
+```
 
-## Local Environment
-$ mkdir -p /Users/yhmun/OneDrive/Volumes/postgres
-$ mkdir -p /Users/yhmun/OneDrive/Volumes/staticfiles
-$ mkdir -p /Users/yhmun/OneDrive/Volumes/mediafiles
+### Service
+```
+$ docker-compose up -d                  # Builds, (re)creates, starts, and attaches to containers for a service.
+$ docker-compose up --build
+$ docker-compose up --no-build
+$ docker-compose up --no-start
 
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/Users/yhmun/Develop/volumes/postgres \
-    --opt o=bind postgres
+$ docker-compose up -d --build backend
+$ docker-compose up -d --build frontend
+$ docker-compose up -d --build nginx
 
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/Users/yhmun/Develop/volumes/staticfiles \
-    --opt o=bind staticfiles
+$ docker-compose -f docker-compose.prod.yml up -d
+```
+```
+$ docker-compose down                   # Stops containers and removes containers, networks, volumes, and images created by `up`.
+$ docker-compose down --rmi all
+$ docker-compose down --rmi local
 
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/Users/yhmun/Develop/volumes/mediafiles \
-    --opt o=bind mediafiles
+$ docker-compose -f docker-compose.prod.yml down --rmi all
+```
+```
+$ docker-compose stop                   # Stop running containers without removing them.
+$ docker-compose stop web
+```
 
-## Production Environment
-$ sudo mkdir -p /var/opt/volumes/postgres
-$ sudo mkdir -p /var/opt/volumes/staticfiles
-$ sudo mkdir -p /var/opt/volumes/mediafiles
-
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/var/opt/volumes/postgres \
-    --opt o=bind postgres
-
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/var/opt/volumes/staticfiles \
-    --opt o=bind staticfiles
-
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/var/opt/volumes/mediafiles \
-    --opt o=bind mediafiles
+### Log
+```
+$ docker-compose logs -f                # View output from containers
+```

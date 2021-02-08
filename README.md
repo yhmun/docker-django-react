@@ -1,11 +1,80 @@
-# docker-django-react
+# Description
 Portfolio Website: Docker + Django + React + Postgres + Nginx + Gunicorn
 
+## Documents
+```
+/docs
+  - ubuntu.md: setup guide for ubuntu
+  - docker.md: docker commands
+```
 
-## Build for Develop
+## Setting up
+
+### Local environment
+```
+$ mkdir -p /Users/yhmun/Develop/volumes/postgres
+$ mkdir -p /Users/yhmun/Develop/volumes/backend
+$ mkdir -p /Users/yhmun/Develop/volumes/frontend
+$ mkdir -p /Users/yhmun/Develop/volumes/media
+
+$ docker volume create --driver local \
+    --opt type=none \
+    --opt device=/Users/yhmun/Develop/volumes/postgres \
+    --opt o=bind postgres
+
+$ docker volume create --driver local \
+    --opt type=none \
+    --opt device=/Users/yhmun/Develop/volumes/backend \
+    --opt o=bind backend
+
+$ docker volume create --driver local \
+    --opt type=none \
+    --opt device=/Users/yhmun/Develop/volumes/frontend \
+    --opt o=bind frontend
+
+$ docker volume create --driver local \
+    --opt type=none \
+    --opt device=/Users/yhmun/Develop/volumes/media \
+    --opt o=bind media
+```
+
+### Production environment
+```
+$ mkdir -p /var/opt/volumes/postgres
+$ mkdir -p /var/opt/volumes/backend
+$ mkdir -p /var/opt/volumes/frontend
+$ mkdir -p /var/opt/volumes/media
+
+$ docker volume create --driver local \
+    --opt type=none \
+    --opt device=/var/opt/volumes/postgres \
+    --opt o=bind postgres
+
+$ docker volume create --driver local \
+    --opt type=none \
+    --opt device=/var/opt/volumes/backend \
+    --opt o=bind backend
+
+$ docker volume create --driver local \
+    --opt type=none \
+    --opt device=/var/opt/volumes/frontend \
+    --opt o=bind frontend
+
+$ docker volume create --driver local \
+    --opt type=none \
+    --opt device=/var/opt/volumes/media \
+    --opt o=bind media
+```
+
+## Start production
+```
+$ docker-compose up -d --build
+```
+
+## Local build
 
 ### Backend: Django
-$ cd backend
+$ cd ./django
 $ python3 -m venv venv
 $ source venv/bin/activate
 (venv) $ pip install --upgrade pip
@@ -13,7 +82,12 @@ $ source venv/bin/activate
 (venv) $ python manage.py runserver
 (vend) $ deactivate
 
-## Build frontend: React
-$ cd frontend
+### Frontend: React
+```
+$ cd ./react
 $ npm install
 $ npm start
+$ npm run build
+```
+
+

@@ -86,5 +86,3 @@ $ git config --global user.name "name"
 $ git config --global user.email "example@gmail.com"
 $ git clone git@github.com:mcodegeeks/django-portfolio-2.git
 ```
-
-

@@ -1,4 +1,5 @@
 ## Backend: Django
+```
 $ mkdir backend
 $ cd backend
 $ python3 --version
@@ -10,8 +11,10 @@ $ source venv/bin/activate
 (venv) $ django-admin startproject server .
 (venv) $ python manage.py runserver
 (vend) $ deactivate
+```
 
 ## Frontend: React
+```
 $ node -v
 v14.15.4  # mac
 v10.19.0  # ubuntu 20.04
@@ -21,3 +24,4 @@ $ npm -v
 $ npx create-react-app frontend
 $ cd frontend
 $ npm start
+```
