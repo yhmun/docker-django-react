@@ -9,6 +9,7 @@ $ npm -v
 $ npx create-react-app frontend
 $ cd frontend
 $ npm start
+$ npm install --save bootstrap
 ```
 
 ## Backend: Django
