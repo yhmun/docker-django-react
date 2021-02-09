@@ -7,11 +7,13 @@ WORKDIR /usr/src/app
 COPY ./package.json .
 COPY ./package-lock.json .
 
-RUN npm install -g npm@latest yarn serve
+RUN npm install -g serve
 RUN npm install
 
 COPY . .
+RUN npm run-script build
 
-RUN npm run build
+RUN mkdir -p ./static
 
-CMD ["serve", "-l", "3000", "-s", "."]
+# run entrypoint.sh
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

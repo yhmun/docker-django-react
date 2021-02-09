@@ -3,8 +3,8 @@
 .dockerignore
 .env
 .env.sh
-.env-config.js
 .DS_Store
+env-config.js
 
 Dockerfile
 README.md

@@ -32,10 +32,11 @@ services:
     expose:
       - 3000
     volumes:
-      - frontend:/usr/src/app/build/static
+      - frontend:/usr/src/app/static
       - media:/usr/src/app/media
     env_file:
       - ./frontend/.env
+    command: serve -s /usr/src/app/build -l 3000
     depends_on:
       - backend
   nginx:
