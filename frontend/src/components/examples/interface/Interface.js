@@ -8,8 +8,22 @@ class Interface extends Component {
     constructor() {
         super();        
         this.state = {
-            myName: 'Moon'
+            myName: 'Moon',
+            myAppointments: []
         }
+    }
+
+    componentDidMount() {
+        fetch('./data.json')
+            .then(response => response.json())
+            .then(result => {
+                const apts = result.map(item => {
+                    return item;
+                });
+                this.setState({
+                    myAppointments: apts
+                });
+            });
     }
 
     render() {
@@ -19,7 +33,6 @@ class Interface extends Component {
                     <div className="row">
                         <div className="col-md-12 bg-white">
                             <div className="container">
-                                {this.state.myName}
                                 <AddAppointments />
                                 <SearchAppointments />
                                 <ListAppointments />
