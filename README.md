@@ -56,8 +56,6 @@ $ id $User
 uid=501(yhmun) gid=20(staff)
 
 $ mkdir -p /Users/yhmun/Develop/volumes/postgres
-$ mkdir -p /Users/yhmun/Develop/volumes/backend
-$ mkdir -p /Users/yhmun/Develop/volumes/frontend
 $ mkdir -p /Users/yhmun/Develop/volumes/media
 
 $ docker volume create --driver local \
@@ -68,16 +66,6 @@ $ docker volume create --driver local \
 
 $ docker volume create --driver local \
     --opt type=none \
-    --opt device=/Users/yhmun/Develop/volumes/backend \
-    --opt o=bind backend
-
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/Users/yhmun/Develop/volumes/frontend \
-    --opt o=bind frontend
-
-$ docker volume create --driver local \
-    --opt type=none \
     --opt device=/Users/yhmun/Develop/volumes/media \
     --opt o=bind media
 ```
@@ -85,24 +73,12 @@ $ docker volume create --driver local \
 ### Production environment
 ```
 $ sudo mkdir -p /var/opt/volumes/postgres
-$ sudo mkdir -p /var/opt/volumes/backend
-$ sudo mkdir -p /var/opt/volumes/frontend
 $ sudo mkdir -p /var/opt/volumes/media
 
 $ docker volume create --driver local \
     --opt type=none \
     --opt device=/var/opt/volumes/postgres \
     --opt o=bind postgres
-
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/var/opt/volumes/backend \
-    --opt o=bind backend
-
-$ docker volume create --driver local \
-    --opt type=none \
-    --opt device=/var/opt/volumes/frontend \
-    --opt o=bind frontend
 
 $ docker volume create --driver local \
     --opt type=none \

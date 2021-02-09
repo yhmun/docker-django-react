@@ -19,7 +19,7 @@ services:
     expose:
       - 8000
     volumes:
-      - backend:/usr/src/app/static
+      - static:/usr/src/app/static
       - media:/usr/src/app/media
     command: gunicorn server.wsgi:application --bind 0.0.0.0:8000 -w 2
     depends_on:
@@ -31,9 +31,6 @@ services:
     restart: unless-stopped
     expose:
       - 3000
-    volumes:
-      - frontend:/usr/src/app/static
-      - media:/usr/src/app/media
     env_file:
       - ./frontend/.env
     command: serve -s /usr/src/app/build -l 3000
@@ -47,8 +44,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - backend:/usr/src/app/backend
-      - frontend:/usr/src/app/frontend
+      - static:/usr/src/app/static
       - media:/usr/src/app/media
     depends_on:
       - frontend
@@ -56,9 +52,7 @@ services:
 volumes:
   postgres:
     external: true
-  backend:
-    external: true
-  frontend:
-    external: true
+  static:
+    external: false
   media:
     external: true
