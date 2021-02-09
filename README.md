@@ -131,9 +131,9 @@ $ source venv/bin/activate
 ### Frontend: React
 ```
 $ cd ./frontend
+$ sudo npm install --global yarn
 $ npm install
-$ npm start
+$ REACT_APP_HOST_IP_ADDRESS=http://localhost yarn start
 $ npm run build
 ```
-
 
