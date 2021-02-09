@@ -44,6 +44,10 @@ $ source venv/bin/activate
 
 ## Frontend: React Apps
 ```
+# React: Building an Interface
+# https://www.linkedin.com/learning/react-js-building-an-interface-2/adding-your-own-modules?contextUrn=urn%3Ali%3AlyndaLearningPath%3A593715e0498e9e9be7fb8506
+$ npm install --save bootstrap react-icons lodash jquery popper.js moment react-moment
+
 # https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
 $ npm install --save antd redux axios react-redux redux-thunk redux-logger bootstrap reactstrap
 $ mkdir -p src/reducx
