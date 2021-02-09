@@ -23,6 +23,7 @@ SQL_USER=<user>
 SQL_PASSWORD=<password>
 SQL_HOST=postgres
 SQL_PORT=5432
+CORS_ORIGIN_WHITELIST=<domain>
 ```
 ```
 $ vi ./backend/server/.env  # only for local dev env
@@ -36,10 +37,11 @@ SQL_USER=<user>
 SQL_PASSWORD=<password>
 SQL_HOST=localhost
 SQL_PORT=5432
+CORS_ORIGIN_WHITELIST=http://localhost
 ```
 ```
 $ vi ./frontend/.env
-
+REACT_APP_HOST_IP_ADDRESS=http://localhost     # or <domain>
 ```
 ```
 $ vi ./postgres/.env
