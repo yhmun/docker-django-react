@@ -9,7 +9,8 @@ class ListAppointments extends Component {
                 {this.props.appointments.map(item => (
                     <div key={item.aptId} className="pet-item col media py-3">
                         <div className="mr-3">
-                            <button className="pet-delete btn btn-sm btn-danger">
+                            <button className="pet-delete btn btn-sm btn-danger"
+                                onClick={() => this.props.deleteAppointment(item)}>
                                 <FaTimes />
                             </button>
                         </div>
