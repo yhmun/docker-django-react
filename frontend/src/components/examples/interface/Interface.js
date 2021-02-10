@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Interface.css';
 import AddAppointments from './AddAppointments';
 import SearchAppointments from './SearchAppointments';
 import ListAppointments from './ListAppointments';
-import {without} from 'lodash';
-import { each } from 'jquery';
+import { findIndex, without } from 'lodash';
 
 class Interface extends Component {
 
@@ -23,6 +22,7 @@ class Interface extends Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.searchApts = this.searchApts.bind(this);
         this.changeOrder = this.changeOrder.bind(this);
+        this.updateInfo = this.updateInfo.bind(this);
     }
 
     toggleForm() {
@@ -41,6 +41,17 @@ class Interface extends Component {
         this.setState({
             orderBy: order,
             orderDir: dir
+        });
+    }
+
+    updateInfo(name, value, id) {
+        let tempApts = this.state.myAppointments;
+        let aptIndex = findIndex(this.state.myAppointments, {
+            aptId: id
+        });
+        tempApts[aptIndex][name] = value;
+        this.setState({
+            myAppointments: tempApts
         });
     }
 
@@ -126,7 +137,8 @@ class Interface extends Component {
                                 />
                                 <ListAppointments 
                                     appointments={filteredApts} 
-                                    deleteAppointment={this.deleteAppointment} 
+                                    deleteAppointment={this.deleteAppointment}
+                                    updateInfo={this.updateInfo}
                                 />
                             </div>
                         </div>
