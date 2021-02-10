@@ -2,9 +2,9 @@ import React from  'react';
 import { Link } from 'react-router-dom';
 import articleContent from './article-content';
 
-const ArticlesPage = () => (
+const ArticleListPage = () => (
   <React.Fragment>
-    <h2>Article</h2>
+    <h2>Articles</h2>
     <div className="list-group list-group-flush">
       {articleContent.map((article, key) => (
         <Link className="list-group-item list-group-item-action"
@@ -21,4 +21,4 @@ const ArticlesPage = () => (
   </React.Fragment>
 );
 
-export default ArticlesPage;
+export default ArticleListPage;
