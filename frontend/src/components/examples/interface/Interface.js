@@ -87,11 +87,16 @@ class Interface extends Component {
                                 <AddAppointments 
                                     formDisplay={this.state.formDisplay}
                                     toggleForm={this.toggleForm} 
-                                    addAppointment={this.addAppointment} />
-                                <SearchAppointments />
+                                    addAppointment={this.addAppointment} 
+                                />
+                                <SearchAppointments 
+                                    orderBy={this.state.orderBy}
+                                    orderDir={this.state.orderDir} 
+                                />
                                 <ListAppointments 
                                     appointments={filteredApts} 
-                                    deleteAppointment={this.deleteAppointment} />
+                                    deleteAppointment={this.deleteAppointment} 
+                                />
                             </div>
                         </div>
                     </div>
