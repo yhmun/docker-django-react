@@ -4,9 +4,9 @@ import Interface from './components/examples/interface/Interface';
 
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-import ArticleListPage from './pages/ArticleListPage';
+import ArticlesPage from './pages/ArticlesPage';
 import ArticlePage from './pages/ArticlePage';
-
+import NavBar from './NavBar';
 import './App.css';
 
 class App extends Component {
@@ -14,11 +14,24 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/" component={HomePage} exact />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/article-list" component={ArticleListPage} />
-          <Route path="/article" component={ArticlePage} />
-          <Route path="/examples/interface" component={Interface} />
+          <header className="fixed-top">
+            <div className="container">
+              <NavBar />
+            </div>
+          </header>
+          <main className="page flex-shrink-0">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                  <Route path="/" component={HomePage} exact />
+                  <Route path="/about" component={AboutPage} />
+                  <Route path="/articles" component={ArticlesPage} />
+                  <Route path="/article/:name" component={ArticlePage} />
+                  <Route path="/examples/interface" component={Interface} />
+                </div>
+              </div>
+            </div>
+          </main>
         </div>
       </Router>
     );
@@ -26,3 +39,12 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+        
+
+
+          <footer>
+            <Footer />
+          </footer>
+*/

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -26,30 +26,16 @@
     -->
     <title>Learning: Django and React</title>
   </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+  <body class="d-flex flex-column h-100">
+    <div id="root"></div>
 
-    <header class="container text-white text-center">
-      <h4 class="py-2">Learning: Django and React</h4>
-    </header>
-    
-    <main class="page bg-white" id="petratings">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 bg-white">      
-            <div class="container" id="root"></div>
-          </div>
-        </div>
-    </main>
-
-    <footer class="container d-flex text-white py-2">
-      <p>
-        All contents &copy; 2021
-        <a href="http://mcodegeeks.com">mcodegeeks.com</a>. All rights reserved.
-      </p>
-      <div class="ml-auto">
-        <a class="d-block text-white" href="https://github.com/mcodegeeks/docker-django-react">See Source Codes at Github</a>
+    <footer class="footer mt-auto py-2 text-center">
+      <div className="container">
+          <a className="d-block" href="https://github.com/mcodegeeks/docker-django-react">
+            Source Codes at Github
+          </a>
       </div>
     </footer>
   </body>
 </html>
+
