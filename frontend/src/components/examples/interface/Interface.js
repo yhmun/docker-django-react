@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AddAppointments from './AddAppointments';
 import SearchAppointments from './SearchAppointments';
 import ListAppointments from './ListAppointments';
+import './Interface.css';
 
 class Interface extends Component {
 
