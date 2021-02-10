@@ -15,6 +15,13 @@ class Interface extends Component {
             lastIndex : 0,
         }
         this.deleteAppointment = this.deleteAppointment.bind(this);
+        this.toggleForm = this.toggleForm.bind(this);
+    }
+
+    toggleForm() {
+        this.setState({
+            formDisplay: !this.state.formDisplay
+        });
     }
 
     deleteAppointment(apt) {
@@ -48,7 +55,8 @@ class Interface extends Component {
                         <div className="col-md-12 bg-white">
                             <div className="container">                               
                                 <AddAppointments 
-                                    formDisplay={this.state.formDisplay} />
+                                    formDisplay={this.state.formDisplay}
+                                    toggleForm={this.toggleForm} />
                                 <SearchAppointments />
                                 <ListAppointments 
                                     appointments={this.state.myAppointments} 
