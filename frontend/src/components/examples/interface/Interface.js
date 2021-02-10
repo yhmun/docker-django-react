@@ -14,6 +14,7 @@ class Interface extends Component {
             formDisplay: false,
             lastIndex : 0,
         }
+        this.addAppointment = this.addAppointment.bind(this);
         this.deleteAppointment = this.deleteAppointment.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
     }
@@ -21,6 +22,16 @@ class Interface extends Component {
     toggleForm() {
         this.setState({
             formDisplay: !this.state.formDisplay
+        });
+    }
+
+    addAppointment(apt) {
+        let tempApts = this.state.myAppointments;
+        apt.aptId = this.state.lastIndex;
+        tempApts.unshift(apt);
+        this.setState({
+            myAppointments: tempApts,
+            lastIndex: this.state.lastIndex + 1
         });
     }
 
@@ -56,7 +67,8 @@ class Interface extends Component {
                             <div className="container">                               
                                 <AddAppointments 
                                     formDisplay={this.state.formDisplay}
-                                    toggleForm={this.toggleForm} />
+                                    toggleForm={this.toggleForm} 
+                                    addAppointment={this.addAppointment} />
                                 <SearchAppointments />
                                 <ListAppointments 
                                     appointments={this.state.myAppointments} 

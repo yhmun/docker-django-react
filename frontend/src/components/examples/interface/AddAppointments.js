@@ -6,12 +6,33 @@ class AddAppointments extends Component {
     constructor() {
         super();
         this.state = {
-            petName: "",
-            ownerName: "",
-            aptNotes: "",
-            aptDate: ""            
+            petName: '',
+            ownerName: '',
+            aptDate: '',
+            aptTime: '',
+            aptNotes: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+    }
+
+    handleAdd(e) {
+        e.preventDefault();
+        let tempApt = {
+            petName: this.state.petName,
+            ownerName: this.state.ownerName,
+            aptDate: this.state.aptDate + ' ' + this.state.aptTime,
+            aptNotes: this.state.aptNotes               
+        };
+        this.props.addAppointment(tempApt);
+        this.setState({
+            petName: '',
+            ownerName: '',
+            aptDate: '',
+            aptTime: '',
+            aptNotes: ''
+        });
+        this.props.toggleForm();
     }
 
     handleChange(e) {
@@ -38,7 +59,8 @@ class AddAppointments extends Component {
                 </div>
   
                 <div className="card-body">
-                    <form id="aptForm" noValidate>
+                    <form id="aptForm" noValidate
+                        onSubmit={this.handleAdd}>
                         <div className="form-group form-row">
                             <label
                                 className="col-md-2 col-form-label text-md-right"
