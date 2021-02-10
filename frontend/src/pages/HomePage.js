@@ -2,7 +2,7 @@ import React from  'react';
 
 const HomePage = () => (
   <React.Fragment>
-    <h1>Hello, welcome to my blog!</h1>
+    <h2>Hello, welcome to my blog!</h2>
     <p>
         Welcome to my blog! Proin congue
         ligula id risus posuere, vel eleifend ex egestas. Sed in turpis leo. 
