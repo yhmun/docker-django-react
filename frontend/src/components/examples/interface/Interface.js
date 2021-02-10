@@ -4,6 +4,7 @@ import AddAppointments from './AddAppointments';
 import SearchAppointments from './SearchAppointments';
 import ListAppointments from './ListAppointments';
 import {without} from 'lodash';
+import { each } from 'jquery';
 
 class Interface extends Component {
 
@@ -14,6 +15,7 @@ class Interface extends Component {
             formDisplay: false,
             orderBy: 'petName',
             orderDir: 'asc',
+            queryText: '',
             lastIndex : 0,
         }
         this.addAppointment = this.addAppointment.bind(this);
@@ -77,13 +79,25 @@ class Interface extends Component {
             order = -1;
         }
 
-        filteredApts.sort((a, b) => {
+        filteredApts = filteredApts.sort((a, b) => {
             if (a[this.state.orderBy].toLowerCase() <
                 b[this.state.orderBy].toLowerCase()) {
                 return -1 * order;
             } else {
                 return 1 * order;
             }
+        }).filter(eachItem => {
+            return (
+                eachItem['petName']
+                    .toLowerCase()
+                    .includes(this.state.queryText.toLowerCase()) ||
+                eachItem['ownerName']
+                    .toLowerCase()
+                    .includes(this.state.queryText.toLowerCase()) ||
+                eachItem['aptNotes']
+                    .toLowerCase()
+                    .includes(this.state.queryText.toLowerCase())
+            );
         });
 
         return (
