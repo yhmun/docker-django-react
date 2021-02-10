@@ -45,13 +45,72 @@ $ source venv/bin/activate
 ## Frontend: React Apps
 ```
 # React: Building an Interface
-# https://www.linkedin.com/learning/react-js-building-an-interface-2/adding-your-own-modules?contextUrn=urn%3Ali%3AlyndaLearningPath%3A593715e0498e9e9be7fb8506
-$ npm install --save bootstrap react-icons lodash jquery popper.js moment react-moment
+# https://www.linkedin.com/learning/react-js-building-an-interface-2
+$ npm install --save bootstrap \                     
+                     lodash \
+                     jquery \
+                     popper.js \
+                     moment \
+                     react-moment \
+                     react-icons 
+
+# React: Creating and Hosting a Full-Stack Site
+# https://www.linkedin.com/learning/react-creating-and-hosting-a-full-stack-site
+$ npm install --save react-router-dom
 
 # https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
 $ npm install --save antd redux axios react-redux redux-thunk redux-logger bootstrap reactstrap
 $ mkdir -p src/reducx
 $ mkdir -p src/containers
+
+
+
+```
+
+### npm commands
+```
+$ npm list --depth=n
+           --prod
+           --dev
+           --global
+           --json
+```
+
+### npm packages
+```
+$ npm list --prod --depth=0
+├── @testing-library/jest-dom@5.11.9
+├── @testing-library/react@11.2.5
+├── @testing-library/user-event@12.6.3
+├── antd@4.12.2
+├── axios@0.21.1                        # Promise based HTTP client for the browser and node.js
+├── bootstrap@4.6.0                     # The most popular front-end framework for developing responsive, mobile first projects on the web.
+├── jquery@3.5.1                        # JavaScript library for DOM operations
+├── lodash@4.17.20                      # Lodash modular utilities.
+├── moment@2.29.1                       # Parse, validate, manipulate, and display dates
+├── popper.js@1.16.1                    # Realtime Cross-Browser Automation
+├── react@17.0.1                        # React is a JavaScript library for building user interfaces.
+├── react-dom@17.0.1                    # React package for working with the DOM.
+├── react-icons@4.2.0                   # Icon component for React
+├── react-moment@1.1.1                  # React component for the moment date library.
+├── react-redux@7.2.2
+├── react-router-dom@5.2.0              # DOM bindings for React Router
+├── react-scripts@4.0.2
+├── reactstrap@8.9.0
+├── redux@4.0.5
+├── redux-logger@3.0.6
+├── redux-thunk@2.3.0
+└── web-vitals@1.1.0
+```
+```
+$ npm list --global --depth=0 
+/usr/local/lib
+├── @angular/cli@6.2.3
+├── npm@6.14.10
+├── protractor@5.4.1
+├── tslint@5.11.0
+├── typescript@3.0.3
+└── yarn@1.22.10
 ```
 
 ### PyPi packages
