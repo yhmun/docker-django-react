@@ -13,6 +13,14 @@ const ArticlePage = ({ match }) => {
   });
 
   useEffect(() => {
+    /*
+    const fetchData = async() => {
+      const result = await fetch() {
+
+      }
+    }
+    fetchData();
+    */
     setArticleInfo({ upvotes: Math.ceil(Math.random() * 10) })
   }, [name]);
 
