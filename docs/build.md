@@ -27,6 +27,18 @@ $ source venv/bin/activate
 (vend) $ deactivate
 ```
 
+## Backend: Migration
+```
+(vend) $ python manage.py makemigrations <app>
+(vend) $ python manage.py sqlmigrate <app> 0001
+(vend) $ python manage.py migrate
+(vend) $ python manage.py showmigrations
+(vend) $ python manage.py migrate --fake <app> zero
+(vend) $ python manage.py migrate <app> zero
+
+(vend) $ python manage.py migrate --fake base zero
+```
+
 ## Backend: Django Apps
 ```
 # https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
@@ -40,7 +52,14 @@ $ source venv/bin/activate
 (vend) $ django-admin startapp todo apps/todo
 (vend) $ python manage.py makemigrations todo
 (vend) $ python manage.py migrate todo
+
+# https://blog.logrocket.com/creating-an-app-with-react-and-django/
+(vend) $ mkdir -p apps/base
+(vend) $ django-admin startapp base apps/base
 ```
+
+
+
 
 ## Frontend: React Apps
 ```
