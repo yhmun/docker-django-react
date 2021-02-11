@@ -23,25 +23,17 @@ SQL_USER=<user>
 SQL_PASSWORD=<password>
 SQL_HOST=postgres
 SQL_PORT=5432
-CORS_ORIGIN_WHITELIST=<domain>
+CORS_ORIGIN_WHITELIST=http://<domain>:3000 http://localhost:3000
 ```
 ```
-$ vi ./backend/server/.env  # only for local dev env
+# only for local dev (python mangage.py runserver)
+$ cp ./backend/.env ./backend/server/
+$ vi ./backend/server/.env
 DEBUG=True
-SECRET_KEY=<secret_key>
-DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-SQL_ENGINE=django.db.backends.postgresql
-SQL_DATABASE=<database>
-SQL_TEST_DATABASE=<test_database>
-SQL_USER=<user>
-SQL_PASSWORD=<password>
-SQL_HOST=localhost
-SQL_PORT=5432
-CORS_ORIGIN_WHITELIST=http://localhost
 ```
 ```
 $ vi ./frontend/.env
-REACT_APP_HOST_IP_ADDRESS=http://localhost     # or <domain>
+REACT_APP_HOST=http://localhost or http://<domain>
 ```
 ```
 $ vi ./postgres/.env
@@ -107,9 +99,7 @@ $ source venv/bin/activate
 ### Frontend: React
 ```
 $ cd ./frontend
-$ sudo npm install --global yarn
 $ npm install
-$ REACT_APP_HOST_IP_ADDRESS=http://localhost yarn start
+$ npm start
 $ npm run build
 ```
-
