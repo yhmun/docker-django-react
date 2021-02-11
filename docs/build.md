@@ -56,7 +56,8 @@ $ npm install --save bootstrap \
 
 # React: Creating and Hosting a Full-Stack Site
 # https://www.linkedin.com/learning/react-creating-and-hosting-a-full-stack-site
-$ npm install --save react-router-dom
+$ npm install --save react-router-dom \
+
 
 # https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
 $ npm install --save antd redux axios react-redux redux-thunk redux-logger bootstrap reactstrap
@@ -99,7 +100,8 @@ $ npm list --prod --depth=0
 ├── redux@4.0.5
 ├── redux-logger@3.0.6
 ├── redux-thunk@2.3.0
-└── web-vitals@1.1.0
+├── web-vitals@1.1.0
+└── whatwg-fetch@3.5.0                  # A window.fetch polyfill.
 ```
 ```
 $ npm list --global --depth=0 
