@@ -7,6 +7,7 @@ import {
 import Interface from './components/examples/interface/Interface';
 
 import HomePage from './pages/HomePage';
+import StudentListPage from './pages/StudentListPage';
 import AboutPage from './pages/AboutPage';
 import ArticleListPage from './pages/ArticleListPage';
 import ArticlePage from './pages/ArticlePage';
@@ -30,6 +31,7 @@ class App extends Component {
                 <div className="col-md-12">
                   <Switch>
                     <Route path="/" component={HomePage} exact />
+                    <Route path="/students" component={StudentListPage} />
                     <Route path="/about" component={AboutPage} />
                     <Route path="/articles" component={ArticleListPage} />
                     <Route path="/article/:name" component={ArticlePage} />

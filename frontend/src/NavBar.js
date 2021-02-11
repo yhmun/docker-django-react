@@ -8,13 +8,13 @@ const NavBar = () => (
         <Link className="nav-link" to="/">Home</Link>
       </li>
       <li className="nav-item">
+        <Link className="nav-link" to="/students">Students</Link>
+      </li>
+      <li className="nav-item">
         <Link className="nav-link" to="/about">About</Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/articles">Blog</Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link disabled" to="#">Example</Link>
       </li>
     </ul>
   </nav>

@@ -58,9 +58,6 @@ $ source venv/bin/activate
 (vend) $ django-admin startapp base apps/base
 ```
 
-
-
-
 ## Frontend: React Apps
 ```
 # React: Building an Interface
@@ -83,7 +80,12 @@ $ npm install --save antd redux axios react-redux redux-thunk redux-logger boots
 $ mkdir -p src/reducx
 $ mkdir -p src/containers
 
-$ API_HOST=http://localhost yarn start
+# https://blog.logrocket.com/creating-an-app-with-react-and-django/
+```
+
+## Frontend: Reactstrap
+```
+# <Table bordered borderless striped dark hover />
 ```
 
 ### npm commands
