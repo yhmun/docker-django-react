@@ -15,7 +15,7 @@ const ArticlePage = ({ match }) => {
 
   useEffect(() => {    
     console.log(process.env)
-    axios.get(`${process.env.REACT_APP_API_HOST}/api/articles/1`)
+    axios.get(`${process.env.REACT_APP_HOST}/api/articles/1`)
       .then(function (response) {
         // handle success
         console.log(response);
