@@ -61,6 +61,7 @@ $ docker exec -it                   # Run a command in a running container
 $ docker exec -it backend /bin/bash
 $ docker exec -it postgres psql --username='' --dbname=''
 
+$ docker exec -it backend cat /usr/src/app/server/.env
 $ docker exec -it frontend ls -al /usr/src/app/
 $ docker exec -it nginx ls -al /usr/src/app/
 

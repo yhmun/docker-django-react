@@ -31,8 +31,6 @@ services:
     restart: unless-stopped
     expose:
       - 3000
-    env_file:
-      - ./frontend/.env
     command: serve -s /usr/src/app/build -l 3000
     depends_on:
       - backend

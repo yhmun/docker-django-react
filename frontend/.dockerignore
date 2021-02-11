@@ -1,8 +1,6 @@
 .git
 .gitignore
 .dockerignore
-.env
-.env.sh
 .DS_Store
 env-config.js
 

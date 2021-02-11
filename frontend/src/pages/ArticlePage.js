@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from  'react';
 import ArticleList from '../components/ArticleList';
 import NotFoundPage from './NotFoundPage';
@@ -12,16 +13,20 @@ const ArticlePage = ({ match }) => {
     comments: []
   });
 
-  useEffect(() => {
-    /*
-    const fetchData = async() => {
-      const result = await fetch() {
-
-      }
-    }
-    fetchData();
-    */
-    setArticleInfo({ upvotes: Math.ceil(Math.random() * 10) })
+  useEffect(() => {    
+    console.log(process.env)
+    axios.get(`${process.env.REACT_APP_API_HOST}/api/articles/1`)
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
   }, [name]);
 
   if (!article)
