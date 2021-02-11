@@ -9,7 +9,7 @@ $ npm -v
 $ sudo npm install --global yarn
 $ npx create-react-app frontend
 $ cd frontend
-$ npm start
+$ API_HOST=http://<domain> yarn start
 ```
 
 ## Backend: Django
@@ -63,8 +63,7 @@ $ npm install --save antd redux axios react-redux redux-thunk redux-logger boots
 $ mkdir -p src/reducx
 $ mkdir -p src/containers
 
-
-
+$ API_HOST=http://localhost yarn start
 ```
 
 ### npm commands
