@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import CreateStudentForm from './CreateStudentForm';
 
 class CreateStudentModal extends Component {
   state = {
@@ -54,7 +55,11 @@ class CreateStudentModal extends Component {
             {title}
           </ModalHeader>
           <ModalBody>
-
+            <CreateStudentForm 
+              student={this.props.student}
+              resetState={this.props.resetState}
+              toggle={this.toggle}                            
+            />
           </ModalBody>
         </Modal>
       </Fragment>
