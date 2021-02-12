@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
+import CreateStudentModal from './CreateStudentModal';
 
 class StudentList extends Component {  
   render() {
@@ -28,13 +29,17 @@ class StudentList extends Component {
           ) : (
             students.map(student => (
               <tr key={student.id}>
-                <td>{student.name}</td>
-                <td>{student.email}</td>
-                <td>{student.document}</td>
-                <td>{student.phone}</td>
-                <td>{student.registered_on}</td>
+                <td className="align-middle">{student.name}</td>
+                <td className="align-middle">{student.email}</td>
+                <td className="align-middle">{student.document}</td>
+                <td className="align-middle">{student.phone}</td>
+                <td className="align-middle">{student.registered_on}</td>
                 <td align="center">
-                  
+                  <CreateStudentModal 
+                    create={false}
+                    student={student}
+                    resetState={this.props.resetState}
+                  />
                 </td>
               </tr>
             ))
