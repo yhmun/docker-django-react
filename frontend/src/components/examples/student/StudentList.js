@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import CreateStudentModal from './CreateStudentModal';
+import DeleteStudentModal from './DeleteStudentModal';
 
 class StudentList extends Component {  
   render() {
     const students = this.props.students;
-
-    console.log(students);
     return (
       <Table>
         <thead>
@@ -38,6 +37,11 @@ class StudentList extends Component {
                   <CreateStudentModal 
                     create={false}
                     student={student}
+                    resetState={this.props.resetState}
+                  />
+                  &nbsp;&nbsp;
+                  <DeleteStudentModal
+                    id={student.id}
                     resetState={this.props.resetState}
                   />
                 </td>

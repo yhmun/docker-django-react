@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import StudentList from '../../../components/examples/student/StudentList';
-import axios from "axios";
+import axios from 'axios';
 
 class StudentListPage extends Component {
   state = {

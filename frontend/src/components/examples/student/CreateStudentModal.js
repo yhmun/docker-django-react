@@ -22,7 +22,8 @@ class CreateStudentModal extends Component {
         <Button
           className="float-right"
           color="primary"
-          style={{ minWidth: "20px" }}
+          size="sm"
+          style={{ width: "60px" }}          
           onClick={this.toggle}
         >
           Create
@@ -33,8 +34,10 @@ class CreateStudentModal extends Component {
       button = (
         <Button 
           color="info"
-          onClick={this.toggle
-        }>
+          size="sm"
+          style={{ width: "60px" }}
+          onClick={this.toggle}
+        >
           Edit
         </Button>
       );
