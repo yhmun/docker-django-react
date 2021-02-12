@@ -24,7 +24,7 @@ class CreateStudentModal extends Component {
           className="float-right"
           color="primary"
           size="sm"
-          style={{ width: "60px" }}          
+          style={{ width: "130px" }}          
           onClick={this.toggle}
         >
           Create
