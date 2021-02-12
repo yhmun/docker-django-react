@@ -16,7 +16,7 @@ class DeleteStudentModal extends Component {
   deleteStudent = (id) => {
     /*
     axios.delete(`${process.env.REACT_APP_HOST}/api/students/${id}`)
-      .then((response) => {
+      .then(() => {
         */
         this.props.resetState();
         this.toggle();

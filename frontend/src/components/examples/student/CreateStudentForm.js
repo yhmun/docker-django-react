@@ -18,12 +18,32 @@ class CreateStudentForm extends Component {
     }
   }
 
-  editStudent = () => {
-    console.log('editStudent');
+  editStudent = (e) => {
+    e.preventDefault();
+    axios.put(`${process.env.REACT_APP_HOST}/api/students/${this.state.id}`, this.state)
+      .then(() => {
+        this.props.resetState();
+        this.props.toggle();        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  createStudent = () => {
-    console.log('createStudent');
+  createStudent = (e) => {
+    e.preventDefault();
+    /*
+    axios.put(`${process.env.REACT_APP_HOST}/api/students/${id}`)
+      .then(() => {
+        */
+       this.props.resetState();
+       this.props.toggle();
+       /*
+     })
+     .catch((error) => {
+       console.log(error);
+     });
+     */
   };
 
   onChange = (e) => {
