@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React, { Component, Fragment } from 'react';
 import StudentList from '../../../components/examples/student/StudentList';
 import axios from 'axios';
 
@@ -28,16 +27,12 @@ class StudentListPage extends Component {
 
   render() {
     return (
-      <Container>
-        <Row>
-          <Col>
-            <StudentList 
-              students={this.state.students}
-              resetState={this.resetState}
-            />
-          </Col>
-        </Row>
-      </Container>
+      <Fragment>
+        <StudentList 
+          students={this.state.students}
+          resetState={this.resetState}
+        />
+      </Fragment>
     );
   }
 }

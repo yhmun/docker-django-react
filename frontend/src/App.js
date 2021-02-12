@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { 
-  BrowserRouter as Router, 
-  Route,
-  Switch
-} from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Interface from './components/examples/interface/Interface';
 
 import HomePage from './pages/HomePage';
+import ArticleListPage from './pages/blog/ArticleListPage';
+import ArticlePage from './pages/blog/ArticlePage';
 import StudentListPage from './pages/examples/student/StudentListPage';
 import AboutPage from './pages/AboutPage';
-import ArticleListPage from './pages/ArticleListPage';
-import ArticlePage from './pages/ArticlePage';
+
 import NotFoundPage from './pages/NotFoundPage';
 import NavBar from './NavBar';
 import './App.css';
@@ -21,26 +19,30 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="fixed-top">
-            <div className="container">
-              <NavBar />
-            </div>
+            <Container>
+              <Row>
+                <Col>
+                  <NavBar />
+                </Col>
+              </Row>
+            </Container>
           </header>
           <main className="page flex-shrink-0">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-12">
+            <Container>
+              <Row>
+                <Col>
                   <Switch>
                     <Route path="/" component={HomePage} exact />
+                    <Route path="/blog/articles/:id" component={ArticlePage} />
+                    <Route path="/blog/articles" component={ArticleListPage} />
                     <Route path="/examples/students" component={StudentListPage} />
                     <Route path="/about" component={AboutPage} />
-                    <Route path="/articles" component={ArticleListPage} />
-                    <Route path="/article/:name" component={ArticlePage} />
                     <Route path="/examples/interface" component={Interface} />
                     <Route component={NotFoundPage} />
                   </Switch>
-                </div>
-              </div>
-            </div>
+                </Col>
+              </Row>
+            </Container>
           </main>
         </div>
       </Router>
@@ -49,12 +51,3 @@ class App extends Component {
 }
 
 export default App;
-
-/*
-        
-
-
-          <footer>
-            <Footer />
-          </footer>
-*/

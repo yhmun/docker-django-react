@@ -1,9 +1,13 @@
-import React from  'react';
+import React, { Component, Fragment } from 'react';
 
-const AboutPage = () => (
-  <React.Fragment>
-    <h2>This is the about page</h2>
-  </React.Fragment>
-);
+class AboutPage extends Component {
+  render() {
+    return (
+      <Fragment>
+        <h3>The about page is under construction.</h3>
+      </Fragment>
+    );
+  }
+}
 
 export default AboutPage;
