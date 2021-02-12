@@ -13,19 +13,15 @@ class DeleteStudentModal extends Component {
     }));
   };
 
-  deleteStudent = (id) => {
-    /*
+  deleteStudent = (id) => {    
     axios.delete(`${process.env.REACT_APP_HOST}/api/students/${id}`)
-      .then(() => {
-        */
+      .then(() => {        
         this.props.resetState();
-        this.toggle();
-        /*
+        this.toggle();        
       })
       .catch((error) => {
         console.log(error);
-      });
-    */
+      });  
   };
 
   render() {
