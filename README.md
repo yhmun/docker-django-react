@@ -15,7 +15,7 @@ Portfolio Website: Docker + Django + React + Postgres + Nginx + Gunicorn
 $ vi ./backend/.env
 DEBUG=False
 SECRET_KEY=<secret_key>
-DJANGO_ALLOWED_HOSTS=<domain> localhost 127.0.0.1 [::1]
+DJANGO_ALLOWED_HOSTS=<domain_name> <ip_addr> localhost 127.0.0.1 [::1]   # important: both domain and ip_addr are required for POST
 SQL_ENGINE=django.db.backends.postgresql
 SQL_DATABASE=<database>
 SQL_TEST_DATABASE=<test_database>
@@ -23,7 +23,7 @@ SQL_USER=<user>
 SQL_PASSWORD=<password>
 SQL_HOST=postgres
 SQL_PORT=5432
-CORS_ORIGIN_WHITELIST=http://<domain>:3000 http://localhost:3000
+CORS_ORIGIN_WHITELIST=http://<domain_name>:3000 http://localhost:3000
 ```
 ```
 # only for local dev (python mangage.py runserver)
@@ -33,7 +33,7 @@ DEBUG=True
 ```
 ```
 $ vi ./frontend/.env
-REACT_APP_HOST=http://localhost or http://<domain>
+REACT_APP_HOST=http://localhost or http://<domain_name>
 ```
 ```
 $ vi ./postgres/.env
