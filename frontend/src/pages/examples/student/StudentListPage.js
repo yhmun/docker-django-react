@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import StudentList from '../../../components/examples/student/StudentList';
-import CreateStudentModal from '../../../components/examples/student/CreateStudentModal';
 import axios from 'axios';
 
 class StudentListPage extends Component {
@@ -34,14 +33,6 @@ class StudentListPage extends Component {
           <Col>
             <StudentList 
               students={this.state.students}
-              resetState={this.resetState}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col style={{ marginRight: '20px'}}>
-            <CreateStudentModal
-              create={true}
               resetState={this.resetState}
             />
           </Col>

@@ -33,7 +33,7 @@ class StudentList extends Component {
                 <td className="align-middle">{student.document}</td>
                 <td className="align-middle">{student.phone}</td>
                 <td className="align-middle">{student.registered_on}</td>
-                <td align="center">
+                <td align="right">
                   <CreateStudentModal 
                     create={false}
                     student={student}
@@ -49,6 +49,16 @@ class StudentList extends Component {
             ))
           )}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="6" align="right">
+              <CreateStudentModal
+                create={true}
+                resetState={this.props.resetState}
+              />
+            </td>
+          </tr>
+        </tfoot>
       </Table>
     );
   }
