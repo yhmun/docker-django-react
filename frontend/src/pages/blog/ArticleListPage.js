@@ -1,22 +1,13 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React, { Component, Fragment } from 'react';
 import ArticleList from '../../components/blog/ArticleList';
 
 class ArticleListPage extends Component {
   render() {
     return (
-      <Container>
-        <Row>
-          <Col>
-            <h2>Articles</h2>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <ArticleList/>
-          </Col>
-        </Row>
-      </Container>
+      <Fragment>
+        <h2>Articles</h2>
+        <ArticleList />
+      </Fragment>
     );
   }
 }
