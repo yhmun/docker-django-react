@@ -4,6 +4,7 @@ import NotFoundPage from './../NotFoundPage';
 import ArticleList from '../../components/blog/ArticleList';
 import CommentList from '../../components/blog/CommentList';
 import UpvoteSection from '../../components/blog/UpvoteSection';
+import AddCommentForm from '../../components/blog/AddCommentForm';
 
 class ArticlePage extends Component {
   state = {
@@ -57,6 +58,12 @@ class ArticlePage extends Component {
           />
           <hr/>
           <br/>
+          <h4>Add a Comment</h4>
+          <AddCommentForm 
+            article_id={article.id}
+          />
+          <hr/>
+          <br/>          
           <h4>Other Articles:</h4>
           <br/>
           <ArticleList
