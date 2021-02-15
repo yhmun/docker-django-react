@@ -3,6 +3,7 @@ import axios from 'axios';
 import NotFoundPage from './../NotFoundPage';
 import ArticleList from '../../components/blog/ArticleList';
 import CommentList from '../../components/blog/CommentList';
+import UpvoteSection from '../../components/blog/UpvoteSection';
 
 class ArticlePage extends Component {
   state = {
@@ -42,7 +43,9 @@ class ArticlePage extends Component {
     return (
         <Fragment>
           <h3>{article.title}</h3>
-          <p>This post has been upvoted {article.up_votes} times</p>
+          <UpvoteSection 
+            article={article}
+          />          
           <br/>
           <pre>{article.content}</pre>
           <hr/>
