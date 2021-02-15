@@ -1,5 +1,6 @@
 from rest_framework.permissions import AllowAny
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Article, Category, Comment
 from .serializers import ArticleSerializer, CategorySerializer, CommentSerializer
 
@@ -17,3 +18,5 @@ class CommentView(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [AllowAny]
+    filter_backends = (DjangoFilterBackend, )
+    filter_fields = ('article', )
