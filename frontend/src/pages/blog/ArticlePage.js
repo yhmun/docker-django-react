@@ -10,7 +10,12 @@ class ArticlePage extends Component {
   };
 
   componentDidMount() {
-    this.getArticle(this.props.match.params.id)
+    this.getArticle(this.props.match.params.id);
+  }
+
+  componentDidUpdate(prevProp) {
+    if (prevProp.match.params.id !== this.props.match.params.id) 
+      this.getArticle(this.props.match.params.id);
   }
 
   getArticle = (id) => {
@@ -36,6 +41,7 @@ class ArticlePage extends Component {
     return (
         <Fragment>
           <h3>{article.title}</h3>
+          <p>This post has been upvoted {article.up_votes} times</p>
           <br/>
           <pre>{article.content}</pre>
           <hr/>
