@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import NotFoundPage from './../NotFoundPage';
 import ArticleList from '../../components/blog/ArticleList';
+import CommentList from '../../components/blog/CommentList';
 
 class ArticlePage extends Component {
   state = {
@@ -36,7 +37,7 @@ class ArticlePage extends Component {
 
     if (this.state.loading)
       return <Fragment></Fragment>
-    else if (!article) 
+    else if (!article)
       return <NotFoundPage />
     return (
         <Fragment>
@@ -45,6 +46,16 @@ class ArticlePage extends Component {
           <br/>
           <pre>{article.content}</pre>
           <hr/>
+          <br/>
+          <h4>Comments</h4>
+          <br/>
+          <CommentList 
+            article_id={article.id}
+          />
+          <hr/>
+          <br/>
+          <h4>Other Articles:</h4>
+          <br/>
           <ArticleList
             exclude_id={article.id}
           />
