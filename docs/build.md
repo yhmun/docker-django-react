@@ -7,7 +7,6 @@ $ npm -v
 6.14.10   # mac
 6.14.4    # ubuntu 20.04
 $ sudo npm install -g npm@latest
-$ sudo npm install -g yarn
 $ npx create-react-app frontend
 $ cd frontend
 $ npm start
@@ -142,8 +141,7 @@ $ npm list --global --depth=0
 ├── npm@7.5.4
 ├── protractor@5.4.1
 ├── tslint@5.11.0
-├── typescript@3.0.3
-└── yarn@1.22.10
+└── typescript@3.0.3
 ```
 
 ### PyPi packages
