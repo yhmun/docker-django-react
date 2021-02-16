@@ -81,6 +81,12 @@ $ mkdir -p src/reducx
 $ mkdir -p src/containers
 
 # https://blog.logrocket.com/creating-an-app-with-react-and-django/
+
+
+# Building Modern Projects with React
+# https://www.linkedin.com/learning/building-modern-projects-with-react
+$ 
+
 ```
 
 ## Frontend: Reactstrap
