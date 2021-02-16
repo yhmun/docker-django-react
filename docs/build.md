@@ -60,6 +60,15 @@ $ source venv/bin/activate
 
 ## Frontend: React Apps
 ```
+$ npm install --save react-router-dom
+$ npm install --save redux react-redux redux-thunk redux-logger 
+$ npm install --save bootstrap jquery
+$ npm install --save --legacy-peer-deps reactstrap  
+$ npm install --save react-icons
+$ npm install --save axios
+```
+
+```
 # React: Building an Interface
 # https://www.linkedin.com/learning/react-js-building-an-interface-2
 $ npm install --save bootstrap \                     
