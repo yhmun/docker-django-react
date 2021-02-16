@@ -22,7 +22,10 @@ footer {
 footer {
   flex-shrink: 0;
   text-align: center;
-  color: white;
+  color: lightgray;
+}
+
+footer > .container {
   padding: 8px;
 }
 
