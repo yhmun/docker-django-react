@@ -8,6 +8,7 @@ COPY ./package.json .
 COPY ./package-lock.json .
 
 RUN npm install -g serve
+RUN npm install
 
 # copy react project
 COPY . .
