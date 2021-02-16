@@ -13,13 +13,18 @@ class ArticlePage extends Component {
   };
 
   componentDidMount() {
-    this.getArticle(this.props.match.params.id);
+    this.resetState();
   }
 
   componentDidUpdate(prevProp) {
     if (prevProp.match.params.id !== this.props.match.params.id) 
-      this.getArticle(this.props.match.params.id);
+      this.resetState();
   }
+
+  resetState = () => {
+    const id = this.props.match.params.id;
+    this.getArticle(id);
+  };
 
   getArticle = (id) => {
     axios.get(`${process.env.REACT_APP_HOST}/api/articles/${id}`)
@@ -27,12 +32,12 @@ class ArticlePage extends Component {
         this.setState({ article: response.data });
       })
       .catch((error) => {
-        //console.log(error);
+        console.log(error);
       })
       .then(() => {
         this.setState({ loading: false });
       });
-  }
+  };
   
   render() {
     const article = this.state.article;
@@ -46,7 +51,7 @@ class ArticlePage extends Component {
           <h3>{article.title}</h3>
           <UpvoteSection 
             article={article}
-          />          
+          />
           <br/>
           <pre>{article.content}</pre>
           <hr/>
@@ -63,7 +68,7 @@ class ArticlePage extends Component {
             article_id={article.id}
           />
           <hr/>
-          <br/>          
+          <br/>
           <h4>Other Articles:</h4>
           <br/>
           <ArticleList

@@ -9,11 +9,15 @@ class ArticleList extends Component {
   };
 
   componentDidMount() {
-    this.getArticles();
+    this.resetState();
   }
 
+  resetState = () => {
+    this.getArticles();
+  };
+
   getArticles = () => {
-    axios.get(`${process.env.REACT_APP_HOST}/api/articles`)
+    axios.get(`${process.env.REACT_APP_HOST}/api/articles/?ordering=id`)
       .then((response) => {
         this.setState({ articles: response.data });
       })
