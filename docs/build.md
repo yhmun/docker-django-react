@@ -6,7 +6,8 @@ v10.19.0  # ubuntu 20.04
 $ npm -v
 6.14.10   # mac
 6.14.4    # ubuntu 20.04
-$ sudo npm install --global yarn
+$ sudo npm install -g npm@latest
+$ sudo npm install -g yarn
 $ npx create-react-app frontend
 $ cd frontend
 $ npm start
@@ -85,7 +86,7 @@ $ mkdir -p src/containers
 
 # Building Modern Projects with React
 # https://www.linkedin.com/learning/building-modern-projects-with-react
-$ 
+$ npm init -y
 
 ```
 
@@ -138,7 +139,7 @@ $ npm list --prod --depth=0
 $ npm list --global --depth=0 
 /usr/local/lib
 ├── @angular/cli@6.2.3
-├── npm@6.14.10
+├── npm@7.5.4
 ├── protractor@5.4.1
 ├── tslint@5.11.0
 ├── typescript@3.0.3
