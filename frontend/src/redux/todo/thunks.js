@@ -1,17 +1,37 @@
 import axios from 'axios';
-import { loadTodosInProgress, loadTodosSuccess, loadTodosFailure } from './actions';
+import { loadTodosInProgress, loadTodosSuccess, loadTodosFailure, createTodo } from './actions';
 
 export const loadTodos = () => {
   return dispatch => {
     dispatch(loadTodosInProgress());
     axios.get(`${process.env.REACT_APP_HOST}/api/todos/`)
         .then((response) => {
-            dispatch(loadTodosSuccess(response.data));
+            const todos = response.data;
+            dispatch(loadTodosSuccess(todos));
         })
         .catch((err) => {
             dispatch(loadTodosFailure());
             dispatch(displayAlert(err));
         });
+  };
+};
+
+export const saveTodo = (text) => {
+  const data = {
+    title: 'No title', 
+    description: text, 
+    completed: false
+  };
+
+  return dispatch => {
+    axios.post(`${process.env.REACT_APP_HOST}/api/todos/`, data)
+        .then((response) => {
+            const todo = response.data;
+            dispatch(createTodo(todo));
+        })
+        .catch((err) => {
+            dispatch(displayAlert(err));
+        });    
   };
 };
 

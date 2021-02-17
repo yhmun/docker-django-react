@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'reactstrap';
 import { connect  } from 'react-redux';
-import { createTodo } from '../../redux/todo/actions';
+import { saveTodo } from '../../redux/todo/thunks';
 
 class CreateTodoForm extends Component {
   state = {
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreateTodo: text => dispatch(createTodo(text)),
+  onCreateTodo: text => dispatch(saveTodo(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTodoForm);
