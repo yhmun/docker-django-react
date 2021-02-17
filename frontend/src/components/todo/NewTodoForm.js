@@ -33,7 +33,7 @@ class NewTodoForm extends Component {
         />
         <Button
           color="primary"
-          style={{ width: "150px", marginLeft: "8px" }}
+          style={{ minWidth: "120px", marginLeft: "8px" }}
         >
           Create Todo
         </Button>

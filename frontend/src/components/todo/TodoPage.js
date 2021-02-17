@@ -19,7 +19,7 @@ class TodoPage extends Component {
           </Col>
         </Row>                
         <Row 
-          style={{ marginTop: "10px" }}>
+          style={{ marginTop: "18px" }}>
           <Col>
             <TodoList />
           </Col>
