@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, ListGroupItemText, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { removeTodo } from '../../redux/todo/actions';
+import { removeTodo, markTodoAsCompleted } from '../../redux/todo/actions';
 
 class TodoList extends Component {
   render() {
-    const { todos, onRemoveTodo } = this.props;
+    const { todos, onRemoveTodo, onCompleteTodo } = this.props;
 
     return (
       <ListGroup>
@@ -17,12 +17,18 @@ class TodoList extends Component {
               className="flex-grow-1 overflow-auto">
               {todo.text}
             </ListGroupItemText>
-            <Button 
-              color="success"
-              style={{ minWidth: "170px", marginLeft: "12px" }}
-            >
-              Mark As Completed
-            </Button>
+            {todo.isCompleted ? (
+                null 
+              ) : (
+                <Button 
+                  color="success"
+                  style={{ minWidth: "170px", marginLeft: "12px" }}
+                  onClick={() => onCompleteTodo(todo.text)}
+                >
+                  Mark As Completed
+                </Button>
+              )
+            }
             <Button 
               color="danger"
               style={{ minWidth: "90px", marginLeft: "8px" }}
@@ -43,6 +49,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onRemoveTodo: text => dispatch(removeTodo(text)),
+  onCompleteTodo: text => dispatch(markTodoAsCompleted(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
