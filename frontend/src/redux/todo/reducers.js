@@ -30,8 +30,8 @@ export const todos = (state = [], action) => {
       return state.concat(todo);
     }
     case DELETE_TODO: {
-      const { text } = payload;
-      return state.filter(todo => todo.description !== text);
+      const { id } = payload;
+      return state.filter(todo => todo.id !== id);
     }
     case MARK_TODO_AS_COMPLETED: {
       const { text } = payload;

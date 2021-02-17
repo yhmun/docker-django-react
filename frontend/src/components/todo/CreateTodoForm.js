@@ -28,7 +28,8 @@ class CreateTodoForm extends Component {
   render() {
     return (
       <Form
-        className="d-flex"        
+        className="d-flex"
+        onSubmit={this.onCreateTodo}
       >
         <Input 
           className="flex-grow-1"
@@ -41,7 +42,6 @@ class CreateTodoForm extends Component {
         <Button
           color="primary"
           style={{ minWidth: "120px", marginLeft: "8px" }}
-          onClick={this.onCreateTodo}
         >
           Create Todo
         </Button>

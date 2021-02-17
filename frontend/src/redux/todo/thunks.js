@@ -3,21 +3,22 @@ import {
   readTodosInProgress, 
   readTodosSuccess, 
   readTodosFailure, 
-  createTodo 
+  createTodo,
+  deleteTodo,
 } from './actions';
 
 export const readTodosRequest = () => {
   return dispatch => {
     dispatch(readTodosInProgress());
     axios.get(`${process.env.REACT_APP_HOST}/api/todos/`)
-        .then((response) => {
-            const todos = response.data;
-            dispatch(readTodosSuccess(todos));
-        })
-        .catch((err) => {
-            dispatch(readTodosFailure());
-            dispatch(displayAlert(err));
-        });
+      .then((response) => {
+          const todos = response.data;
+          dispatch(readTodosSuccess(todos));
+      })
+      .catch((err) => {
+          dispatch(readTodosFailure());
+          dispatch(displayAlert(err));
+      });
   };
 };
 
@@ -30,13 +31,25 @@ export const createTodoRequest = (text) => {
 
   return dispatch => {
     axios.post(`${process.env.REACT_APP_HOST}/api/todos/`, data)
-        .then((response) => {
-            const todo = response.data;
-            dispatch(createTodo(todo));
-        })
-        .catch((err) => {
-            dispatch(displayAlert(err));
-        });    
+      .then((response) => {
+          const todo = response.data;
+          dispatch(createTodo(todo));
+      })
+      .catch((err) => {
+          dispatch(displayAlert(err));
+      });
+  };
+};
+
+export const deleteTodoRequest = (id) => {
+  return dispatch => {
+    axios.delete(`${process.env.REACT_APP_HOST}/api/todos/${id}/`)
+      .then(() => {
+          dispatch(deleteTodo(id));
+      })
+      .catch((err) => {
+        dispatch(displayAlert(err));
+      });
   };
 };
 

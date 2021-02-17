@@ -7,9 +7,9 @@ class TodoList extends Component {
 
     return (
       <ListGroup>
-        {todos.map((todo, key) => (
+        {todos.map((todo) => (
           <ListGroupItem 
-            key={key} 
+            key={todo.id}
             className="d-flex">
             <ListGroupItemText 
               className="flex-grow-1 overflow-auto">
@@ -30,7 +30,7 @@ class TodoList extends Component {
             <Button 
               color="danger"
               style={{ minWidth: "90px", maxHeight: "40px", marginLeft: "8px" }}
-              onClick={() => onDeleteTodo(todo.description)}
+              onClick={() => onDeleteTodo(todo.id)}
             >
               Delete
             </Button>

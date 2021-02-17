@@ -5,9 +5,9 @@ export const createTodo = (todo) => ({
 });
 
 export const DELETE_TODO = 'DELETE_TODO';
-export const deleteTodo = (text) => ({
+export const deleteTodo = (id) => ({
   type: DELETE_TODO,
-  payload: { text },
+  payload: { id },
 });
 
 export const MARK_TODO_AS_COMPLETED = 'MARK_TODO_AS_COMPLETED';
