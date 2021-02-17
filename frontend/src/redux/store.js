@@ -1,10 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { todos, isLoadingTodos } from './todo/reducers';
+import { todos, isReadingTodos } from './todo/reducers';
 
 const reducers = {
   todos, 
-  isLoadingTodos
+  isReadingTodos
 };
 
 const rootReducer = combineReducers(reducers);

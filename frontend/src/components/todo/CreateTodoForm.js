@@ -10,10 +10,10 @@ class CreateTodoForm extends Component {
 
   onCreateTodo = (event) => {
     const { todos, onCreateTodo } = this.props;
-    const isDuplicateTodo = todos.some((todo) => (
+    const isDuplicated = todos.some((todo) => (
       todo.description === this.state.text
     ));
-    if (!isDuplicateTodo) {
+    if (!isDuplicated) {
       onCreateTodo(this.state.text);
       this.setState({ text: '' });
     }

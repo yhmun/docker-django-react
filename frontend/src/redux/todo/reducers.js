@@ -1,20 +1,20 @@
 import { 
   CREATE_TODO, 
-  REMOVE_TODO, 
+  DELETE_TODO, 
   MARK_TODO_AS_COMPLETED,
-  LOAD_TODOS_IN_PROGRESS,
-  LOAD_TODOS_SUCCESS,
-  LOAD_TODOS_FAILURE
+  READ_TODOS_IN_PROGRESS,
+  READ_TODOS_SUCCESS,
+  READ_TODOS_FAILURE
 } from './actions';
 
-export const isLoadingTodos = (state = false, action) => {
+export const isReadingTodos = (state = false, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case LOAD_TODOS_IN_PROGRESS: 
+    case READ_TODOS_IN_PROGRESS: 
       return true;
-    case LOAD_TODOS_SUCCESS:
-    case LOAD_TODOS_FAILURE:
+    case READ_TODOS_SUCCESS:
+    case READ_TODOS_FAILURE:
       return false;
     default:
       return state;
@@ -29,7 +29,7 @@ export const todos = (state = [], action) => {
       const { todo } = payload;
       return state.concat(todo);
     }
-    case REMOVE_TODO: {
+    case DELETE_TODO: {
       const { text } = payload;
       return state.filter(todo => todo.description !== text);
     }
@@ -42,12 +42,12 @@ export const todos = (state = [], action) => {
         return todo;
       })
     }
-    case LOAD_TODOS_SUCCESS: {
+    case READ_TODOS_SUCCESS: {
       const { todos } = payload;
       return todos;
     }
-    case LOAD_TODOS_IN_PROGRESS:
-      case LOAD_TODOS_FAILURE:
+    case READ_TODOS_IN_PROGRESS:
+      case READ_TODOS_FAILURE:
     default:
       return state;
   }

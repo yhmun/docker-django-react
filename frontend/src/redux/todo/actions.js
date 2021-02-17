@@ -4,9 +4,9 @@ export const createTodo = (todo) => ({
   payload: { todo },
 });
 
-export const REMOVE_TODO = 'REMOVE_TODO';
-export const removeTodo = (text) => ({
-  type: REMOVE_TODO,
+export const DELETE_TODO = 'DELETE_TODO';
+export const deleteTodo = (text) => ({
+  type: DELETE_TODO,
   payload: { text },
 });
 
@@ -16,18 +16,18 @@ export const markTodoAsCompleted = (text) => ({
   payload: { text },
 });
 
-export const LOAD_TODOS_IN_PROGRESS = 'LOAD_TODOS_IN_PROGRESS';
-export const loadTodosInProgress = () => ({
-  type: LOAD_TODOS_IN_PROGRESS,
+export const READ_TODOS_IN_PROGRESS = 'READ_TODOS_IN_PROGRESS';
+export const readTodosInProgress = () => ({
+  type: READ_TODOS_IN_PROGRESS,
 });
 
-export const LOAD_TODOS_SUCCESS = 'LOAD_TODOS_SUCCESS';
-export const loadTodosSuccess = (todos) => ({
-  type: LOAD_TODOS_SUCCESS,
+export const READ_TODOS_SUCCESS = 'READ_TODOS_SUCCESS';
+export const readTodosSuccess = (todos) => ({
+  type: READ_TODOS_SUCCESS,
   payload: { todos },
 });
 
-export const LOAD_TODOS_FAILURE = 'LOAD_TODOS_FAILURE';
-export const loadTodosFailure = () => ({
-  type: LOAD_TODOS_FAILURE,
+export const READ_TODOS_FAILURE = 'READ_TODOS_FAILURE';
+export const readTodosFailure = () => ({
+  type: READ_TODOS_FAILURE,
 });

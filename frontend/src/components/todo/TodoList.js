@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem, ListGroupItemText, Button } from 'reactstrap'
 
 class TodoList extends Component {
   render() {
-    const { todos, onRemoveTodo, onCompleteTodo } = this.props;
+    const { todos, onDeleteTodo, onCompleteTodo } = this.props;
 
     return (
       <ListGroup>
@@ -30,9 +30,9 @@ class TodoList extends Component {
             <Button 
               color="danger"
               style={{ minWidth: "90px", maxHeight: "40px", marginLeft: "8px" }}
-              onClick={() => onRemoveTodo(todo.description)}
+              onClick={() => onDeleteTodo(todo.description)}
             >
-              Remove
+              Delete
             </Button>
           </ListGroupItem>
         ))}

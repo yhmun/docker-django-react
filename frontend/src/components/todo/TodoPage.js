@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { loadTodosRequest } from '../../redux/todo/thunks';
-import { removeTodo, markTodoAsCompleted } from '../../redux/todo/actions';
+import { readTodosRequest } from '../../redux/todo/thunks';
+import { deleteTodo, markTodoAsCompleted } from '../../redux/todo/actions';
 import CreateTodoForm from './CreateTodoForm';
 import TodoList from './TodoList';
 
@@ -13,7 +13,7 @@ class TodoPage extends Component {
   }
 
   render() {
-    const { todos = [], onRemoveTodo, onCompleteTodo, isLoadingTodos } = this.props;
+    const { todos = [], onDeleteTodo, onCompleteTodo, isReadingTodos } = this.props;
 
     const loading = (
       <Row>
@@ -35,7 +35,7 @@ class TodoPage extends Component {
           <Col>
             <TodoList 
               todos={todos}
-              onRemoveTodo={onRemoveTodo}
+              onDeleteTodo={onDeleteTodo}
               onCompleteTodo={onCompleteTodo}
             />
           </Col>
@@ -51,20 +51,20 @@ class TodoPage extends Component {
             <hr/>
           </Col>
         </Row>
-        {isLoadingTodos ? loading : content}
+        {isReadingTodos ? loading : content}
       </Container>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  isLoadingTodos: state.isLoadingTodos,
+  isReadingTodos: state.isReadingTodos,
   todos: state.todos,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startLoadingTodos: () => dispatch(loadTodosRequest()),
-  onRemoveTodo: text => dispatch(removeTodo(text)),
+  startLoadingTodos: () => dispatch(readTodosRequest()),
+  onDeleteTodo: text => dispatch(deleteTodo(text)),
   onCompleteTodo: text => dispatch(markTodoAsCompleted(text)),
 });
 

@@ -1,16 +1,21 @@
 import axios from 'axios';
-import { loadTodosInProgress, loadTodosSuccess, loadTodosFailure, createTodo } from './actions';
+import { 
+  readTodosInProgress, 
+  readTodosSuccess, 
+  readTodosFailure, 
+  createTodo 
+} from './actions';
 
-export const loadTodosRequest = () => {
+export const readTodosRequest = () => {
   return dispatch => {
-    dispatch(loadTodosInProgress());
+    dispatch(readTodosInProgress());
     axios.get(`${process.env.REACT_APP_HOST}/api/todos/`)
         .then((response) => {
             const todos = response.data;
-            dispatch(loadTodosSuccess(todos));
+            dispatch(readTodosSuccess(todos));
         })
         .catch((err) => {
-            dispatch(loadTodosFailure());
+            dispatch(readTodosFailure());
             dispatch(displayAlert(err));
         });
   };
