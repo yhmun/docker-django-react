@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -12,17 +11,11 @@ class App extends Component {
     return (
       <div className="App">
         <main>
-          <Container>
-            <Row>
-              <Col>
-                <Switch>
-                  <Route path="/" component={HomePage} exact />
-                  <Route path="/todos" component={TodoPage} />
-                  <Route component={NotFoundPage} />
-                </Switch>
-              </Col>
-            </Row>
-          </Container>
+          <Switch>
+            <Route path="/" component={HomePage} exact />
+            <Route path="/todos" component={TodoPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
         </main>
       </div>
     );

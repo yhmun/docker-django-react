@@ -1,17 +1,30 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import NewTodoForm from './NewTodoForm';
 import TodoList from './TodoList';
 
 class TodoPage extends Component {
   render() {
     return (
-      <Fragment>
-        <h3>Todo List</h3>
-        <hr/>
-        <TodoList />
-        <hr/>
-        <NewTodoForm />        
-      </Fragment>
+      <Container>
+        <Row>
+          <Col>
+            <h3>Todo List</h3>
+            <hr/>
+          </Col>                  
+        </Row>
+        <Row>
+          <Col>
+            <NewTodoForm />
+          </Col>
+        </Row>                
+        <Row 
+          style={{ marginTop: "10px" }}>
+          <Col>
+            <TodoList />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

@@ -1,11 +1,16 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 
 class NotFoundPage extends Component {
   render() {
     return (
-      <Fragment>
-        <h3>404: Page Not Found</h3>
-      </Fragment>
+      <Container>
+        <Row>
+          <Col>
+            <h3>404: Page Not Found</h3>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

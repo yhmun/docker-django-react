@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Form, Row, Col, FormGroup, Input, Label, Button } from 'reactstrap';
+import { Form, Input, Button } from 'reactstrap';
 
 class NewTodoForm extends Component {
   state = {
@@ -8,6 +8,7 @@ class NewTodoForm extends Component {
 
   onCreateTodo = (event) => {
     event.preventDefault();
+    console.log('onCreateTodo');
   };
 
   onChange = (event) => {
