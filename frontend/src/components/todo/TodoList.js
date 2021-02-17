@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, ListGroupItemText, Button } from 'reactstrap';
+import { connect } from 'react-redux';
+import { removeTodo } from '../../redux/todo/actions';
 
 class TodoList extends Component {
   render() {
-    const todos = this.props.todos;
+    const { todos, onRemoveTodo } = this.props;
+
     return (
       <ListGroup>
         {todos.map((todo, key) => (
@@ -23,6 +26,7 @@ class TodoList extends Component {
             <Button 
               color="danger"
               style={{ minWidth: "90px", marginLeft: "8px" }}
+              onClick={() => onRemoveTodo(todo.text)}
             >
               Remove
             </Button>
@@ -33,4 +37,12 @@ class TodoList extends Component {
   }
 }
 
-export default TodoList;
+const mapStateToProps = (state) => ({
+  todos: state.todos,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onRemoveTodo: text => dispatch(removeTodo(text)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
