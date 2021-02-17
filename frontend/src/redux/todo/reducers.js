@@ -31,8 +31,6 @@ export const todos = (state = [], action) => {
     }
     case REMOVE_TODO: {
       const { text } = payload;
-      console.log(state);
-      console.log(text);
       return state.filter(todo => todo.description !== text);
     }
     case MARK_TODO_AS_COMPLETED: {

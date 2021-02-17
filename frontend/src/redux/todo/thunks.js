@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { loadTodosInProgress, loadTodosSuccess, loadTodosFailure, createTodo } from './actions';
 
-export const loadTodos = () => {
+export const loadTodosRequest = () => {
   return dispatch => {
     dispatch(loadTodosInProgress());
     axios.get(`${process.env.REACT_APP_HOST}/api/todos/`)
@@ -16,7 +16,7 @@ export const loadTodos = () => {
   };
 };
 
-export const saveTodo = (text) => {
+export const createTodoRequest = (text) => {
   const data = {
     title: 'No title', 
     description: text, 

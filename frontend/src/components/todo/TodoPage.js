@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { loadTodos } from '../../redux/todo/thunks';
+import { loadTodosRequest } from '../../redux/todo/thunks';
 import { removeTodo, markTodoAsCompleted } from '../../redux/todo/actions';
 import CreateTodoForm from './CreateTodoForm';
 import TodoList from './TodoList';
@@ -63,7 +63,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startLoadingTodos: () => dispatch(loadTodos()),
+  startLoadingTodos: () => dispatch(loadTodosRequest()),
   onRemoveTodo: text => dispatch(removeTodo(text)),
   onCompleteTodo: text => dispatch(markTodoAsCompleted(text)),
 });

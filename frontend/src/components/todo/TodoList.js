@@ -4,7 +4,7 @@ import { ListGroup, ListGroupItem, ListGroupItemText, Button } from 'reactstrap'
 class TodoList extends Component {
   render() {
     const { todos, onRemoveTodo, onCompleteTodo } = this.props;
-    console.log(todos);
+
     return (
       <ListGroup>
         {todos.map((todo, key) => (
