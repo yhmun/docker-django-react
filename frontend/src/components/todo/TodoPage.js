@@ -11,13 +11,13 @@ class TodoPage extends Component {
           <Col>
             <h3>Todo List</h3>
             <hr/>
-          </Col>                  
+          </Col>
         </Row>
         <Row>
           <Col>
             <NewTodoForm />
           </Col>
-        </Row>                
+        </Row>
         <Row 
           style={{ marginTop: "18px" }}>
           <Col>
