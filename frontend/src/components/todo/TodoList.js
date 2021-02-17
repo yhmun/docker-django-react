@@ -3,8 +3,7 @@ import { ListGroup, ListGroupItem, ListGroupItemText, Button } from 'reactstrap'
 
 class TodoList extends Component {
   render() {
-    const todos = [{text: '112837912893712789371231231238139287'}]
-
+    const todos = this.props.todos;
     return (
       <ListGroup>
         {todos.map((todo, key) => (

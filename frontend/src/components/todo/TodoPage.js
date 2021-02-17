@@ -3,8 +3,10 @@ import { Container, Row, Col } from 'reactstrap';
 import NewTodoForm from './NewTodoForm';
 import TodoList from './TodoList';
 
-class TodoPage extends Component {
+class TodoPage extends Component {  
   render() {
+    const todos = [{text: '112837912893712789371231231238139287'}]
+
     return (
       <Container>
         <Row>
@@ -21,7 +23,9 @@ class TodoPage extends Component {
         <Row 
           style={{ marginTop: "18px" }}>
           <Col>
-            <TodoList />
+            <TodoList 
+              todos={todos}
+            />
           </Col>
         </Row>
       </Container>
