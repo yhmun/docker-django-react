@@ -38,3 +38,9 @@ footer a:hover {
   text-decoration: none;
   color: lightblue;
 }
+
+.bg-primary,
+.btn-primary {
+  background-color: #377bb5 !important;
+  border: inherit;
+}
