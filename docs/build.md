@@ -62,10 +62,27 @@ $ source venv/bin/activate
 ```
 $ npm install --save react-router-dom
 $ npm install --save redux react-redux redux-thunk redux-logger
+$ npm install --save axios
+$ npm install --save clsx
+$ npm install --save @material-ui/core @material-ui/icons @material-ui/styles
+
+
 $ npm install --save bootstrap jquery
 $ npm install --save --legacy-peer-deps reactstrap  
 $ npm install --save react-icons
-$ npm install --save axios
+
+
+```
+```
+import { bindActionCreators, compose } from 'redux';
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps, // or put null here if you do not have actions to dispatch
+  ),
+  withStyles(styles),
+)(YourComponent);
 ```
 
 ```
@@ -152,6 +169,18 @@ $ npm list --global --depth=0
 ├── tslint@5.11.0
 └── typescript@3.0.3
 ```
+
+### React Libraries
+1. Redux: A Predictable State Container for JS Apps
+2. React Router: The routing library which helps with navigation in the React app and is based on the concept of declarative routing
+3. React Select: A flexible and beautiful Select Input control for ReactJS with multiselect, autocomplete, async and creatable support.
+4. React-Virtualized: React-Virtualized is primarily used to efficiently render large lists and tabular data.
+5. React Bootstrap: is the React port for the most popular front-end framework Bootstrap.
+6. React DnD: helps you build complex drag and drop interfaces while still keeping your components decoupled.
+7. React-Toastify: helps add toast notification to your app with complete ease.
+8. React Datepicker
+9. React Chartjs
+
 
 ### PyPi packages
 ```
