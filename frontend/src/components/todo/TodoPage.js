@@ -1,15 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { readTodosRequest, deleteTodoRequest } from '../../redux/todo/thunks';
-import { markTodoAsCompleted } from '../../redux/todo/actions';
+import { 
+  readTodosRequest, 
+  deleteTodoRequest, 
+  completeTodoRequest
+} from '../../redux/todo/thunks';
 import CreateTodoForm from './CreateTodoForm';
 import TodoList from './TodoList';
 
 class TodoPage extends Component {
   componentDidMount() {
-    const { startLoadingTodos } = this.props;
-    startLoadingTodos();
+    const { startReadingTodos } = this.props;
+    startReadingTodos();
   }
 
   render() {
@@ -63,9 +66,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startLoadingTodos: () => dispatch(readTodosRequest()),
+  startReadingTodos: () => dispatch(readTodosRequest()),
   onDeleteTodo: id => dispatch(deleteTodoRequest(id)),
-  onCompleteTodo: text => dispatch(markTodoAsCompleted(text)),
+  onCompleteTodo: id => dispatch(completeTodoRequest(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoPage);

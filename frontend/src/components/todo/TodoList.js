@@ -21,7 +21,7 @@ class TodoList extends Component {
                 <Button 
                   color="success"
                   style={{ minWidth: "170px", maxHeight: "40px", marginLeft: "12px" }}
-                  onClick={() => onCompleteTodo(todo.description)}
+                  onClick={() => onCompleteTodo(todo.id)}
                 >
                   Mark As Completed
                 </Button>

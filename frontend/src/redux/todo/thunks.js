@@ -5,6 +5,7 @@ import {
   readTodosFailure, 
   createTodo,
   deleteTodo,
+  updateTodo
 } from './actions';
 
 export const readTodosRequest = () => {
@@ -52,6 +53,22 @@ export const deleteTodoRequest = (id) => {
       });
   };
 };
+
+export const completeTodoRequest = (id) => {
+  const data = { 
+    completed: true
+  };
+  return dispatch => {
+    axios.patch(`${process.env.REACT_APP_HOST}/api/todos/${id}/`, data)
+      .then((response) => {
+        const todo = response.data;
+        dispatch(updateTodo(todo));
+      })
+      .catch((err) => {
+        dispatch(displayAlert(err));
+      });
+  };
+}
 
 export const displayAlert = (text) => {
   alert(text);

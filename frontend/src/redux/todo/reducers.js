@@ -1,14 +1,14 @@
 import { 
   CREATE_TODO, 
   DELETE_TODO, 
-  MARK_TODO_AS_COMPLETED,
+  UPDATE_TODO,
   READ_TODOS_IN_PROGRESS,
   READ_TODOS_SUCCESS,
   READ_TODOS_FAILURE
 } from './actions';
 
 export const isReadingTodos = (state = false, action) => {
-  const { type, payload } = action;
+  const { type } = action;
 
   switch (type) {
     case READ_TODOS_IN_PROGRESS: 
@@ -33,14 +33,14 @@ export const todos = (state = [], action) => {
       const { id } = payload;
       return state.filter(todo => todo.id !== id);
     }
-    case MARK_TODO_AS_COMPLETED: {
-      const { text } = payload;
+    case UPDATE_TODO: {
+      const { todo: updatedTodo } = payload;
       return state.map(todo => {
-        if (todo.description === text) {
-          return {...todo, completed: true };
-        }
-        return todo;
-      })
+        if (todo.id === updatedTodo.id)
+          return updatedTodo;
+        else
+          return todo;
+      });
     }
     case READ_TODOS_SUCCESS: {
       const { todos } = payload;

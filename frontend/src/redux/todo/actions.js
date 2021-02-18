@@ -10,10 +10,10 @@ export const deleteTodo = (id) => ({
   payload: { id },
 });
 
-export const MARK_TODO_AS_COMPLETED = 'MARK_TODO_AS_COMPLETED';
-export const markTodoAsCompleted = (text) => ({
-  type: MARK_TODO_AS_COMPLETED,
-  payload: { text },
+export const UPDATE_TODO = 'UPDATE_TODO';
+export const updateTodo = (todo) => ({
+  type: UPDATE_TODO,
+  payload: { todo },
 });
 
 export const READ_TODOS_IN_PROGRESS = 'READ_TODOS_IN_PROGRESS';
