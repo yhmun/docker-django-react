@@ -151,22 +151,8 @@ class NavBar extends Component {
 export default withStyles(useStyles)(NavBar);
 
 /*
-import NotFoundPage from './NotFoundPage';
-import HomePage from './HomePage';
-import TodoPage from './todo/TodoPage';
-*/
-/*
-  <Switch>
-    <Route path="/" component={HomePage} exact />
-    <Route path="/todos" component={TodoPage} />
-    <Route component={NotFoundPage} />
-  </Switch>
- */
-
-/*
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
 
   render() {
     const links = [

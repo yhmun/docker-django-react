@@ -14,15 +14,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-/*
-import { BrowserRouter as Router } from 'react-router-dom';
-
-    <Router>      
-      <NavBar />
-
-        <App />
-      </Provider>
-    </Router>
-    <Footer />
-    */
