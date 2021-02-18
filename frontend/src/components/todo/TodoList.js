@@ -20,16 +20,16 @@ class TodoList extends Component {
               ) : (
                 <Button 
                   color="success"
-                  style={{ minWidth: "170px", maxHeight: "40px", marginLeft: "12px" }}
+                  style={{ minWidth: "96px", maxHeight: "40px", marginLeft: "12px" }}
                   onClick={() => onCompleteTodo(todo.id)}
                 >
-                  Mark As Completed
+                  Complete
                 </Button>
               )
             }
             <Button 
               color="danger"
-              style={{ minWidth: "90px", maxHeight: "40px", marginLeft: "8px" }}
+              style={{ minWidth: "96px", maxHeight: "40px", marginLeft: "8px" }}
               onClick={() => onDeleteTodo(todo.id)}
             >
               Delete
