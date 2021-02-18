@@ -11,7 +11,7 @@ import {
 export const readTodosRequest = () => {
   return dispatch => {
     dispatch(readTodosInProgress());
-    axios.get(`${process.env.REACT_APP_HOST}/api/todos/`)
+    axios.get(`${process.env.REACT_APP_HOST}/api/todos/?ordering=id`)
       .then((response) => {
           const todos = response.data;
           dispatch(readTodosSuccess(todos));
