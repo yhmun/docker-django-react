@@ -1,9 +1,11 @@
 import clsx from 'clsx';
 import { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import MailIcon from '@material-ui/icons/Mail';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import HomeIcon from '@material-ui/icons/Home';
+import InfoIcon from '@material-ui/icons/Info';
+import ListIcon from '@material-ui/icons/List';
 import { 
   AppBar,
   Toolbar,
@@ -60,27 +62,33 @@ class NavBar extends Component {
     const { classes, window } = this.props;
     const { title, drawerOpen } = this.state;
     const container = window !== undefined ? () => window().document.body : undefined;
+
+    const items = [
+      { to: '/', icon: <HomeIcon />, text: 'Home' },
+      { to: '/todos', icon: <ListIcon />, text: 'Todo' },
+      { to: '/about', icon: <InfoIcon />, text: 'About' },      
+    ];
+
     const drawer = (
       <Fragment>
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {items.map((item, idx) => (
+            <Link
+              key={idx}
+              to={item.to}
+              style={{ color: 'inherit', textDecoration: 'inherit' }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText 
+                  primary={item.text} 
+                />
+              </ListItem>
+            </Link>
           ))}
         </List>
       </Fragment>
@@ -152,7 +160,7 @@ export default withStyles(useStyles)(NavBar);
 
 /*
 import { Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+
 
   render() {
     const links = [
@@ -178,10 +186,7 @@ import { Link } from 'react-router-dom';
                       key={key}
                       className="nav-item"
                     >
-                      <Link 
-                        className="nav-link" 
-                        to={link.url}
-                      >
+                      
                         {link.name}
                       </Link>
                     </li>

@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import NavBar from './components/NavBar';
-import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import TodoPage from './pages/TodoPage';
 
 const useStyles = (theme) => ({
   root: {
@@ -21,19 +23,37 @@ class App extends Component {
   render() {
     const { classes } = this.props;
 
+    const items = [
+      { path: '/about', component: AboutPage },
+      { path: '/todos', component: TodoPage },
+    ]
+
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <NavBar />
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Router>
-            <Switch>
-              <Route path="/" component={HomePage} exact />
-              <Route component={NotFoundPage} />
-            </Switch>
-          </Router>
-        </main>
+        <Router>
+          <NavBar />
+          <main className={classes.content}>
+            <div className={classes.toolbar} />          
+              <Switch>
+                <Route 
+                  path="/" 
+                  component={HomePage} 
+                  exact
+                />
+                {items.map((item, idx) => (
+                  <Route 
+                    key={idx}
+                    path={item.path}
+                    component={item.component}
+                  />
+                ))}
+                <Route 
+                  component={NotFoundPage}
+                />
+              </Switch>
+          </main>
+        </Router>
       </div>
     );
   }
