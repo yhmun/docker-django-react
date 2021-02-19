@@ -22,18 +22,32 @@ const useStyles = (theme) => ({
     flex: '1 0 auto',    
   },
   toolbar: theme.mixins.toolbar,
-  drawer: {
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    /*
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    */
+  },
+  contentShift: {
+    /*
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    */
+  },  
+  footer: {
+    flexShrink: '0',
+  },
+  footerShift: {
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  footer: {
-    flexShrink: '0',
   },
 });
 
@@ -72,7 +86,11 @@ class App extends Component {
             drawerOpen={this.state.drawerOpen}
             handleDrawerToggle={this.handleDrawerToggle}
           />
-          <main className={classes.content}>
+          <main 
+            className={clsx(classes.content, {
+              [classes.contentShift]: this.state.drawerOpen,
+            })}
+          >
             <div className={classes.toolbar} />
             <Switch>
               {this.routes.map((route, idx) => (
@@ -86,8 +104,10 @@ class App extends Component {
             </Switch>
           </main>
         </div>
-        <footer 
-          className={clsx(classes.footer, classes.drawer)}
+        <footer
+          className={clsx(classes.footer, {
+            [classes.footerShift]: this.state.drawerOpen,
+          })}
         >
           <Footer />
         </footer>
