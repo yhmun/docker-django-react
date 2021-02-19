@@ -5,7 +5,7 @@ class NotFoundPage extends Component {
   render() {
     return (
       <Fragment>
-        <Typography variant="h4">
+        <Typography variant="h5">
           404: Page Not Found
         </Typography>
       </Fragment>

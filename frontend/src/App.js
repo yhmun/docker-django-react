@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, Box } from '@material-ui/core';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -34,24 +35,29 @@ class App extends Component {
         <Router>
           <NavBar />
           <main className={classes.content}>
-            <div className={classes.toolbar} />          
-              <Switch>
+            <div 
+              className={classes.toolbar} 
+            />
+            <Switch>
+              <Route 
+                path="/" 
+                component={HomePage} 
+                exact
+              />
+              {items.map((item, idx) => (
                 <Route 
-                  path="/" 
-                  component={HomePage} 
-                  exact
+                  key={idx}
+                  path={item.path}
+                  component={item.component}
                 />
-                {items.map((item, idx) => (
-                  <Route 
-                    key={idx}
-                    path={item.path}
-                    component={item.component}
-                  />
-                ))}
-                <Route 
-                  component={NotFoundPage}
-                />
-              </Switch>
+              ))}
+              <Route 
+                component={NotFoundPage}
+              />
+            </Switch>
+            <Box pt={4}>
+              <Footer />
+            </Box>
           </main>
         </Router>
       </div>

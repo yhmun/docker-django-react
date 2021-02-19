@@ -5,7 +5,7 @@ class AboutPage extends Component {
   render() {
     return (
       <Fragment>
-        <Typography variant="h4">
+        <Typography variant="h5">
           The page is under construction.
         </Typography>
       </Fragment>
