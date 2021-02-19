@@ -22,20 +22,19 @@ const useStyles = (theme) => ({
     flex: '1 0 auto',    
   },
   toolbar: theme.mixins.toolbar,
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+  },  
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
   footer: {
     flexShrink: '0',
-    textAlign: 'right',
-    paddingTop: '0.5em',
-    paddingBottom: '0.5em',
-    backgroundColor: 'silver',
   },
-  drawerOpen: {
-    marginLeft: drawerWidth,
-  },  
 });
 
 class App extends Component {
@@ -88,9 +87,7 @@ class App extends Component {
           </main>
         </div>
         <footer 
-          className={clsx(classes.footer, {
-            [classes.drawerOpen]: this.state.drawerOpen,
-          })}
+          className={clsx(classes.footer, classes.drawer)}
         >
           <Footer />
         </footer>
