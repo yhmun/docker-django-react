@@ -55,8 +55,8 @@ class NavBar extends Component {
 
   items = [
     { to: '/', icon: <HomeIcon />, text: 'Home' },
+    { to: '/todos', icon: <ListIcon />, text: 'Todo' },    
     { to: '/about', icon: <InfoIcon />, text: 'About' },
-    { to: '/todos', icon: <InfoIcon />, text: 'Todo' },
   ];
 
   handleMobileDrawerToggle = (event) => {
