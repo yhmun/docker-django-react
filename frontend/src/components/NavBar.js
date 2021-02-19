@@ -51,22 +51,16 @@ const useStyles = (theme) => ({
 class NavBar extends Component {
   state = {
     title: 'Learning Django, React, and Material-UI',
-    drawerOpen: false,
-  };
-
-  handleDrawerToggle = () => {
-    this.setState({ drawerOpen: !this.state.drawerOpen });    
   };
 
   render() {
-    const { classes, window } = this.props;
-    const { title, drawerOpen } = this.state;
+    const { classes, window, drawerOpen, handleDrawerToggle } = this.props;
     const container = window !== undefined ? () => window().document.body : undefined;
 
     const items = [
       { to: '/', icon: <HomeIcon />, text: 'Home' },
-      { to: '/todos', icon: <ListIcon />, text: 'Todo' },
-      { to: '/about', icon: <InfoIcon />, text: 'About' },      
+      { to: '/about', icon: <InfoIcon />, text: 'About' },
+      { to: '/todos', icon: <InfoIcon />, text: 'Todo' },
     ];
 
     const drawer = (
@@ -105,7 +99,7 @@ class NavBar extends Component {
               color="inherit"
               aria-label="open drawer"
               edge="start"
-              onClick={this.handleDrawerToggle}
+              onClick={handleDrawerToggle}
               className={classes.menuButton}
             >
               <MenuIcon />
@@ -114,7 +108,7 @@ class NavBar extends Component {
               variant="h6" 
               noWrap
             >
-              {title}
+              {this.state.title}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -131,7 +125,7 @@ class NavBar extends Component {
               classes={{
                 paper: classes.drawerPaper,
               }}
-              onClose={this.handleDrawerToggle}
+              onClose={handleDrawerToggle}
               ModalProps={{
                 keepMounted: true, // Better open performance on mobile.
               }}
