@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import { drawerWidth } from '../constants/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
@@ -20,55 +21,61 @@ import {
   ListItemText,
 } from '@material-ui/core';
 
-const drawerWidth = 240;
-
 const useStyles = (theme) => ({
+  appBar: {
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    }
+  },
+  // necessary for content to be below app bar
+  toolbar: theme.mixins.toolbar,  
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
+  drawerPaper: {
+    width: drawerWidth,
   },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
+  }
 });
 
 class NavBar extends Component {
   state = {
     title: 'Learning Django, React, and Material-UI',
+    mobildDrawerOpen: false,
   };
 
-  render() {
-    const { classes, window, drawerOpen, handleDrawerToggle } = this.props;
-    const container = window !== undefined ? () => window().document.body : undefined;
+  items = [
+    { to: '/', icon: <HomeIcon />, text: 'Home' },
+    { to: '/about', icon: <InfoIcon />, text: 'About' },
+    { to: '/todos', icon: <InfoIcon />, text: 'Todo' },
+  ];
 
-    const items = [
-      { to: '/', icon: <HomeIcon />, text: 'Home' },
-      { to: '/about', icon: <InfoIcon />, text: 'About' },
-      { to: '/todos', icon: <InfoIcon />, text: 'Todo' },
-    ];
+  handleMobileDrawerToggle = (event) => {
+    if (event.type === 'keydown' 
+        && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    this.setState({ mobildDrawerOpen: !this.state.mobildDrawerOpen });
+  }
+
+  render() {
+    const { classes, title } = this.props;
 
     const drawer = (
       <Fragment>
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {items.map((item, idx) => (
+          {this.items.map((item, idx) => (
             <Link
               key={idx}
               to={item.to}
@@ -96,10 +103,10 @@ class NavBar extends Component {
         >
           <Toolbar>
             <IconButton
+              edge="start"
               color="inherit"
               aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
+              onClick={this.handleMobileDrawerToggle}
               className={classes.menuButton}
             >
               <MenuIcon />
@@ -108,29 +115,33 @@ class NavBar extends Component {
               variant="h6" 
               noWrap
             >
-              {this.state.title}
-            </Typography>
+              {title}
+            </Typography>            
           </Toolbar>
         </AppBar>
         <nav 
           className={classes.drawer} 
-          aria-label="drawer"
-        >
+          aria-label="drawer">
           <Hidden smUp implementation="css">
-            <Drawer
-              container={container}
+            <Drawer 
               variant="temporary"
               anchor="left"
-              open={drawerOpen}
+              open={this.state.mobildDrawerOpen} 
+              onClose={this.handleMobileDrawerToggle}
               classes={{
                 paper: classes.drawerPaper,
               }}
-              onClose={handleDrawerToggle}
               ModalProps={{
                 keepMounted: true, // Better open performance on mobile.
               }}
             >
-              {drawer}
+              <div 
+                role="presentation"
+                onClick={this.handleMobileDrawerToggle}
+                onKeyDown={this.handleMobileDrawerToggle}
+              >
+                {drawer}
+              </div>
             </Drawer>
           </Hidden>
           <Hidden xsDown implementation="css">
@@ -151,46 +162,3 @@ class NavBar extends Component {
 }
 
 export default withStyles(useStyles)(NavBar);
-
-/*
-import { Container, Row, Col } from 'reactstrap';
-
-
-  render() {
-    const links = [
-      { 
-        name: 'Home', 
-        url: '/',
-      },
-      { 
-        name: 'Todos', 
-        url: '/todos',
-      },
-    ];
-
-    return (
-      <header className="fixed-top">
-        <Container>
-          <Row>
-            <Col>
-              <nav className="navbar navbar-expand navbar-dark">
-                <ul className="navbar-nav mr-auto">
-                  {links.map((link, key) => (
-                    <li 
-                      key={key}
-                      className="nav-item"
-                    >
-                      
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </Col>
-          </Row>
-        </Container>
-      </header>
-    );
-  }
-*/

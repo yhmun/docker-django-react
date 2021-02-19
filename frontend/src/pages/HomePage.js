@@ -2,6 +2,11 @@ import { Component, Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 
 class HomePage extends Component {
+
+  componentDidMount() {
+    this.props.setTitle('Learning Djano, React, and Material-UI');
+  }
+
   render() {
     return (
       <Fragment>

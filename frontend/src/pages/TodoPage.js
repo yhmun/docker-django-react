@@ -2,6 +2,10 @@ import { Component, Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 
 class TodoPage extends Component {
+  componentDidMount() {
+    this.props.setTitle('Todo List');
+  }
+
   render() {
     return (
       <Fragment>

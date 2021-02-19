@@ -2,6 +2,10 @@ import { Component, Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 
 class AboutPage extends Component {
+  componentDidMount() {
+    this.props.setTitle('About');
+  }
+
   render() {
     return (
       <Fragment>
