@@ -24,8 +24,20 @@ import {
 const useStyles = (theme) => ({
   appBar: {
     [theme.breakpoints.up('sm')]: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    }
+  },
+  appBarShift: {
+    [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     }
   },
   // necessary for content to be below app bar
@@ -39,12 +51,18 @@ const useStyles = (theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  menuButton: {
+  mobileMenuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
-  }
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  hide: {
+    display: 'none',
+  },
 });
 
 class NavBar extends Component {
@@ -68,7 +86,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { classes, title } = this.props;
+    const { classes, title, drawerOpen, handleDrawerToggle } = this.props;
 
     const drawer = (
       <Fragment>
@@ -99,29 +117,49 @@ class NavBar extends Component {
       <Fragment>
         <AppBar 
           position="fixed" 
-          className={classes.appBar}
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: drawerOpen,
+          })}
         >
           <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={this.handleMobileDrawerToggle}
-              className={classes.menuButton}
-            >
-              <MenuIcon />
-            </IconButton>
+            <Hidden smUp implementation="css">
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={this.handleMobileDrawerToggle}
+                className={classes.mobileMenuButton}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
+            <Hidden xsDown implementation="css">
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerToggle}
+                className={clsx(classes.menuButton, {
+                  [classes.hide]: false,
+                })}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
             <Typography 
               variant="h6" 
               noWrap
             >
               {title}
-            </Typography>            
+            </Typography>
           </Toolbar>
         </AppBar>
         <nav 
-          className={classes.drawer} 
-          aria-label="drawer">
+          aria-label="drawer"
+          className={clsx({
+            [classes.drawer]: drawerOpen}
+          )}
+        >
           <Hidden smUp implementation="css">
             <Drawer 
               variant="temporary"
@@ -146,8 +184,8 @@ class NavBar extends Component {
           </Hidden>
           <Hidden xsDown implementation="css">
             <Drawer
-              variant="permanent"
-              open={true}
+              variant="persistent"
+              open={drawerOpen}
               classes={{
                 paper: classes.drawerPaper,
               }}

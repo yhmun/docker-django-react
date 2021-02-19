@@ -27,7 +27,7 @@ const useStyles = (theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-  },  
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
