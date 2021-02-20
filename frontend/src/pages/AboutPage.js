@@ -1,20 +1,31 @@
-import { Component, Fragment } from 'react';
-import Typography from '@material-ui/core/Typography';
+import { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+
+const useStyles = (theme) => ({
+  root: {
+    border: '1px solid red',
+    width: '100%',
+  },
+});
 
 class AboutPage extends Component {
   componentDidMount() {
-    this.props.setTitle('About');
+    if (this.props.setTitle)
+      this.props.setTitle('About');
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <Fragment>
+      <div className={classes.root}>
         <Typography variant="h5">
-          The page is under construction.
+          The page is under construction. 
         </Typography>
-      </Fragment>
+      </div>
     );
   }
 }
 
-export default AboutPage;
+export default withStyles(useStyles)(AboutPage);

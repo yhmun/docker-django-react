@@ -1,20 +1,30 @@
-import { Component, Fragment } from 'react';
-import Typography from '@material-ui/core/Typography';
+import { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+
+const useStyles = (theme) => ({
+  root: {
+    width: '100%',
+  },
+});
 
 class NotFoundPage extends Component {
   componentDidMount() {
-    this.props.setTitle('Error 404');
+    if (this.props.setTitle)
+      this.props.setTitle('Error 404');
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <Fragment>
+      <div className={classes.root}>
         <Typography variant="h5">
           Page Not Found
         </Typography>
-      </Fragment>
+      </div>
     );
   }
 }
 
-export default NotFoundPage;
+export default withStyles(useStyles)(NotFoundPage);

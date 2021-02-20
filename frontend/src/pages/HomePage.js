@@ -1,15 +1,25 @@
-import { Component, Fragment } from 'react';
-import Typography from '@material-ui/core/Typography';
+import { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { Paper, Typography } from '@material-ui/core';
+
+const useStyles = (theme) => ({
+  root: {
+    border: '1px solid red',
+    width: '100%',
+  },
+});
 
 class HomePage extends Component {
-
   componentDidMount() {
-    this.props.setTitle('Learning Djano, React, and Material-UI');
+    if (this.props.setTitle)
+      this.props.setTitle('Learning Djano, React, and Material-UI');
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <Fragment>
+      <div className={classes.root}>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
@@ -33,9 +43,9 @@ class HomePage extends Component {
           nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </Fragment>
+      </div>
     );
   }
 }
 
-export default HomePage;
+export default withStyles(useStyles)(HomePage);

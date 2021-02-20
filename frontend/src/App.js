@@ -25,29 +25,29 @@ const useStyles = (theme) => ({
     height: '100%',
   },
   container: {
+    flex: '1 0 auto',
     display: 'flex',
-    flex: '1 0 auto',    
   },
-  toolbar: theme.mixins.toolbar,
-  content: {
+  main: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    display: 'flex',
+    flexDirection: 'column',
     [theme.breakpoints.up('sm')]: {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
       marginLeft: -drawerWidth,
-    }
+    },
   },
-  contentShift: {
+  mainShift: {
     [theme.breakpoints.up('sm')]: {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
       marginLeft: 0,
-    }
+    },
   },
   footer: {
     flexShrink: '0',
@@ -56,7 +56,7 @@ const useStyles = (theme) => ({
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-    }
+    },
   },
   footerShift: {
     [theme.breakpoints.up('sm')]: {
@@ -67,6 +67,15 @@ const useStyles = (theme) => ({
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
+  },
+  toolbar: {
+    ...theme.mixins.toolbar,
+  },
+  content: {
+    //border: '1px solid red',
+    flexGrow: 1,
+    display: 'flex',
+    padding: theme.spacing(3),
   },
 });
 
@@ -99,21 +108,26 @@ class App extends Component {
             handleDrawerToggle={this.handleDrawerToggle}
           />
           <main 
-            className={clsx(classes.content, {
-              [classes.contentShift]: this.state.drawerOpen,
+            className={clsx(classes.main, {
+              [classes.mainShift]: this.state.drawerOpen,
             })}
           >
             <div className={classes.toolbar} />
-            <Switch>
-              {routes.map((route, idx) => (
-                <Route 
-                  key={idx} 
-                  path={route.path} 
-                  exact={route.exact}
-                  children={<route.page setTitle={this.setTitle} />}
-                />
-              ))}
-            </Switch>
+            <div className={classes.content}>
+              <Switch>
+                {routes.map((route, idx) => (
+                  <Route 
+                    key={idx} 
+                    path={route.path} 
+                    exact={route.exact}
+                    children={<route.page  
+                      className={classes.content}
+                      setTitle={this.setTitle}
+                    />}
+                  />
+                ))}
+              </Switch>
+            </div>
           </main>
         </div>
         <footer

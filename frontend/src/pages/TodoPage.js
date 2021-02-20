@@ -1,20 +1,30 @@
-import { Component, Fragment } from 'react';
-import Typography from '@material-ui/core/Typography';
+import { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+
+const useStyles = (theme) => ({
+  root: {
+    width: '100%',
+  },
+});
 
 class TodoPage extends Component {
   componentDidMount() {
-    this.props.setTitle('Todo List');
+    if (this.props.setTitle)
+      this.props.setTitle('Todo List');
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <Fragment>
+      <div className={classes.root}>
         <Typography variant="h5">
-          The page is under construction.
+          The page is under construction. 
         </Typography>
-      </Fragment>
+      </div>
     );
   }
 }
 
-export default TodoPage;
+export default withStyles(useStyles)(TodoPage);
