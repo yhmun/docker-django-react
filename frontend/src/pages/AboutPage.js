@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Box,
   Card, 
   CardActionArea,
   CardActions,
@@ -16,7 +17,7 @@ const useStyles = (theme) => ({
     width: '100%',
   },
   media: {
-    height: 140,
+    height: 160,
   },
 });
 
@@ -30,31 +31,33 @@ class AboutPage extends Component {
     const { classes } = this.props;
 
     return (
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia 
-            className={classes.media}
-            title="Coffee and Laptop"
-            image={bg}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              About
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              The page is under construction
-            </Typography>
-          </CardContent>          
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
+      <Box className={classes.root}>
+        <Card>
+          <CardActionArea>
+            <CardMedia 
+              className={classes.media}
+              title="Coffee and Laptop"
+              image={bg}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                About
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                The page is under construction
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button size="small" color="primary">
+              Share
+            </Button>
+            <Button size="small" color="primary">
+              Learn More
+            </Button>
+          </CardActions>
+        </Card>
+      </Box>
     );
   }
 }
