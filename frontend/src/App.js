@@ -11,6 +11,13 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import TodoPage from './pages/TodoPage';
 
+const routes = [
+  { page: HomePage, path: "/", exact: true },
+  { page: TodoPage, path: "/todos" },
+  { page: AboutPage, path: "/about" },
+  { page: NotFoundPage, path: "*" }
+];
+
 const useStyles = (theme) => ({
   root: {
     display: 'flex',
@@ -25,28 +32,40 @@ const useStyles = (theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    /*
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    */
+    [theme.breakpoints.up('sm')]: {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      marginLeft: -drawerWidth,
+    }
   },
   contentShift: {
-    /*
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    */
-  },  
+    [theme.breakpoints.up('sm')]: {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }
+  },
   footer: {
     flexShrink: '0',
+    [theme.breakpoints.up('sm')]: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    }
   },
   footerShift: {
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
   },
 });
@@ -57,13 +76,6 @@ class App extends Component {
     drawerOpen: false,
   };
 
-  routes = [
-    { page: HomePage, path: "/", exact: true },
-    { page: TodoPage, path: "/todos" },
-    { page: AboutPage, path: "/about" },
-    { page: NotFoundPage, path: "*" }
-  ];
-
   setTitle = (title) => {
     this.setState({
       title: title
@@ -73,13 +85,13 @@ class App extends Component {
   handleDrawerToggle = () => {
     this.setState({ drawerOpen: !this.state.drawerOpen });    
   };
-  
+
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
-        <CssBaseline />        
+        <CssBaseline />
         <div className={classes.container}>
           <NavBar 
             title={this.state.title}
@@ -93,7 +105,7 @@ class App extends Component {
           >
             <div className={classes.toolbar} />
             <Switch>
-              {this.routes.map((route, idx) => (
+              {routes.map((route, idx) => (
                 <Route 
                   key={idx} 
                   path={route.path} 

@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import ListIcon from '@material-ui/icons/List';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { 
   AppBar,
   Toolbar,
@@ -20,6 +21,12 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core';
+
+const listItems = [
+  { to: '/', icon: <HomeIcon />, text: 'Home' },
+  { to: '/todos', icon: <ListIcon />, text: 'Todo' },
+  { to: '/about', icon: <InfoIcon />, text: 'About' },
+];
 
 const useStyles = (theme) => ({
   appBar: {
@@ -40,16 +47,20 @@ const useStyles = (theme) => ({
       }),
     }
   },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,  
   drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
+    width: drawerWidth,
+    flexShrink: 0,
   },
   drawerPaper: {
     width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
   },
   mobileMenuButton: {
     marginRight: theme.spacing(2),
@@ -67,15 +78,10 @@ const useStyles = (theme) => ({
 
 class NavBar extends Component {
   state = {
-    title: 'Learning Django, React, and Material-UI',
     mobildDrawerOpen: false,
   };
 
-  items = [
-    { to: '/', icon: <HomeIcon />, text: 'Home' },
-    { to: '/todos', icon: <ListIcon />, text: 'Todo' },    
-    { to: '/about', icon: <InfoIcon />, text: 'About' },
-  ];
+
 
   handleMobileDrawerToggle = (event) => {
     if (event.type === 'keydown' 
@@ -88,35 +94,31 @@ class NavBar extends Component {
   render() {
     const { classes, title, drawerOpen, handleDrawerToggle } = this.props;
 
-    const drawer = (
-      <Fragment>
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
-          {this.items.map((item, idx) => (
-            <Link
-              key={idx}
-              to={item.to}
-              style={{ color: 'inherit', textDecoration: 'inherit' }}
-            >
-              <ListItem button>
-                <ListItemIcon>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText 
-                  primary={item.text} 
-                />
-              </ListItem>
-            </Link>
-          ))}
-        </List>
-      </Fragment>
+    const drawerList = (
+      <List>
+        {listItems.map((item, idx) => (
+          <Link
+            key={idx}
+            to={item.to}
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText 
+                primary={item.text} 
+              />
+            </ListItem>
+          </Link>
+        ))}
+      </List>
     );
 
     return (
-      <Fragment>
-        <AppBar 
-          position="fixed" 
+      <Fragment>    
+        <AppBar
+          position="fixed"
           className={clsx(classes.appBar, {
             [classes.appBarShift]: drawerOpen,
           })}
@@ -140,26 +142,18 @@ class NavBar extends Component {
                 aria-label="open drawer"
                 onClick={handleDrawerToggle}
                 className={clsx(classes.menuButton, {
-                  [classes.hide]: false,
+                  [classes.hide]: drawerOpen,
                 })}
               >
                 <MenuIcon />
               </IconButton>
             </Hidden>
-            <Typography 
-              variant="h6" 
-              noWrap
-            >
+            <Typography variant="h6" noWrap>
               {title}
             </Typography>
           </Toolbar>
         </AppBar>
-        <nav 
-          aria-label="drawer"
-          className={clsx({
-            [classes.drawer]: drawerOpen}
-          )}
-        >
+        <nav aria-label="drawer">
           <Hidden smUp implementation="css">
             <Drawer 
               variant="temporary"
@@ -178,19 +172,33 @@ class NavBar extends Component {
                 onClick={this.handleMobileDrawerToggle}
                 onKeyDown={this.handleMobileDrawerToggle}
               >
-                {drawer}
+                <div className={classes.drawerHeader}>
+                  <IconButton onClick={this.handleMobileDrawerToggle}>
+                    <ChevronLeftIcon />
+                  </IconButton>
+                </div>
+                <Divider />
+                {drawerList}
               </div>
             </Drawer>
           </Hidden>
           <Hidden xsDown implementation="css">
             <Drawer
               variant="persistent"
+              anchor="left"
               open={drawerOpen}
+              className={classes.drawer}
               classes={{
                 paper: classes.drawerPaper,
               }}
             >
-              {drawer}
+              <div className={classes.drawerHeader}>
+                <IconButton onClick={handleDrawerToggle}>
+                  <ChevronLeftIcon />
+                </IconButton>
+              </div>
+              <Divider />
+              {drawerList}
             </Drawer>
           </Hidden>
         </nav>
