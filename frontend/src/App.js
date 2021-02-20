@@ -73,15 +73,18 @@ const useStyles = (theme) => ({
   },
   content: {
     //border: '1px solid red',
-    flexGrow: 1,
-    display: 'flex',
+    flexGrow: 1,    
     padding: theme.spacing(3),
+  },
+  flex: {
+    display: 'flex',
   },
 });
 
 class App extends Component {
   state = {
     title: '',
+    contentFlex: false,
     drawerOpen: drawerOpen,
   };
 
@@ -90,6 +93,12 @@ class App extends Component {
       title: title
     });
   };
+
+  setContentFlex = (enable) => {
+    this.setState({
+      contentFlex: enable
+    })
+  }
 
   handleDrawerToggle = () => {
     this.setState({ drawerOpen: !this.state.drawerOpen });    
@@ -113,7 +122,9 @@ class App extends Component {
             })}
           >
             <div className={classes.toolbar} />
-            <div className={classes.content}>
+            <div className={clsx(classes.content, {
+              [classes.flex]: this.state.contentFlex,
+            })}>
               <Switch>
                 {routes.map((route, idx) => (
                   <Route 
@@ -123,6 +134,7 @@ class App extends Component {
                     children={<route.page  
                       className={classes.content}
                       setTitle={this.setTitle}
+                      setContentFlex={this.setContentFlex}
                     />}
                   />
                 ))}
