@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
-import { drawerWidth } from './constants/styles';
+import { drawerWidth, drawerOpen } from './constants/styles';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import NotFoundPage from './pages/NotFoundPage';
@@ -73,7 +73,7 @@ const useStyles = (theme) => ({
 class App extends Component {
   state = {
     title: '',
-    drawerOpen: false,
+    drawerOpen: drawerOpen,
   };
 
   setTitle = (title) => {
