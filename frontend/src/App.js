@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import { drawerWidth, drawerOpen } from './constants/styles';
@@ -110,47 +110,45 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <Router>          
-          <div className={classes.container}>            
-            <NavBar 
-              title={this.state.title}
-              drawerOpen={this.state.drawerOpen}
-              handleDrawerToggle={this.handleDrawerToggle}
-            />
-            <main 
-              className={clsx(classes.main, {
-                [classes.mainShift]: this.state.drawerOpen,
-              })}
-            >
-              <div className={classes.toolbar} />
-              <div className={clsx(classes.content, {
-                [classes.flex]: this.state.contentFlex,
-              })}>
-                <Switch>
-                  {routes.map((route, idx) => (
-                    <Route 
-                      key={idx} 
-                      path={route.path} 
-                      exact={route.exact}
-                      children={<route.page  
-                        className={classes.content}
-                        setTitle={this.setTitle}
-                        setContentFlex={this.setContentFlex}
-                      />}
-                    />
-                  ))}
-                </Switch>
-              </div>
-            </main>
-          </div>
-          <footer
-            className={clsx(classes.footer, {
-              [classes.footerShift]: this.state.drawerOpen,
+        <div className={classes.container}>
+          <NavBar 
+            title={this.state.title}
+            drawerOpen={this.state.drawerOpen}
+            handleDrawerToggle={this.handleDrawerToggle}
+          />
+          <main 
+            className={clsx(classes.main, {
+              [classes.mainShift]: this.state.drawerOpen,
             })}
           >
-            <Footer />
-          </footer>
-        </Router>
+            <div className={classes.toolbar} />
+            <div className={clsx(classes.content, {
+              [classes.flex]: this.state.contentFlex,
+            })}>
+              <Switch>
+                {routes.map((route, idx) => (
+                  <Route 
+                    key={idx} 
+                    path={route.path} 
+                    exact={route.exact}
+                    children={<route.page  
+                      className={classes.content}
+                      setTitle={this.setTitle}
+                      setContentFlex={this.setContentFlex}
+                    />}
+                  />
+                ))}
+              </Switch>
+            </div>
+          </main>
+        </div>
+        <footer
+          className={clsx(classes.footer, {
+            [classes.footerShift]: this.state.drawerOpen,
+          })}
+        >
+          <Footer />
+        </footer>
       </div>
     );
   }
