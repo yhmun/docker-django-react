@@ -10,28 +10,19 @@ import {
   Box,
   Card, 
   CardContent,
-  
-  CardHeader,
-  CardActionArea,
   CardActions,
-  CardMedia,
-
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  Checkbox,
-
   Tabs,
   Tab,
-  Typography,
-  Button,
 } from '@material-ui/core';
 import TodoList from '../components/todo/TodoList';
+import CreateTodoForm from '../components/todo/CreateTodoForm';
 
 const useStyles = (theme) => ({
   root: {
     width: '100%',
+  },
+  button: {
+    margin: theme.spacing(2),
   },
 });
 
@@ -84,11 +75,7 @@ class TodoPage extends Component {
               display="flex" 
               justifyContent="flex-end"
             >
-              <Button 
-                variant="contained" 
-                color="primary">
-                Create
-              </Button>
+              <CreateTodoForm />
             </Box>
           </CardActions>
         </Card>
