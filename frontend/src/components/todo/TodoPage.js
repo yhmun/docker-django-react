@@ -67,7 +67,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   startReadingTodos: () => dispatch(readTodosRequest()),
-  onDeleteTodo: id => dispatch(deleteTodoRequest(id)),
+  onDeleteTodo: id => console.log(id), //dispatch(deleteTodoRequest(id)),
   onCompleteTodo: id => dispatch(completeTodoRequest(id)),
 });
 

@@ -1,44 +1,71 @@
-import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, ListGroupItemText, Button } from 'reactstrap';
+import { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { 
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  IconButton,
+} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
+
+const useStyles = (theme) => ({
+  root: {
+    width: '100%',
+  },
+  itemText: {
+    width: '10px',
+  },
+});
+
+const StyledListItem = withStyles({
+  secondaryAction: {
+    paddingRight: 80
+  }
+})(ListItem);
 
 class TodoList extends Component {
   render() {
-    const { todos, onDeleteTodo, onCompleteTodo } = this.props;
+    const { classes } = this.props;
 
     return (
-      <ListGroup>
-        {todos.map((todo) => (
-          <ListGroupItem 
-            key={todo.id}
-            className="d-flex">
-            <ListGroupItemText 
-              className="flex-grow-1 overflow-auto">
-              {todo.description}
-            </ListGroupItemText>
-            {todo.completed ? (
-                null 
-              ) : (
-                <Button 
-                  color="success"
-                  style={{ minWidth: "96px", maxHeight: "40px", marginLeft: "12px" }}
-                  onClick={() => onCompleteTodo(todo.id)}
-                >
-                  Complete
-                </Button>
-              )
-            }
-            <Button 
-              color="danger"
-              style={{ minWidth: "96px", maxHeight: "40px", marginLeft: "8px" }}
-              onClick={() => onDeleteTodo(todo.id)}
-            >
-              Delete
-            </Button>
-          </ListGroupItem>
+      <List dense className={classes.root}>
+        {this.props.todos.map((todo) => (
+          <StyledListItem key={todo.id}>
+            <ListItemText 
+              className={classes.itemText}
+              primary={todo.title}
+              secondary={todo.description}
+            />
+            <ListItemSecondaryAction>
+              {todo.completed ? (
+                  null 
+                ) : (
+                  <IconButton 
+                    color="primary" 
+                    edge="end" 
+                    aria-label="check"
+                    onClick={() => this.props.handleComplete(todo.id)}
+                  >
+                    <CheckIcon />
+                  </IconButton>
+                )
+              }
+              <IconButton 
+                color="secondary" 
+                edge="end" 
+                aria-label="delete"
+                onClick={() => this.props.handleDelete(todo.id)}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </StyledListItem>
         ))}
-      </ListGroup>
+      </List>
     );
   }
 }
 
-export default TodoList;
+export default withStyles(useStyles)(TodoList);

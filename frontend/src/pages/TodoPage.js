@@ -1,4 +1,10 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import { 
+  readTodosRequest, 
+  deleteTodoRequest, 
+  completeTodoRequest
+} from '../redux/todo/thunks';
 import { withStyles } from '@material-ui/core/styles';
 import { 
   Box,
@@ -10,11 +16,18 @@ import {
   CardActions,
   CardMedia,
 
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  Checkbox,
+
   Tabs,
   Tab,
   Typography,
   Button,
 } from '@material-ui/core';
+import TodoList from '../components/todo/TodoList';
 
 const useStyles = (theme) => ({
   root: {
@@ -28,8 +41,11 @@ class TodoPage extends Component {
   };
 
   componentDidMount() {
-    if (this.props.setTitle)
-      this.props.setTitle('Todo List');
+    const { setTitle, startReadingTodos } = this.props;
+    if (setTitle)
+      setTitle('Todo List');
+    if (startReadingTodos)
+      startReadingTodos();
   }
 
   handleTabChange = (event, value) => {
@@ -39,7 +55,8 @@ class TodoPage extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, todos = [] } = this.props;
+    // isReadingTodos, 
 
     return (
       <Box className={classes.root}>
@@ -55,14 +72,11 @@ class TodoPage extends Component {
               <Tab label="Incomplete" />
           </Tabs>
           <CardContent>
-            <Box display="flex">
-              <Box width="100%">
-                Item 1
-              </Box>
-              <Box flexShrink={0}>
-                Item 3
-              </Box>
-            </Box>
+            <TodoList 
+              todos={todos}
+              handleDelete={this.props.handleDelete}
+              handleComplete={this.props.handleComplete}
+            />
           </CardContent>
           <CardActions>
             <Box 
@@ -83,10 +97,17 @@ class TodoPage extends Component {
   }
 }
 
-export default withStyles(useStyles)(TodoPage);
+const mapStateToProps = (state) => ({
+  isReadingTodos: state.isReadingTodos,
+  todos: state.todos,
+});
 
-/*
-        <Paper>
+const mapDispatchToProps = (dispatch) => ({
+  startReadingTodos: () => dispatch(readTodosRequest()),
+  handleDelete: id => dispatch(deleteTodoRequest(id)),
+  handleComplete: id => dispatch(completeTodoRequest(id)),
+});
 
-        </Paper>
-        */
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(useStyles)(TodoPage)
+);
