@@ -74,8 +74,10 @@ const useStyles = (theme) => ({
   content: {
     //border: '1px solid red',
     display: 'flex',
-    flexGrow: 1,    
-    padding: theme.spacing(3),
+    flexGrow: 1,
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(2),
+    },
   },
 });
 
