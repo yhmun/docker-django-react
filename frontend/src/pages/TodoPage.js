@@ -69,7 +69,7 @@ class TodoPage extends Component {
             >
               <Tab label="Incompleted" />
               <Tab label="Completed" />
-              <Tab label="All" />                            
+              <Tab label="All" />
           </Tabs>
           {isReading ? (
             <CardContent>

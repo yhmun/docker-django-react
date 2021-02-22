@@ -14,9 +14,6 @@ const useStyles = (theme) => ({
   root: {
     width: '100%',
   },
-  itemText: {
-    width: '10px',
-  },
 });
 
 const StyledListItem = withStyles({
@@ -34,7 +31,6 @@ class TodoList extends Component {
         {this.props.todos.map((todo) => (
           <StyledListItem key={todo.id}>
             <ListItemText 
-              className={classes.itemText}
               primary={todo.title}
               secondary={todo.description}
             />
