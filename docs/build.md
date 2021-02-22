@@ -60,35 +60,24 @@ $ source venv/bin/activate
 
 ## Frontend: React Apps
 ```
+# Essential
 $ npm install --save react-router-dom
 $ npm install --save redux react-redux redux-thunk redux-logger
 $ npm install --save axios
 $ npm install --save clsx
 $ npm install --save @material-ui/core @material-ui/icons @material-ui/styles
 
-
+```
+```
+# Optional
 $ npm install --save bootstrap jquery
 $ npm install --save --legacy-peer-deps reactstrap  
 $ npm install --save react-icons
-
-
 ```
-```
-import { bindActionCreators, compose } from 'redux';
-
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps, // or put null here if you do not have actions to dispatch
-  ),
-  withStyles(styles),
-)(YourComponent);
-```
-
 ```
 # React: Building an Interface
 # https://www.linkedin.com/learning/react-js-building-an-interface-2
-$ npm install --save bootstrap \                     
+$ npm install --save bootstrap \
                      lodash \
                      jquery \
                      popper.js \
@@ -98,66 +87,46 @@ $ npm install --save bootstrap \
 
 # React: Creating and Hosting a Full-Stack Site
 # https://www.linkedin.com/learning/react-creating-and-hosting-a-full-stack-site
-$ npm install --save react-router-dom
-                   # whatwg-fetch
 
 # https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
-$ npm install --save antd redux axios react-redux redux-thunk redux-logger bootstrap reactstrap
-$ mkdir -p src/reducx
-$ mkdir -p src/containers
+$ npm install --save antd
 
 # https://blog.logrocket.com/creating-an-app-with-react-and-django/
 
-
 # Building Modern Projects with React
 # https://www.linkedin.com/learning/building-modern-projects-with-react
-$ npm init -y
-
-```
-
-## Frontend: Reactstrap
-```
-# <Table bordered borderless striped dark hover />
 ```
 
 ### npm commands
 ```
-$ npm list --depth=n
-           --prod
-           --dev
-           --global
-           --json
+$ npm list --depth=n --prod --dev --global --json
 $ npm uninstall --save <package>
 ```
 
 ### npm packages
 ```
 $ npm list --prod --depth=0
+├── @material-ui/core@4.11.3
+├── @material-ui/icons@4.11.2
 ├── @testing-library/jest-dom@5.11.9
 ├── @testing-library/react@11.2.5
-├── @testing-library/user-event@12.6.3
-├── antd@4.12.2
+├── @testing-library/user-event@12.7.1
 ├── axios@0.21.1                        # Promise based HTTP client for the browser and node.js
-├── bootstrap@4.6.0                     # The most popular front-end framework for developing responsive, mobile first projects on the web.
-├── jquery@3.5.1                        # JavaScript library for DOM operations
-├── lodash@4.17.20                      # Lodash modular utilities.
-├── moment@2.29.1                       # Parse, validate, manipulate, and display dates
-├── popper.js@1.16.1                    # Realtime Cross-Browser Automation
-├── react@17.0.1                        # React is a JavaScript library for building user interfaces.
+├── clsx@1.1.1                          # A tiny (228B) utility for constructing className strings conditionally.
 ├── react-dom@17.0.1                    # React package for working with the DOM.
-├── react-icons@4.2.0                   # Icon component for React
-├── react-moment@1.1.1                  # React component for the moment date library.
-├── react-redux@7.2.2
+├── react-redux@7.2.2                   # Official React bindings for Redux.
 ├── react-router-dom@5.2.0              # DOM bindings for React Router
-├── react-scripts@4.0.2
-├── reactstrap@8.9.0
-├── redux@4.0.5
+├── react-scripts@4.0.2                 # This package includes scripts and configuration used by Create React App.
+├── react@17.0.1                        # React is a JavaScript library for building user interfaces.
 ├── redux-logger@3.0.6
-├── redux-thunk@2.3.0
-└── web-vitals@1.1.0
-
-
-
+├── redux-thunk@2.3.0                   # Thunk middleware for Redux.
+└── redux@4.0.5                         # Redux is a predictable state container for JavaScript apps.
+```
+```              
+├── react-icons@4.2.0                   # Icon component for React
+├── react-moment@1.1.1                  
+├── reactstrap@8.9.0
+├── web-vitals@1.1.0
 └── whatwg-fetch@3.5.0                  # A window.fetch polyfill.
 ```
 ```
