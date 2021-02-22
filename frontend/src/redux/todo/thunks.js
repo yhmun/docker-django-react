@@ -23,10 +23,10 @@ export const readTodosRequest = () => {
   };
 };
 
-export const createTodoRequest = (text) => {
+export const createTodoRequest = (title, description) => {
   const data = {
-    title: 'No title', 
-    description: text, 
+    title: title, 
+    description: description, 
     completed: false
   };
 

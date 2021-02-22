@@ -4,37 +4,74 @@ import { createTodoRequest } from '../../redux/todo/thunks';
 import { withStyles } from '@material-ui/core/styles';
 import { 
   Button,
-  TextField, 
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
+  TextField,
 } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = (theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
   button: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(3),
   },
 });
 
 class CreateTodoForm extends Component {
   state = {
-    open: false
+    open: false,
+    title: '',
+    description: '',
+    duplicated: false,
+  };
+
+  clear = () => {
+    this.setState({
+      title: '',
+      description: '',
+      duplicated: false,
+    });
   };
 
   handleOpen = () => {
-    this.setState({
-      open: true
-    });
+    this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({
-      open: false
-    });
+    this.setState({ open: false });
   };
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value,
+    });
+    if (event.target.id === 'title') {
+      this.setState({ duplicated: false });
+    }
+  };
+
+  handleCancel = () => {
+    this.handleClose();
+    this.clear();
+  }
+
+  handleCreate = () => {
+    const { todos, handleCreate } = this.props;
+    const isDuplicated = todos.some((todo) => (
+      todo.title === this.state.title
+    ));
+    if (isDuplicated) {
+      this.setState({ duplicated: true });
+    } else {
+      handleCreate(this.state.title, this.state.description);
+      this.handleClose();
+      this.clear();
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -66,25 +103,39 @@ class CreateTodoForm extends Component {
               className={classes.form} 
               noValidate
             >
-              <TextField
-                id="name"
-                label="Title"
+              <TextField 
+                fullWidth
+                id="title" 
+                label="Title" 
+                variant="outlined" 
+                placeholder="Type title here"
+                error={this.state.duplicated}
+                helperText={this.state.duplicated ? "Duplicated entry." : ""}
+                className={classes.margin} 
+                value={this.state.title}
+                onChange={this.handleChange}
               />
               <TextField 
-                id="description"
+                fullWidth
+                id="description" 
                 label="Description" 
+                variant="outlined" 
+                placeholder="Type description here"
+                className={classes.margin} 
+                value={this.state.description}
+                onChange={this.handleChange}
               />
             </form>
           </DialogContent>
           <DialogActions>
             <Button 
-              onClick={this.handleClose} 
+              onClick={this.handleCancel} 
             >
               Cancel
             </Button>
             <Button 
-              onClick={this.handleClose} 
               color="primary"
+              onClick={this.handleCreate}
             >
               Create
             </Button>
@@ -100,70 +151,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreateTodo: text => dispatch(createTodoRequest(text)),
+  handleCreate: (title, description) => dispatch(createTodoRequest(title, description)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withStyles(useStyles)(CreateTodoForm)
 );
-
-/*
-import React, { Component } from 'react';
-import { Form, Input, Button } from 'reactstrap';
-
-              <TextField 
-                label="Title" 
-                defaultValue="Hello World" 
-              />
-
-
-
-class CreateTodoForm extends Component {
-  state = {
-    text: ''
-  };
-
-  onCreateTodo = (event) => {
-    const { todos, onCreateTodo } = this.props;
-    const isDuplicated = todos.some((todo) => (
-      todo.description === this.state.text
-    ));
-    if (!isDuplicated) {
-      onCreateTodo(this.state.text);
-      this.setState({ text: '' });
-    }
-  };
-
-  onChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
-  render() {
-    return (
-      <Form
-        className="d-flex"
-        onSubmit={this.onCreateTodo}
-      >
-        <Input 
-          className="flex-grow-1"
-          type="text" 
-          name="text"
-          placeholder="Type your new todo here" 
-          value={this.state.text}
-          onChange={this.onChange}
-        />
-        <Button
-          color="primary"
-          style={{ minWidth: "118px", marginLeft: "8px" }}
-        >
-          Create
-        </Button>
-      </Form>
-    );
-  }
-}
-
-
-*/
