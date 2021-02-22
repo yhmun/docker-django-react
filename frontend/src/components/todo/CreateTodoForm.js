@@ -1,8 +1,9 @@
 import { Component, Fragment } from 'react';
 import { compose } from 'redux';
 import { connect  } from 'react-redux';
-import { getTodos } from '../../redux/todo/selectors';
-import { createTodoRequest } from '../../redux/todo/thunks';
+import { API_URL_TODO } from '../../constants/apis';
+import { getObjects } from '../../redux/selectors';
+import { requestCreateObject } from '../../redux/thunks';
 import { withStyles } from '@material-ui/core/styles';
 import { 
   Button,
@@ -150,11 +151,17 @@ class CreateTodoForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  todos: getTodos(state),
+  todos: getObjects(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleCreate: (title, description) => dispatch(createTodoRequest(title, description)),
+  handleCreate: (title, description) => {
+    const data = {
+      title: title,
+      description: description,
+    };
+    dispatch(requestCreateObject(API_URL_TODO, data))
+  },
 });
 
 export default compose(

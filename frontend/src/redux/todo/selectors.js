@@ -1,14 +1,12 @@
 import { createSelector } from 'reselect';
-
-export const getTodos = state => state.todos.data;
-export const getTodosReading = state => state.todos.isReading;
+import { getObjects } from '../selectors';
 
 export const getIncompletedTodos = createSelector(
-  getTodos,
+  getObjects,
   (todos) => todos.filter(todo => !todo.completed),
 );
 
 export const getCompletedTodos = createSelector(
-  getTodos,
+  getObjects,
   (todos) => todos.filter(todo => todo.completed),
 );

@@ -1,8 +1,10 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getTodos, getTodosReading, getCompletedTodos, getIncompletedTodos } from '../redux/todo/selectors';
-import { readTodosRequest, deleteTodoRequest, completeTodoRequest } from '../redux/todo/thunks';
+import { API_URL_TODO } from '../constants/apis';
+import { getObjects, getObjectsReading } from '../redux/selectors';
+import { getCompletedTodos, getIncompletedTodos } from '../redux/todo/selectors';
+import { requestReadObjects, requestUpdateObject, requestDeleteObject  } from '../redux/thunks';
 import { withStyles } from '@material-ui/core/styles';
 import { 
   Box,
@@ -35,7 +37,7 @@ class TodoPage extends Component {
     if (setTitle)
       setTitle('Todo List');
     if (loadTodos)
-    loadTodos();
+      loadTodos();
   }
 
   handleTabChange = (event, value) => {
@@ -45,7 +47,10 @@ class TodoPage extends Component {
   };
 
   render() {
-    const { classes, isReading = false } = this.props;
+    const { 
+      classes, 
+      isLoading = false 
+    } = this.props;
     var todos = []
     switch (this.state.tab) {
       case 0:
@@ -71,7 +76,7 @@ class TodoPage extends Component {
               <Tab label="Completed" />
               <Tab label="All" />
           </Tabs>
-          {isReading ? (
+          {isLoading ? (
             <CardContent>
               <Box 
                 py={6}
@@ -109,16 +114,21 @@ class TodoPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isReading: getTodosReading(state),
   incompletedTodos: getIncompletedTodos(state),
   completedTodos: getCompletedTodos(state),
-  todos: getTodos(state),
+  todos: getObjects(state),
+  isLoading: getObjectsReading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadTodos: () => dispatch(readTodosRequest()),
-  handleDelete: id => dispatch(deleteTodoRequest(id)),
-  handleComplete: id => dispatch(completeTodoRequest(id)),
+  loadTodos: () => dispatch(requestReadObjects(API_URL_TODO)),
+  handleDelete: id => dispatch(requestDeleteObject(API_URL_TODO, id)),
+  handleComplete: id => {
+    const data = {
+      completed: true,
+    };
+    dispatch(requestUpdateObject(API_URL_TODO, id, data))
+  },
 });
 
 export default compose(
