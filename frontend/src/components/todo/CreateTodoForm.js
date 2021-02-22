@@ -1,4 +1,5 @@
 import { Component, Fragment } from 'react';
+import { compose } from 'redux';
 import { connect  } from 'react-redux';
 import { getTodos } from '../../redux/todo/selectors';
 import { createTodoRequest } from '../../redux/todo/thunks';
@@ -15,10 +16,11 @@ import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = (theme) => ({
   margin: {
-    margin: theme.spacing(1),
+    marginTop: theme.spacing(1),
   },
   button: {
-    margin: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    marginBottom: theme.spacing(3),
   },
 });
 
@@ -155,6 +157,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleCreate: (title, description) => dispatch(createTodoRequest(title, description)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(useStyles)(CreateTodoForm)
-);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withStyles(useStyles),
+) (CreateTodoForm);

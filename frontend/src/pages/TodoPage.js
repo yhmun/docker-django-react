@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { getTodos, getTodosReading } from '../redux/todo/selectors';
 import { readTodosRequest, deleteTodoRequest, completeTodoRequest } from '../redux/todo/thunks';
@@ -107,6 +108,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleComplete: id => dispatch(completeTodoRequest(id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(useStyles)(TodoPage)
-);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withStyles(useStyles),
+) (TodoPage);
