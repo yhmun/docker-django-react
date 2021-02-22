@@ -41,11 +41,9 @@ $ source venv/bin/activate
 
 ## Backend: Django Apps
 ```
-# https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
-(vend) $ mkdir -p apps/blog
-(vend) $ django-admin startapp blog apps/blog
-(vend) $ python manage.py makemigrations blog
-(vend) $ python manage.py migrate blog
+# https://blog.logrocket.com/creating-an-app-with-react-and-django/
+(vend) $ mkdir -p apps/base
+(vend) $ django-admin startapp base apps/base
 
 # https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react
 (vend) $ mkdir -p apps/todo
@@ -53,9 +51,11 @@ $ source venv/bin/activate
 (vend) $ python manage.py makemigrations todo
 (vend) $ python manage.py migrate todo
 
-# https://blog.logrocket.com/creating-an-app-with-react-and-django/
-(vend) $ mkdir -p apps/base
-(vend) $ django-admin startapp base apps/base
+# https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
+(vend) $ mkdir -p apps/blog
+(vend) $ django-admin startapp blog apps/blog
+(vend) $ python manage.py makemigrations blog
+(vend) $ python manage.py migrate blog
 ```
 
 ## Frontend: React Apps
@@ -74,6 +74,10 @@ $ npm install --save --legacy-peer-deps reactstrap
 $ npm install --save react-icons
 ```
 ```
+# Building Modern Projects with React
+# https://www.linkedin.com/learning/building-modern-projects-with-react
+
+
 # React: Building an Interface
 # https://www.linkedin.com/learning/react-js-building-an-interface-2
 $ npm install --save bootstrap \
@@ -92,8 +96,7 @@ $ npm install --save antd
 
 # https://blog.logrocket.com/creating-an-app-with-react-and-django/
 
-# Building Modern Projects with React
-# https://www.linkedin.com/learning/building-modern-projects-with-react
+
 ```
 
 ### npm commands
