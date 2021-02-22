@@ -13,6 +13,7 @@ import {
   CardActions,
   Tabs,
   Tab,
+  CircularProgress,
 } from '@material-ui/core';
 import TodoList from '../components/todo/TodoList';
 import CreateTodoForm from '../components/todo/CreateTodoForm';
@@ -46,8 +47,7 @@ class TodoPage extends Component {
   };
 
   render() {
-    const { classes, todos = [] } = this.props;
-    // isReadingTodos, 
+    const { classes, todos = [], isReadingTodos } = this.props;
 
     return (
       <Box className={classes.root}>
@@ -62,22 +62,37 @@ class TodoPage extends Component {
               <Tab label="Completed" />
               <Tab label="Incomplete" />
           </Tabs>
-          <CardContent>
-            <TodoList 
-              todos={todos}
-              handleDelete={this.props.handleDelete}
-              handleComplete={this.props.handleComplete}
-            />
-          </CardContent>
-          <CardActions>
-            <Box 
-              width="100%"
-              display="flex" 
-              justifyContent="flex-end"
-            >
-              <CreateTodoForm />
+          {isReadingTodos ? (
+            <CardContent>
+              <Box 
+                py={6}
+                width="100%"
+                display="flex" 
+                justifyContent="center"
+              >
+                <CircularProgress disableShrink />
+              </Box>
+            </CardContent>
+          ) : (
+            <Box>
+              <CardContent>
+                <TodoList 
+                todos={todos}
+                handleDelete={this.props.handleDelete}
+                handleComplete={this.props.handleComplete}
+              />
+              </CardContent>
+              <CardActions>
+                <Box 
+                  width="100%"
+                  display="flex" 
+                  justifyContent="flex-end"
+                >
+                  <CreateTodoForm />
+                </Box>
+              </CardActions> 
             </Box>
-          </CardActions>
+          )}
         </Card>
       </Box>
     );
