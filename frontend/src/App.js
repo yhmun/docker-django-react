@@ -10,11 +10,13 @@ import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import TodoPage from './pages/TodoPage';
+import StudentPage from './pages/StudentPage';
 
 const routes = [
   { page: HomePage, path: "/", exact: true },
   { page: TodoPage, path: "/todos" },
   { page: AboutPage, path: "/about" },
+  { page: StudentPage, path: "/students" },
   { page: NotFoundPage, path: "*" }
 ];
 

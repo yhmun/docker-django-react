@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import ListIcon from '@material-ui/icons/List';
+import PeopleIcon from '@material-ui/icons/People';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { 
   AppBar,
@@ -24,7 +25,8 @@ import {
 
 const listItems = [
   { to: '/', icon: <HomeIcon />, text: 'Home' },
-  { to: '/todos', icon: <ListIcon />, text: 'Todo' },
+  { to: '/todos', icon: <ListIcon />, text: 'Todos' },
+  { to: '/students', icon: <PeopleIcon />, text: 'Students'},
   { to: '/about', icon: <InfoIcon />, text: 'About' },
 ];
 
