@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { getTodos, getTodosLoading } from '../redux/todo/selectors';
+import { getTodos, getTodosReading } from '../redux/todo/selectors';
 import { readTodosRequest, deleteTodoRequest, completeTodoRequest } from '../redux/todo/thunks';
 import { withStyles } from '@material-ui/core/styles';
 import { 
@@ -44,7 +44,7 @@ class TodoPage extends Component {
   };
 
   render() {
-    const { classes, todos = [], isLoading } = this.props;
+    const { classes, todos = [], isReading } = this.props;
 
     return (
       <Box className={classes.root}>
@@ -59,7 +59,7 @@ class TodoPage extends Component {
               <Tab label="Completed" />
               <Tab label="Incomplete" />
           </Tabs>
-          {isLoading ? (
+          {isReading ? (
             <CardContent>
               <Box 
                 py={6}
@@ -97,7 +97,7 @@ class TodoPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isLoading: getTodosLoading(state),
+  isReading: getTodosReading(state),
   todos: getTodos(state),
 });
 
