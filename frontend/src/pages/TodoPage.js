@@ -1,10 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { 
-  readTodosRequest, 
-  deleteTodoRequest, 
-  completeTodoRequest
-} from '../redux/todo/thunks';
+import { getTodos, getTodosLoading } from '../redux/todo/selectors';
+import { readTodosRequest, deleteTodoRequest, completeTodoRequest } from '../redux/todo/thunks';
 import { withStyles } from '@material-ui/core/styles';
 import { 
   Box,
@@ -33,11 +30,11 @@ class TodoPage extends Component {
   };
 
   componentDidMount() {
-    const { setTitle, startReadingTodos } = this.props;
+    const { setTitle, loadTodos } = this.props;
     if (setTitle)
       setTitle('Todo List');
-    if (startReadingTodos)
-      startReadingTodos();
+    if (loadTodos)
+    loadTodos();
   }
 
   handleTabChange = (event, value) => {
@@ -47,7 +44,7 @@ class TodoPage extends Component {
   };
 
   render() {
-    const { classes, todos = [], isReadingTodos } = this.props;
+    const { classes, todos = [], isLoading } = this.props;
 
     return (
       <Box className={classes.root}>
@@ -62,7 +59,7 @@ class TodoPage extends Component {
               <Tab label="Completed" />
               <Tab label="Incomplete" />
           </Tabs>
-          {isReadingTodos ? (
+          {isLoading ? (
             <CardContent>
               <Box 
                 py={6}
@@ -100,12 +97,12 @@ class TodoPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isReadingTodos: state.isReadingTodos,
-  todos: state.todos,
+  isLoading: getTodosLoading(state),
+  todos: getTodos(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startReadingTodos: () => dispatch(readTodosRequest()),
+  loadTodos: () => dispatch(readTodosRequest()),
   handleDelete: id => dispatch(deleteTodoRequest(id)),
   handleComplete: id => dispatch(completeTodoRequest(id)),
 });

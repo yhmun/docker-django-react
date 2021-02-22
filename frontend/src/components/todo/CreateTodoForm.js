@@ -1,5 +1,6 @@
 import { Component, Fragment } from 'react';
 import { connect  } from 'react-redux';
+import { getTodos } from '../../redux/todo/selectors';
 import { createTodoRequest } from '../../redux/todo/thunks';
 import { withStyles } from '@material-ui/core/styles';
 import { 
@@ -147,7 +148,7 @@ class CreateTodoForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  todos: state.todos,
+  todos: getTodos(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
