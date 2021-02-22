@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { getObjects, getObjectsReading } from '../redux/selectors';
+import { requestReadObjects } from '../redux/thunks';
 import { withStyles } from '@material-ui/core/styles';
 import { 
   Box,
@@ -18,13 +20,19 @@ class StudentPage extends Component {
   };
 
   componentDidMount() {
-    const { setTitle } = this.props;
+    const { setTitle, loadStudents } = this.props;
     if (setTitle)
       setTitle('Student List');
+    if (loadStudents)
+      loadStudents();
   }
 
   render() {
-    const { classes } = this.props;
+    const { 
+      classes, 
+      students = [], 
+      isLoading = false 
+    } = this.props;
 
     return (
       <Box className={classes.root}>
@@ -34,11 +42,13 @@ class StudentPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-
+  students: getObjects(state),
+  isLoading: getObjectsReading(state),  
 });
 
+const api_url = '/api/students';
 const mapDispatchToProps = (dispatch) => ({
-
+  loadStudents: () => dispatch(requestReadObjects(api_url)),
 });
 
 export default compose(
