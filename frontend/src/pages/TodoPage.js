@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getTodos, getTodosReading } from '../redux/todo/selectors';
+import { getTodos, getTodosReading, getCompletedTodos, getIncompletedTodos } from '../redux/todo/selectors';
 import { readTodosRequest, deleteTodoRequest, completeTodoRequest } from '../redux/todo/thunks';
 import { withStyles } from '@material-ui/core/styles';
 import { 
@@ -41,12 +41,22 @@ class TodoPage extends Component {
   handleTabChange = (event, value) => {
     this.setState({
       tab: value
-    });
+    });    
   };
 
   render() {
-    const { classes, todos = [], isReading } = this.props;
-
+    const { classes, isReading = false } = this.props;
+    var todos = []
+    switch (this.state.tab) {
+      case 0:
+        todos = this.props.incompletedTodos;
+        break;
+      case 1:
+        todos = this.props.completedTodos;
+        break;
+      default:
+        todos = this.props.todos;
+    }
     return (
       <Box className={classes.root}>
         <Card>
@@ -57,8 +67,9 @@ class TodoPage extends Component {
               textColor="primary"
               aria-label="todo list tabs"
             >
+              <Tab label="Incompleted" />
               <Tab label="Completed" />
-              <Tab label="Incomplete" />
+              <Tab label="All" />                            
           </Tabs>
           {isReading ? (
             <CardContent>
@@ -99,6 +110,8 @@ class TodoPage extends Component {
 
 const mapStateToProps = (state) => ({
   isReading: getTodosReading(state),
+  incompletedTodos: getIncompletedTodos(state),
+  completedTodos: getCompletedTodos(state),
   todos: getTodos(state),
 });
 

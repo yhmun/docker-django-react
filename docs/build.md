@@ -62,11 +62,10 @@ $ source venv/bin/activate
 ```
 # Essential
 $ npm install --save react-router-dom
-$ npm install --save redux react-redux redux-thunk redux-logger
+$ npm install --save redux react-redux redux-thunk redux-logger reselect
 $ npm install --save axios
 $ npm install --save clsx
 $ npm install --save @material-ui/core @material-ui/icons @material-ui/styles
-
 ```
 ```
 # Optional
@@ -120,7 +119,8 @@ $ npm list --prod --depth=0
 ├── react@17.0.1                        # React is a JavaScript library for building user interfaces.
 ├── redux-logger@3.0.6
 ├── redux-thunk@2.3.0                   # Thunk middleware for Redux.
-└── redux@4.0.5                         # Redux is a predictable state container for JavaScript apps.
+├── redux@4.0.5                         # Redux is a predictable state container for JavaScript apps.
+└── reselect@4.0.0                      # Selectors for Redux.
 ```
 ```              
 ├── react-icons@4.2.0                   # Icon component for React
