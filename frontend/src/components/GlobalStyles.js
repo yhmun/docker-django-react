@@ -1,6 +1,6 @@
 import { withStyles } from '@material-ui/core/styles';
 
-const GlobalStyles = withStyles({
+export const GlobalStyles = withStyles({
   // @global is handled by jss-plugin-global.
   '@global': {
     '*': {
@@ -29,4 +29,5 @@ const GlobalStyles = withStyles({
   },
 })(() => null);
 
-export default GlobalStyles;
+export const drawerWidth = 240;
+export const drawerOpen = true;
