@@ -2,12 +2,13 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { drawerWidth } from '../../../components'
 import {
-  Hidden,  
+  Hidden,
+  Drawer,
+  Divider,
+  IconButton,
   Avatar,
   Box,
   Button,
-  Divider,
-  Drawer,
   List,
   Typography,
 } from '@material-ui/core';
@@ -16,28 +17,16 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 const styles = (theme) => ({
   root: {
     width: drawerWidth,
-    flexShrink: 0,
+    // border: '1px solid blue',
   },
-  mobileDrawer: {
-    width: drawerWidth
-  },
-  desktopDrawer: {
-    width: drawerWidth,
-    // top: 64,
-    // height: 'calc(100% - 64px)'
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerHeader: {
+  header: {
+    height: 64,
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
-  },  
+    // border: '1px solid red',
+  },
 });
 
 class NavBar extends React.Component {
@@ -52,7 +41,7 @@ class NavBar extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <nav aria-label="drawer">
         <Hidden smUp>
           <Drawer
             classes={{ paper: classes.root }}
@@ -73,12 +62,17 @@ class NavBar extends React.Component {
             anchor="left"
             open={desktopDrawerOpen}
           >
+            <div className={classes.header}>
+              <IconButton onClick={handleDesktopDrawerToggle}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
+            <Divider />
           </Drawer>
         </Hidden>
-      </div>
+      </nav>
     );
   }
 }
 
 export default withStyles(styles)(NavBar);
-

@@ -19,16 +19,13 @@ const styles = (theme) => ({
     display: 'flex',
     overflow: 'hidden',
     paddingTop: 64,
-    // [theme.breakpoints.up('lg')]: {
-    //   paddingLeft: 256
-    // }
     [theme.breakpoints.up('sm')]: {
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
     },
-    //border: '1px solid yellow',
+    // border: '1px solid yellow',
   },
   shift: {
     [theme.breakpoints.up('sm')]: {
@@ -78,18 +75,18 @@ class DashboardLayout extends React.Component {
 
   render() {
     const { classes, route } = this.props;
-    const { desktopDrawerOpen } = this.state;
+    const { mobileDrawerOpen, desktopDrawerOpen } = this.state;
 
     return (
       <div className={classes.root}>
         <TopBar 
-          desktopDrawerOpen={this.state.desktopDrawerOpen}
+          desktopDrawerOpen={desktopDrawerOpen}
           handleMobileDrawerToggle={this.handleMobileDrawerToggle}
           handleDesktopDrawerToggle={this.handleDesktopDrawerToggle}
         />
         <NavBar 
-          mobileDrawerOpen={this.state.mobileDrawerOpen}
-          desktopDrawerOpen={this.state.mobileDrawerOpen}
+          mobileDrawerOpen={mobileDrawerOpen}
+          desktopDrawerOpen={desktopDrawerOpen}
           handleMobileDrawerToggle={this.handleMobileDrawerToggle}
           handleDesktopDrawerToggle={this.handleDesktopDrawerToggle}
         />
