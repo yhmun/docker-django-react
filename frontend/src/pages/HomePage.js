@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
 import bg from '../assets/images/bg.png';
-import ExampleList from '../components/example/ExampleList';
+import ExampleList from './examples/ExampleList';
 
 const useStyles = (theme) => ({
   root: {
