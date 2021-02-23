@@ -47,7 +47,7 @@ const styles = (theme) => ({
     height: '100%',
     flex: '1 1 auto',
     overflow: 'auto',
-    border: '1px solid red',
+    // border: '1px solid red',
   }
 });
 
