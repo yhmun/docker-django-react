@@ -32,6 +32,7 @@ const styles = (theme) => ({
     },
   },
   toolbar: {
+    height: 64,
     // border: '1px solid red',
   },
   mobileMenuButton: {
@@ -43,14 +44,10 @@ const styles = (theme) => ({
   desktopMenuButton: {
     marginRight: theme.spacing(2),
   },
-
+  hide: {
+    display: 'none',
+  },
   /*
-  appBar: {
-
-  },
-  appBarShift: {
-
-  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -66,10 +63,6 @@ const styles = (theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
-
-  hide: {
-    display: 'none',
-  },
   */  
 });
 
@@ -77,7 +70,7 @@ class TopBar extends React.Component {
   render() {
     const { 
       classes,
-      title,
+      title = 'Test',
       desktopDrawerOpen,
       handleMobileDrawerToggle,
       handleDesktopDrawerToggle,

@@ -1,10 +1,11 @@
+import clsx from 'clsx';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { renderRoutes } from '../../components';
+import { drawerWidth, renderRoutes } from '../../components';
 import NavBar from './NavBar';
 import TopBar from './TopBar';
 
-const styles = {
+const styles = (theme) => ({
   root: {
     width: '100%',
     height: '100%',
@@ -21,13 +22,29 @@ const styles = {
     // [theme.breakpoints.up('lg')]: {
     //   paddingLeft: 256
     // }
-    border: '1px solid yellow',
+    [theme.breakpoints.up('sm')]: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    //border: '1px solid yellow',
+  },
+  shift: {
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
   },
   contentContainer: {
     flex: '1 1 auto',
     display: 'flex',
     overflow: 'hidden',
-    border: '1px solid blue',
+    // border: '1px solid blue',
   },
   content: {
     height: '100%',
@@ -35,7 +52,7 @@ const styles = {
     overflow: 'auto',
     border: '1px solid red',
   }
-};
+});
 
 class DashboardLayout extends React.Component {
   state = {
@@ -61,6 +78,7 @@ class DashboardLayout extends React.Component {
 
   render() {
     const { classes, route } = this.props;
+    const { desktopDrawerOpen } = this.state;
 
     return (
       <div className={classes.root}>
@@ -71,9 +89,15 @@ class DashboardLayout extends React.Component {
         />
         <NavBar 
           mobileDrawerOpen={this.state.mobileDrawerOpen}
+          desktopDrawerOpen={this.state.mobileDrawerOpen}
           handleMobileDrawerToggle={this.handleMobileDrawerToggle}
+          handleDesktopDrawerToggle={this.handleDesktopDrawerToggle}
         />
-        <div className={classes.wrapper}>
+        <div className={classes.wrapper}
+          className={clsx(classes.wrapper, {
+            [classes.shift]: desktopDrawerOpen,
+          })}
+        >
           <div className={classes.contentContainer}>
             <div className={classes.content}>
               {renderRoutes(route.routes)}
