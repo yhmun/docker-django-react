@@ -21,6 +21,10 @@ const routes = [
         component: StudentPage
       },
       {
+        path: '/app/home',
+        component: HomePage
+      },
+      {
         path: '/app/about',
         component: AboutPage
       },

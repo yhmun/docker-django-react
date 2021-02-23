@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-// import NavBar from './NavBar';
+import { Container } from '@material-ui/core';
+import { renderRoutes } from '../../components';
 import TopBar from './TopBar';
 
 const styles = {
@@ -38,7 +39,7 @@ const styles = {
 
 class MainLayout extends React.Component {
   render() {
-    const { classes } = this.props;
+    const { classes, route } = this.props;
 
     return (
       <div className={classes.root}>
@@ -46,7 +47,9 @@ class MainLayout extends React.Component {
         <div className={classes.wrapper}>
           <div className={classes.contentContainer}>
             <div className={classes.content}>
-              MainLayout
+              <Container>
+                {renderRoutes(route.routes)}
+              </Container>              
             </div>
           </div>
         </div>

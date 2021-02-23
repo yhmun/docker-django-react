@@ -5,7 +5,6 @@ import bg from '../assets/images/bg.png';
 
 const useStyles = (theme) => ({
   root: {
-    width: '100%',
     padding: '1em',
   },
   media: {

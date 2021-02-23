@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar } from '@material-ui/core';
 
@@ -19,9 +18,6 @@ class TopBar extends React.Component {
     return (
       <AppBar className={classes.root}>
         <Toolbar className={classes.toolbar}>
-          <RouterLink to="/">
-
-          </RouterLink>
         </Toolbar>
       </AppBar>
     );

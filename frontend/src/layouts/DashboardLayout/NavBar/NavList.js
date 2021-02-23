@@ -12,7 +12,7 @@ import PeopleIcon from '@material-ui/icons/People';
 
 const items = [
   {
-    href: '/',
+    href: '/app/home',
     icon: HomeIcon,
     title: 'Home',
   },
