@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { drawerWidth, renderRoutes } from '../../components';
+import { drawerWidth, drawerOpen, renderRoutes } from '../../components';
 import NavBar from './NavBar';
 import TopBar from './TopBar';
 
@@ -54,7 +54,7 @@ const styles = (theme) => ({
 class DashboardLayout extends React.Component {
   state = {
     mobileDrawerOpen: false,
-    desktopDrawerOpen: false,
+    desktopDrawerOpen: drawerOpen,
   };
 
   handleMobileDrawerToggle = (event) => {
