@@ -1,17 +1,12 @@
 import { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {
-  Box,
-  Card, 
-  CardMedia,
-  CardContent,
-  Typography,
-} from '@material-ui/core';
+import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
 import bg from '../assets/images/bg.png';
 
 const useStyles = (theme) => ({
   root: {
     width: '100%',
+    padding: '1em',
   },
   media: {
     height: 160,
@@ -19,16 +14,11 @@ const useStyles = (theme) => ({
 });
 
 class AboutPage extends Component {
-  componentDidMount() {
-    if (this.props.setTitle)
-      this.props.setTitle('About');
-  }
-
   render() {
     const { classes } = this.props;
 
     return (
-      <Box className={classes.root}>
+      <div className={classes.root}>
         <Card>
           <CardMedia 
             className={classes.media}
@@ -44,7 +34,7 @@ class AboutPage extends Component {
             </Typography>
           </CardContent>
         </Card>
-      </Box>
+      </div>
     );
   }
 }
