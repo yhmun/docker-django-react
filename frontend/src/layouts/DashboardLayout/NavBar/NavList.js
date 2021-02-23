@@ -4,6 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import WarningIcon from '@material-ui/icons/Warning';
+import BlockIcon from '@material-ui/icons/Block';
+import CloudOffIcon from '@material-ui/icons/CloudOff';
 import ListIcon from '@material-ui/icons/List';
 import PeopleIcon from '@material-ui/icons/People';
 
@@ -14,20 +17,30 @@ const items = [
     title: 'Home',
   },
   {
-    href: '/examples/todos',
+    href: '/app/examples/todos',
     icon: ListIcon,
     title: 'Todos',
   },  
   {
-    href: '/examples/students',
+    href: '/app/examples/students',
     icon: PeopleIcon,
     title: 'Students',
   },
   {
-    href: '/about',
+    href: '/app/about',
     icon: InfoIcon,
     title: 'About',
-  },  
+  },
+  {
+    href: '/app/forbidden',
+    icon: BlockIcon,
+    title: 'Forbidden',
+  },
+  {
+    href: '/app/notfound',
+    icon: CloudOffIcon,
+    title: 'Not Found',
+  },
 ];
 
 const styles = {

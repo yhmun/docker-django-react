@@ -2,13 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { drawerWidth } from '../../components'
-import {
-  AppBar,
-  Toolbar,
-  Hidden,
-  IconButton,
-  Typography,
-} from '@material-ui/core';
+import { AppBar, Toolbar, Hidden, IconButton, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = (theme) => ({
@@ -47,30 +41,13 @@ const styles = (theme) => ({
   hide: {
     display: 'none',
   },
-  /*
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  */  
 });
 
 class TopBar extends React.Component {
   render() {
     const { 
       classes,
-      title = 'Test',
+      title,
       desktopDrawerOpen,
       handleMobileDrawerToggle,
       handleDesktopDrawerToggle,

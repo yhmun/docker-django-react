@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { API_URL_TODO } from '../constants/apis';
+import { API_URL_TODO } from '../../../constants/apis';
 import { getObjects, getObjectsReading } from '../redux/selectors';
 import { getCompletedTodos, getIncompletedTodos } from '../redux/todo/selectors';
 import { requestReadObjects, requestUpdateObject, requestDeleteObject  } from '../redux/thunks';
@@ -15,8 +15,8 @@ import {
   Tab,
   CircularProgress,
 } from '@material-ui/core';
-import TodoList from '../components/todo/TodoList';
-import CreateTodoForm from '../components/todo/CreateTodoForm';
+import TodoList from '../../../components/todo/TodoList';
+import CreateTodoForm from '../../../components/todo/CreateTodoForm';
 
 const useStyles = (theme) => ({
   root: {

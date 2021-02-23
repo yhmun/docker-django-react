@@ -7,7 +7,7 @@ import {
   CardContent,
   Typography,
 } from '@material-ui/core';
-import bg from '../static/images/bg.png';
+import bg from '../assets/images/bg.png';
 import ExampleList from '../components/example/ExampleList';
 
 const useStyles = (theme) => ({
