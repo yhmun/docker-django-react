@@ -63,8 +63,10 @@ $ source venv/bin/activate
 # Essential
 $ npm install --save react-router-dom
 $ npm install --save redux react-redux redux-thunk redux-logger reselect
-$ npm install --save axios
-$ npm install --save clsx
+$ npm install --save axios clsx moment 
+$ npm install --save chart.js react-chartjs-2
+$ npm install --save react-perfect-scrollbar
+$ npm install --save --legacy-peer-deps react-helmet-async
 $ npm install --save @material-ui/core @material-ui/icons @material-ui/styles
 ```
 ```
@@ -114,13 +116,18 @@ $ npm list --prod --depth=0
 ├── @testing-library/react@11.2.5
 ├── @testing-library/user-event@12.7.1
 ├── axios@0.21.1                        # Promise based HTTP client for the browser and node.js
+├── chart.js@2.9.4                      # Simple HTML5 charts using the canvas element.
 ├── clsx@1.1.1                          # A tiny (228B) utility for constructing className strings conditionally.
+├── moment@2.29.1                       # Parse, validate, manipulate, and display dates
+├── react-chartjs-2@2.11.1              # React-chartjs-2
 ├── react-dom@17.0.1                    # React package for working with the DOM.
+├── react-helmet-async@1.0.7            # Thread-safe Helmet for React 16+ and friends
+├── react-perfect-scrollbar@1.5.8       # A react wrapper for perfect-scrollbar
 ├── react-redux@7.2.2                   # Official React bindings for Redux.
 ├── react-router-dom@5.2.0              # DOM bindings for React Router
 ├── react-scripts@4.0.2                 # This package includes scripts and configuration used by Create React App.
 ├── react@17.0.1                        # React is a JavaScript library for building user interfaces.
-├── redux-logger@3.0.6
+├── redux-logger@3.0.6                  # Logger for Redux
 ├── redux-thunk@2.3.0                   # Thunk middleware for Redux.
 ├── redux@4.0.5                         # Redux is a predictable state container for JavaScript apps.
 └── reselect@4.0.0                      # Selectors for Redux.
