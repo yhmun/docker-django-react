@@ -2,7 +2,6 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar } from '@material-ui/core';
-import { Logo } from '../../components';
 
 const styles = {
   root: {
@@ -21,7 +20,7 @@ class TopBar extends React.Component {
       <AppBar className={classes.root}>
         <Toolbar className={classes.toolbar}>
           <RouterLink to="/">
-            <Logo />
+
           </RouterLink>
         </Toolbar>
       </AppBar>
