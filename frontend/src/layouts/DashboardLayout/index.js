@@ -1,8 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { renderRoutes } from '../../components';
-
-// import NavBar from './NavBar';
+import NavBar from './NavBar';
 import TopBar from './TopBar';
 
 const styles = {
@@ -39,12 +38,41 @@ const styles = {
 };
 
 class DashboardLayout extends React.Component {
+  state = {
+    mobileDrawerOpen: false,
+    desktopDrawerOpen: false,
+  };
+
+  handleMobileDrawerToggle = (event) => {
+    if (event.type === 'keydown' 
+        && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    this.setState({ mobileDrawerOpen: !this.state.mobileDrawerOpen });
+  }
+  
+  handleDesktopDrawerToggle = (event) => {
+    if (event.type === 'keydown' 
+        && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    this.setState({ desktopDrawerOpen: !this.state.desktopDrawerOpen });
+  }
+
   render() {
     const { classes, route } = this.props;
 
     return (
       <div className={classes.root}>
-        <TopBar />
+        <TopBar 
+          desktopDrawerOpen={this.state.desktopDrawerOpen}
+          handleMobileDrawerToggle={this.handleMobileDrawerToggle}
+          handleDesktopDrawerToggle={this.handleDesktopDrawerToggle}
+        />
+        <NavBar 
+          mobileDrawerOpen={this.state.mobileDrawerOpen}
+          handleMobileDrawerToggle={this.handleMobileDrawerToggle}
+        />
         <div className={classes.wrapper}>
           <div className={classes.contentContainer}>
             <div className={classes.content}>
