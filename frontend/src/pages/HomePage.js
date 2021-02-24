@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
-import bg from '../assets/images/bg.png';
+import { Page } from '../components';
 import ExampleList from './examples/ExampleList';
+import bg from '../assets/images/bg.png';
 
 const useStyles = (theme) => ({
   root: {
@@ -22,7 +23,7 @@ class HomePage extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <Page className={classes.root} title="Home">
         <Card>
           <CardMedia 
             className={classes.media}
@@ -46,7 +47,7 @@ class HomePage extends Component {
             <ExampleList />
           </CardContent>
         </Card>
-      </div>
+      </Page>
     );
   }
 }
