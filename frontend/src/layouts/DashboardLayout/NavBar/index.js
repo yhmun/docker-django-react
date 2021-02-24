@@ -44,10 +44,16 @@ class NavBar extends React.Component {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            <Divider />
-            <User />
-            <Divider />
-            <NavList />
+            <div 
+                role="presentation"
+                onClick={handleMobileDrawerToggle}
+                onKeyDown={handleMobileDrawerToggle}
+            >
+              <Divider />
+              <User />
+              <Divider />
+              <NavList />
+            </div>
           </Drawer>
         </Hidden>
         <Hidden xsDown>

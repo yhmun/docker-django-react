@@ -63,7 +63,7 @@ class NavList extends React.Component {
             key={idx}
             to={item.href}
             style={{ color: 'inherit', textDecoration: 'inherit' }}
-          >          
+          >
             <ListItem button>
               <ListItemIcon>
                 {<item.icon />}
