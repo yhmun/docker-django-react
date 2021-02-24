@@ -9,3 +9,12 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+
+class Appointment(models.Model):
+    petName = models.CharField(max_length=255)
+    ownerName = models.CharField(max_length=255)
+    aptNotes = models.TextField()
+    aptDate = models.DateTimeField()
+
+    def __str__(self):
+        return self.petName

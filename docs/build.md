@@ -41,9 +41,17 @@ $ source venv/bin/activate
 
 ## Backend: Django Apps
 ```
+# React and Django: Your guide to creating an app
 # https://blog.logrocket.com/creating-an-app-with-react-and-django/
 (vend) $ mkdir -p apps/base
 (vend) $ django-admin startapp base apps/base
+(vend) $ python manage.py makemigrations student
+(vend) $ python manage.py migrate student
+
+# React: Building an Interface
+# https://www.linkedin.com/learning/react-js-building-an-interface-2
+(vend) $ python manage.py makemigrations appointment
+(vend) $ python manage.py migrate appointment
 
 # https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react
 (vend) $ mkdir -p apps/todo
