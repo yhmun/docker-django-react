@@ -74,12 +74,12 @@ $ npm install --save chart.js react-chartjs-2
 $ npm install --save react-perfect-scrollbar
 $ npm install --save --legacy-peer-deps react-helmet-async
 $ npm install --save @material-ui/core @material-ui/icons @material-ui/styles
+$ npm install --save react-icons
 ```
 ```
 # Optional
 $ npm install --save bootstrap jquery
-$ npm install --save --legacy-peer-deps reactstrap  
-$ npm install --save react-icons
+$ npm install --save --legacy-peer-deps reactstrap
 ```
 ```
 # Building Modern Projects with React
