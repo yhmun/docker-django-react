@@ -36,26 +36,34 @@ class StudentTable extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {students.map(student => (
-              <TableRow key={student.id}>
-                <TableCell component="th" scope="row">
-                  {student.name}
-                </TableCell>
-                <TableCell>{student.email}</TableCell>
-                <TableCell>{student.document}</TableCell>
-                <TableCell>{student.phone}</TableCell>
-                <TableCell>{student.registered_on}</TableCell>
-                <TableCell align="right">
-                  <CreateStudentModal 
-                    isCreate={false} 
-                    student={student} 
-                  />
-                  <DeleteStudentModal 
-                    id={student.id} 
-                  />
+            {!students || students.length <= 0 ? (              
+              <TableRow>
+                <TableCell align="center" colSpan={6}>
+                  <b>Ops, no one here yet!</b>
                 </TableCell>
               </TableRow>
-            ))}
+            ): (
+              students.map(student => (
+                <TableRow key={student.id}>
+                  <TableCell component="th" scope="row">
+                    {student.name}
+                  </TableCell>
+                  <TableCell>{student.email}</TableCell>
+                  <TableCell>{student.document}</TableCell>
+                  <TableCell>{student.phone}</TableCell>
+                  <TableCell>{student.registered_on}</TableCell>
+                  <TableCell align="right">
+                    <CreateStudentModal 
+                      isCreate={false} 
+                      student={student} 
+                    />
+                    <DeleteStudentModal 
+                      id={student.id} 
+                    />
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </PerfectScrollbar>
