@@ -2,11 +2,11 @@ import MainLayout from './layouts/MainLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 import TodoPage from './pages/examples/TodoPage';
 import StudentPage from './pages/examples/StudentPage';
+import AppointmentPage from './pages/examples/AppointmentPage';
 import ForbiddenPage from './pages/errors/ForbiddenPage';
 import NotFoundPage from './pages/errors/NotFoundPage';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-
 
 const routes = [
   {
@@ -21,6 +21,10 @@ const routes = [
         path: '/app/examples/todos',
         component: TodoPage
       },
+      {
+        path: '/app/examples/appointments',
+        component: AppointmentPage
+      },      
       {
         path: '/app/home',
         component: HomePage

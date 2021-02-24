@@ -9,6 +9,7 @@ import BlockIcon from '@material-ui/icons/Block';
 import CloudOffIcon from '@material-ui/icons/CloudOff';
 import ListIcon from '@material-ui/icons/List';
 import PeopleIcon from '@material-ui/icons/People';
+import PetsIcon from '@material-ui/icons/Pets';
 
 const items = [
   {
@@ -25,6 +26,11 @@ const items = [
     href: '/app/examples/students',
     icon: PeopleIcon,
     title: 'Students',
+  },
+  {
+    href: '/app/examples/appointments',
+    icon: PetsIcon,
+    title: 'Appointments',
   },
   {
     href: '/app/about',
