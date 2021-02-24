@@ -43,15 +43,12 @@ $ source venv/bin/activate
 ```
 # React and Django: Your guide to creating an app
 # https://blog.logrocket.com/creating-an-app-with-react-and-django/
-(vend) $ mkdir -p apps/base
-(vend) $ django-admin startapp base apps/base
-(vend) $ python manage.py makemigrations student
-(vend) $ python manage.py migrate student
-
 # React: Building an Interface
 # https://www.linkedin.com/learning/react-js-building-an-interface-2
-(vend) $ python manage.py makemigrations appointment
-(vend) $ python manage.py migrate appointment
+(vend) $ mkdir -p apps/base
+(vend) $ django-admin startapp base apps/base
+(vend) $ python manage.py makemigrations base
+(vend) $ python manage.py migrate base
 
 # https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react
 (vend) $ mkdir -p apps/todo
@@ -71,7 +68,8 @@ $ source venv/bin/activate
 # Essential
 $ npm install --save react-router-dom
 $ npm install --save redux react-redux redux-thunk redux-logger reselect
-$ npm install --save axios clsx moment 
+$ npm install --save axios clsx 
+$ npm install --save moment react-moment
 $ npm install --save chart.js react-chartjs-2
 $ npm install --save react-perfect-scrollbar
 $ npm install --save --legacy-peer-deps react-helmet-async
@@ -92,7 +90,7 @@ $ npm install --save react-icons
 
 # React: Building an Interface
 # https://www.linkedin.com/learning/react-js-building-an-interface-2
-$ npm install --save bootstrap lodash jquery popper.js moment react-moment react-icons 
+$ npm install --save bootstrap lodash jquery popper.js react-icons 
 
 # React: Creating and Hosting a Full-Stack Site
 # https://www.linkedin.com/learning/react-creating-and-hosting-a-full-stack-site
