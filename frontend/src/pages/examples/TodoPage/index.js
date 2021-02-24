@@ -19,7 +19,6 @@ const styles = (theme) => ({
     minHeight: 200,
   },
   footer: {
-    //width="100%"
     display: 'flex',
     justifyContent: 'flex-end',
   },
