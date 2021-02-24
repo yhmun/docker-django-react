@@ -16,7 +16,13 @@ const examples = [
     description: 'Learnig about Django, React',
     href: 'https://blog.logrocket.com/creating-an-app-with-react-and-django',
     to: '/app/examples/students', 
-  }  
+  },
+  {
+    title: 'React: Building an Interface',
+    description: 'Learnig about React',
+    href: 'https://www.linkedin.com/learning/react-js-building-an-interface-2',
+    to: '/app/examples/appointments', 
+  },
 ];
 
 const styles = (theme) => ({
