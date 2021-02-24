@@ -2,6 +2,7 @@ import React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { withStyles } from '@material-ui/core/styles';
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import DeleteStudentModal from './DeleteStudentModal';
 
 const styles = {
   root: {
@@ -41,6 +42,7 @@ class StudentTable extends React.Component {
                 <TableCell>{student.phone}</TableCell>
                 <TableCell>{student.registered_on}</TableCell>
                 <TableCell align="right">
+                  <DeleteStudentModal id={student.id} />
                 </TableCell>
               </TableRow>
             ))}
