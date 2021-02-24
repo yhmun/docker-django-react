@@ -1,4 +1,4 @@
-export { GlobalStyles, drawerWidth, drawerOpen } from './GlobalStyles';
+export { GlobalStyles, toolbarHeight, drawerWidth, drawerOpen } from './GlobalStyles';
 export { default as renderRoutes } from './renderRoutes';
 export { default as ScrollToTop } from './ScrollToTop';
 export { default as Progress } from './Progress';

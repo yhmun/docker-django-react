@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { drawerWidth } from '../../components'
+import { toolbarHeight, drawerWidth } from '../../components'
 import { AppBar, Toolbar, Hidden, IconButton, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = (theme) => ({
   root: {
+    height: toolbarHeight,
     [theme.breakpoints.up('sm')]: {
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
@@ -26,7 +27,8 @@ const styles = (theme) => ({
     },
   },
   toolbar: {
-    height: 64,
+    height: toolbarHeight,
+    backgroundColor: theme.palette.background.toolbar,
     // border: '1px solid red',
   },
   mobileMenuButton: {

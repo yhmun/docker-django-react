@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { drawerWidth } from '../../../components'
+import { toolbarHeight, drawerWidth } from '../../../components'
 import { Hidden, Drawer, Divider, IconButton } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import User from './User';
@@ -12,7 +12,7 @@ const styles = (theme) => ({
     // border: '1px solid blue',
   },
   header: {
-    height: 64,
+    height: toolbarHeight,
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),

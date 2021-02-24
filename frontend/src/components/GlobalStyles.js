@@ -29,5 +29,6 @@ export const GlobalStyles = withStyles({
   },
 })(() => null);
 
+export const toolbarHeight = 64;
 export const drawerWidth = 240;
 export const drawerOpen = true;

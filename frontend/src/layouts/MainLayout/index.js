@@ -1,8 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
-import { renderRoutes } from '../../components';
+import { toolbarHeight, renderRoutes } from '../../components';
 import TopBar from './TopBar';
+import Footer from '../Footer';
 
 const styles = {
   root: {
@@ -11,30 +12,36 @@ const styles = {
     display: 'flex',
     overflow: 'hidden',
     // backgroundColor: theme.palette.background.default,
-    border: '1px solid gray',
+    // border: '1px solid gray',
   },
   wrapper: {
     flex: '1 1 auto',
     display: 'flex',
+    flexDirection: 'column',
     overflow: 'hidden',
-    paddingTop: 64,
+    paddingTop: toolbarHeight,
     // [theme.breakpoints.up('lg')]: {
     //   paddingLeft: 256
     // }
-    border: '1px solid yellow',
+    // border: '1px solid yellow',
   },
   contentContainer: {
     flex: '1 1 auto',
+    // flexGrow: 1,
     display: 'flex',
     overflow: 'hidden',
-    border: '1px solid blue',
+    // border: '1px solid blue',
   },
   content: {
     height: '100%',
     flex: '1 1 auto',
     overflow: 'auto',
-    border: '1px solid red',
-  }
+    // border: '1px solid red',
+  },
+  footer: {
+    flexShrink: 0,
+    // border: '1px solid green',
+  },
 };
 
 class MainLayout extends React.Component {
@@ -46,12 +53,15 @@ class MainLayout extends React.Component {
         <TopBar />
         <div className={classes.wrapper}>
           <div className={classes.contentContainer}>
-            <div className={classes.content}>
+            <main className={classes.content}>
               <Container>
                 {renderRoutes(route.routes)}
               </Container>              
-            </div>
+            </main>
           </div>
+          <footer className={classes.footer}>
+            <Footer />
+          </footer>          
         </div>
       </div>
     );

@@ -1,9 +1,10 @@
 import clsx from 'clsx';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { drawerWidth, drawerOpen, renderRoutes } from '../../components';
+import { toolbarHeight, drawerWidth, drawerOpen, renderRoutes } from '../../components';
 import NavBar from './NavBar';
 import TopBar from './TopBar';
+import Footer from '../Footer';
 
 const styles = (theme) => ({
   root: {
@@ -12,13 +13,14 @@ const styles = (theme) => ({
     display: 'flex',
     overflow: 'hidden',
     // backgroundColor: theme.palette.background.dark,
-    border: '1px solid gray',
+    // border: '1px solid gray',
   },
   wrapper: {
     flex: '1 1 auto',
     display: 'flex',
+    flexDirection: 'column',
     overflow: 'hidden',
-    paddingTop: 64,
+    paddingTop: toolbarHeight,
     [theme.breakpoints.up('sm')]: {
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
@@ -39,7 +41,8 @@ const styles = (theme) => ({
   },
   contentContainer: {
     flex: '1 1 auto',
-    display: 'flex',
+    // flexGrow: 1,
+    display: 'flex',  
     overflow: 'hidden',
     // border: '1px solid blue',
   },
@@ -48,7 +51,11 @@ const styles = (theme) => ({
     flex: '1 1 auto',
     overflow: 'auto',
     // border: '1px solid red',
-  }
+  },
+  footer: {
+    flexShrink: 0,
+    // border: '1px solid green',
+  },
 });
 
 class DashboardLayout extends React.Component {
@@ -96,10 +103,13 @@ class DashboardLayout extends React.Component {
           })}
         >
           <div className={classes.contentContainer}>
-            <div className={classes.content}>
+            <main className={classes.content}>
               {renderRoutes(route.routes)}
-            </div>
+            </main>          
           </div>
+          <footer className={classes.footer}>
+            <Footer />
+          </footer>
         </div>
       </div>
     );

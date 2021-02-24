@@ -7,7 +7,9 @@ const theme = createMuiTheme({
     background: {
     //  dark: '#F4F6F8',
       default: colors.common.white,
-      paper: colors.common.white
+      paper: colors.common.white,
+      toolbar: '#03a9f4',
+      footer: '#e1f5fe',
     },
     // primary: {
     //   main: colors.indigo[500]
@@ -17,13 +19,14 @@ const theme = createMuiTheme({
     //   main: colors.blue[500],
     //   contrastText: '#fff',      
     // },
-    // text: {
+    text: {
     //   primary: colors.blueGrey[900],
-    //   secondary: colors.blueGrey[600]
-    // }
+    //   secondary: colors.blueGrey[600]      
+      footer: colors.blueGrey[600],
+    }
   },
-  // shadows,
-  // typography
+  shadows,
+  typography
 });
 
 export default theme;
