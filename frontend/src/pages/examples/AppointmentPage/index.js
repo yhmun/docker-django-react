@@ -4,7 +4,7 @@ import { Card, CardHeader, CardContent, CardActions, Divider } from '@material-u
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { API_URL_APPOINTMENT } from '../../../store/urls';
-import { requestReadObjects } from '../../../store/thunks';
+import { requestReadObjects, requestDeleteObject } from '../../../store/thunks';
 import { getObjects, getObjectsReading } from '../../../store/selectors';
 import { Page, Progress } from '../../../components';
 import AddAppointments from './AddAppointments';
@@ -31,6 +31,7 @@ class AppointmentPage extends React.Component {
     const { 
       classes, 
       appointments = [],
+      handleDelete,
     } = this.props;
 
     return (
@@ -46,6 +47,7 @@ class AppointmentPage extends React.Component {
             <SearchAppointments />
             <ListAppointments 
               appointments={appointments}
+              handleDelete={handleDelete}
             />
           </CardContent>
         </Card>
@@ -61,6 +63,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadAppointments: () => dispatch(requestReadObjects(API_URL_APPOINTMENT)),
+  handleDelete: id => dispatch(requestDeleteObject(API_URL_APPOINTMENT, id)),
 });
 
 export default compose(

@@ -36,6 +36,7 @@ class ListAppointments extends React.Component {
     const { 
       classes, 
       appointments,
+      handleDelete,
     } = this.props;
 
     return (
@@ -49,7 +50,7 @@ class ListAppointments extends React.Component {
                   color="secondary" 
                   edge="start"
                   aria-label="delete"
-                  onClick={null}
+                  onClick={() => handleDelete(item.id)}
                 >
                   <HighlightOffIcon />
                 </IconButton>
