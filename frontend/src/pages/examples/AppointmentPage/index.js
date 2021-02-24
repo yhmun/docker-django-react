@@ -22,12 +22,15 @@ const styles = (theme) => ({
 
 class AppointmentPage extends React.Component {
   componentDidMount() {
-    const { } = this.props;
+    const { loadAppointments } = this.props;
+    if (loadAppointments)
+      loadAppointments();    
   }
 
   render() {
     const { 
       classes, 
+      appointments = [],
     } = this.props;
 
     return (
@@ -41,7 +44,9 @@ class AppointmentPage extends React.Component {
           <CardContent className={classes.content}>
             <AddAppointments />
             <SearchAppointments />
-            <ListAppointments />
+            <ListAppointments 
+              appointments={appointments}
+            />
           </CardContent>
         </Card>
       </Page>
@@ -50,11 +55,12 @@ class AppointmentPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
- 
+  appointments: getObjects(state),
+  isLoading: getObjectsReading(state),  
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  loadAppointments: () => dispatch(requestReadObjects(API_URL_APPOINTMENT)),
 });
 
 export default compose(

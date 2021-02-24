@@ -23,7 +23,11 @@ const theme = createMuiTheme({
     //   primary: colors.blueGrey[900],
     //   secondary: colors.blueGrey[600]      
       footer: colors.blueGrey[600],
-    }
+    },
+    list: {
+      primary: '#337ab7',
+      secondary: '#667b82',
+    },
   },
   shadows,
   typography
