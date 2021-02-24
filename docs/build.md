@@ -79,26 +79,18 @@ $ npm install --save react-icons
 # Building Modern Projects with React
 # https://www.linkedin.com/learning/building-modern-projects-with-react
 
+# React and Django: Your guide to creating an app
+# https://blog.logrocket.com/creating-an-app-with-react-and-django/
 
 # React: Building an Interface
 # https://www.linkedin.com/learning/react-js-building-an-interface-2
-$ npm install --save bootstrap \
-                     lodash \
-                     jquery \
-                     popper.js \
-                     moment \
-                     react-moment \
-                     react-icons 
+$ npm install --save bootstrap lodash jquery popper.js moment react-moment react-icons 
 
 # React: Creating and Hosting a Full-Stack Site
 # https://www.linkedin.com/learning/react-creating-and-hosting-a-full-stack-site
 
 # https://medium.com/swlh/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf
 $ npm install --save antd
-
-# https://blog.logrocket.com/creating-an-app-with-react-and-django/
-
-
 ```
 
 ### npm commands
