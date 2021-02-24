@@ -19,13 +19,14 @@ class TodoList extends Component {
   render() {
     const { 
       classes, 
+      todos,
       handleComplete, 
       handleDelete 
     } = this.props;
 
     return (
       <List dense className={classes.root}>
-        {this.props.todos.map((todo) => (
+        {todos.map((todo) => (
           <StyledListItem key={todo.id}>
             <ListItemText 
               primary={todo.title}
