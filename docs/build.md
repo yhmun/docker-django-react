@@ -120,6 +120,8 @@ $ npm list --prod --depth=0
 ├── react-chartjs-2@2.11.1              # React-chartjs-2
 ├── react-dom@17.0.1                    # React package for working with the DOM.
 ├── react-helmet-async@1.0.7            # Thread-safe Helmet for React 16+ and friends
+├── react-icons@4.2.0                   # SVG React icons of popular icon packs using ES6 imports
+├── react-moment@1.1.1                  # React component for the moment date library.
 ├── react-perfect-scrollbar@1.5.8       # A react wrapper for perfect-scrollbar
 ├── react-redux@7.2.2                   # Official React bindings for Redux.
 ├── react-router-dom@5.2.0              # DOM bindings for React Router
@@ -130,9 +132,7 @@ $ npm list --prod --depth=0
 ├── redux@4.0.5                         # Redux is a predictable state container for JavaScript apps.
 └── reselect@4.0.0                      # Selectors for Redux.
 ```
-```              
-├── react-icons@4.2.0                   # Icon component for React
-├── react-moment@1.1.1                  
+```
 ├── reactstrap@8.9.0
 ├── web-vitals@1.1.0
 └── whatwg-fetch@3.5.0                  # A window.fetch polyfill.
