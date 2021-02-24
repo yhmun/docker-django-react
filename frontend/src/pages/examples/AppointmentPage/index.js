@@ -7,6 +7,9 @@ import { API_URL_APPOINTMENT } from '../../../store/urls';
 import { requestReadObjects } from '../../../store/thunks';
 import { getObjects, getObjectsReading } from '../../../store/selectors';
 import { Page, Progress } from '../../../components';
+import AddAppointments from './AddAppointments';
+import SearchAppointments from './SearchAppointments';
+import ListAppointments from './ListAppointments';
 
 const styles = (theme) => ({
   root: {
@@ -36,6 +39,9 @@ class AppointmentPage extends React.Component {
           <CardHeader title="Wisdom Pet Medicine" />
           <Divider />
           <CardContent className={classes.content}>
+            <AddAppointments />
+            <SearchAppointments />
+            <ListAppointments />
           </CardContent>
         </Card>
       </Page>
