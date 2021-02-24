@@ -4,7 +4,7 @@ import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } fro
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 
-const useStyles = (theme) => ({
+const styles = (theme) => ({
   root: {
   },
 });
@@ -17,7 +17,11 @@ const StyledListItem = withStyles({
 
 class TodoList extends Component {
   render() {
-    const { classes } = this.props;
+    const { 
+      classes, 
+      handleComplete, 
+      handleDelete 
+    } = this.props;
 
     return (
       <List dense className={classes.root}>
@@ -35,7 +39,7 @@ class TodoList extends Component {
                     color="primary" 
                     edge="end" 
                     aria-label="check"
-                    onClick={() => this.props.handleComplete(todo.id)}
+                    onClick={() => handleComplete(todo.id)}
                   >
                     <CheckIcon />
                   </IconButton>
@@ -45,7 +49,7 @@ class TodoList extends Component {
                 color="secondary" 
                 edge="end" 
                 aria-label="delete"
-                onClick={() => this.props.handleDelete(todo.id)}
+                onClick={() => handleDelete(todo.id)}
               >
                 <DeleteIcon />
               </IconButton>
@@ -57,4 +61,4 @@ class TodoList extends Component {
   }
 }
 
-export default withStyles(useStyles)(TodoList);
+export default withStyles(styles)(TodoList);

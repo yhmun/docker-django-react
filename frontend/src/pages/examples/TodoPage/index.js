@@ -11,7 +11,7 @@ import { Page, Progress } from '../../../components';
 import TodoList from './TodoList';
 import CreateTodoForm from './CreateTodoForm';
 
-const useStyles = (theme) => ({
+const styles = (theme) => ({
   root: {
     padding: theme.spacing(1),
   },
@@ -45,7 +45,9 @@ class TodoPage extends React.Component {
   render() {
     const { 
       classes, 
-      isLoading = false 
+      isLoading = false,
+      handleDelete,
+      handleComplete,
     } = this.props;
     let todos = []
     switch (this.state.tab) {
@@ -84,8 +86,8 @@ class TodoPage extends React.Component {
             ) : (
               <TodoList 
                 todos={todos}
-                handleDelete={this.props.handleDelete}
-                handleComplete={this.props.handleComplete}
+                handleDelete={handleDelete}
+                handleComplete={handleComplete}
               />
             )}
           </CardContent>
@@ -118,14 +120,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withStyles(useStyles),
+  withStyles(styles),
 ) (TodoPage);
-
-/*
-              
-                <Box 
-
-                >
-                  
-                </Box>
-*/

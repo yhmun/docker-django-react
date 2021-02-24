@@ -5,7 +5,7 @@ import { Page } from '../components';
 import ExampleList from './examples/ExampleList';
 import bg from '../assets/images/bg.png';
 
-const useStyles = (theme) => ({
+const styles = (theme) => ({
   root: {
     /*border: '1px solid red',*/
     padding: theme.spacing(1),
@@ -52,4 +52,4 @@ class HomePage extends React.Component {
   }
 }
 
-export default withStyles(useStyles)(HomePage);
+export default withStyles(styles)(HomePage);

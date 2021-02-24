@@ -4,7 +4,7 @@ import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
 import { Page } from '../components';
 import bg from '../assets/images/bg.png';
 
-const useStyles = (theme) => ({
+const styles = (theme) => ({
   root: {
     padding: theme.spacing(1),
   },
@@ -39,4 +39,4 @@ class AboutPage extends React.Component {
   }
 }
 
-export default withStyles(useStyles)(AboutPage);
+export default withStyles(styles)(AboutPage);

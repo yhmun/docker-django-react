@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Page } from '../../components';
 import err404 from '../../assets/images/err403.gif';
 
-const useStyles = (theme) => ({
+const styles = (theme) => ({
   root: { 
     height: '100%',
     display: 'flex',
@@ -31,4 +31,4 @@ class ForbiddenPage extends React.Component {
   }
 }
 
-export default withStyles(useStyles)(ForbiddenPage);
+export default withStyles(styles)(ForbiddenPage);

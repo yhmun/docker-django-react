@@ -10,10 +10,16 @@ const examples = [
     description: 'Learnig about Redux, Thunk, Selector',
     href: 'https://www.linkedin.com/learning/building-modern-projects-with-react',
     to: '/app/examples/todos', 
-  }
+  },
+  {
+    title: 'React and Django: Your guide to creating an app',
+    description: 'Learnig about Django, React',
+    href: 'https://blog.logrocket.com/creating-an-app-with-react-and-django',
+    to: '/app/examples/students', 
+  }  
 ];
 
-const useStyles = (theme) => ({
+const styles = (theme) => ({
   root: {
 
   },
@@ -55,4 +61,4 @@ class ExampleList extends React.Component {
   }
 }
 
-export default withStyles(useStyles)(ExampleList);
+export default withStyles(styles)(ExampleList);

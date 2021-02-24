@@ -8,7 +8,7 @@ import { requestCreateObject } from '../../../store/thunks';
 import { getObjects } from '../../../store/selectors';
 import CreateIcon from '@material-ui/icons/Create';
 
-const useStyles = (theme) => ({
+const styles = (theme) => ({
   root: {
     marginRight: theme.spacing(3),
     marginBottom: theme.spacing(3),
@@ -162,5 +162,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withStyles(useStyles),
+  withStyles(styles),
 ) (CreateTodoForm);
