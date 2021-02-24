@@ -11,7 +11,7 @@ import StudentTable from './StudentTable';
 
 const styles = (theme) => ({
   root: {
-    padding: '1em',
+    padding: theme.spacing(1),
   },
   content: {
     minHeight: 200,

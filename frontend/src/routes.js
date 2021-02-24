@@ -1,5 +1,6 @@
 import MainLayout from './layouts/MainLayout';
 import DashboardLayout from './layouts/DashboardLayout';
+import TodoPage from './pages/examples/TodoPage';
 import StudentPage from './pages/examples/StudentPage';
 import ForbiddenPage from './pages/errors/ForbiddenPage';
 import NotFoundPage from './pages/errors/NotFoundPage';
@@ -18,7 +19,7 @@ const routes = [
       },
       {
         path: '/app/examples/todos',
-        component: StudentPage
+        component: TodoPage
       },
       {
         path: '/app/home',

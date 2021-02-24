@@ -1,18 +1,11 @@
 import { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { 
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
-} from '@material-ui/core';
+import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 
 const useStyles = (theme) => ({
   root: {
-    width: '100%',
   },
 });
 

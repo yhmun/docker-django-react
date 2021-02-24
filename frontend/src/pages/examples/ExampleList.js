@@ -15,7 +15,7 @@ const examples = [
 
 const useStyles = (theme) => ({
   root: {
-    width: '100%',
+
   },
 });
 

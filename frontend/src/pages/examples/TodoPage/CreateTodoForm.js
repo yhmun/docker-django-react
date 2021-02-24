@@ -1,31 +1,28 @@
-import { Component, Fragment } from 'react';
-import { compose } from 'redux';
-import { connect  } from 'react-redux';
-import { API_URL_TODO } from '../../constants/apis';
-import { getObjects } from '../../redux/selectors';
-import { requestCreateObject } from '../../redux/thunks';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { 
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, TextField } from '@material-ui/core';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { API_URL_TODO } from '../../../store/urls';
+import { requestCreateObject } from '../../../store/thunks';
+import { getObjects } from '../../../store/selectors';
 import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = (theme) => ({
-  margin: {
-    marginTop: theme.spacing(1),
-  },
-  button: {
+  root: {
     marginRight: theme.spacing(3),
     marginBottom: theme.spacing(3),
   },
+  margin: {
+    marginTop: theme.spacing(1),
+  },
+  footer: {
+    marginRight: theme.spacing(2),
+    marginBottom: theme.spacing(1),
+  },
 });
 
-class CreateTodoForm extends Component {
+class CreateTodoForm extends React.Component {
   state = {
     open: false,
     title: '',
@@ -81,7 +78,7 @@ class CreateTodoForm extends Component {
     const { classes } = this.props;
 
     return (
-      <Fragment>
+      <div className={classes.root}>
         <Button
           variant="outlined"
           color="primary"
@@ -99,9 +96,8 @@ class CreateTodoForm extends Component {
           onClose={this.handleClose}
           aria-labelledby="create todo form"
         >
-          <DialogTitle>
-            Create Todo
-          </DialogTitle>
+          <DialogTitle>Create Todo</DialogTitle>
+          <Divider />
           <DialogContent>
             <form 
               className={classes.form} 
@@ -131,7 +127,7 @@ class CreateTodoForm extends Component {
               />
             </form>
           </DialogContent>
-          <DialogActions>
+          <DialogActions className={classes.footer}>
             <Button 
               onClick={this.handleCancel} 
             >
@@ -145,7 +141,7 @@ class CreateTodoForm extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </Fragment>
+      </div>
     );
   }
 }

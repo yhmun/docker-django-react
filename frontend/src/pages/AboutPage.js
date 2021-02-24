@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
 import { Page } from '../components';
@@ -6,14 +6,14 @@ import bg from '../assets/images/bg.png';
 
 const useStyles = (theme) => ({
   root: {
-    padding: '1em',
+    padding: theme.spacing(1),
   },
   media: {
     height: 160,
   },
 });
 
-class AboutPage extends Component {
+class AboutPage extends React.Component {
   render() {
     const { classes } = this.props;
 

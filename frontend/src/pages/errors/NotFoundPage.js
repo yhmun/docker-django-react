@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Page } from '../../components';
 import err404 from '../../assets/images/err404.gif';
@@ -15,7 +15,7 @@ const useStyles = (theme) => ({
   }
 });
 
-class NotFoundPage extends Component {
+class NotFoundPage extends React.Component {
   render() {
     const { classes } = this.props;
 

@@ -1,41 +1,37 @@
-import { Component } from 'react';
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { Card, CardHeader, CardContent, CardActions, Divider, Tabs, Tab } from '@material-ui/core';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { API_URL_TODO } from '../../../constants/apis';
-import { getObjects, getObjectsReading } from '../redux/selectors';
-import { getCompletedTodos, getIncompletedTodos } from '../redux/todo/selectors';
-import { requestReadObjects, requestUpdateObject, requestDeleteObject  } from '../redux/thunks';
-import { withStyles } from '@material-ui/core/styles';
-import { 
-  Box,
-  Card, 
-  CardContent,
-  CardActions,
-  Tabs,
-  Tab,
-  CircularProgress,
-} from '@material-ui/core';
-import TodoList from '../../../components/todo/TodoList';
-import CreateTodoForm from '../../../components/todo/CreateTodoForm';
+import { API_URL_TODO } from '../../../store/urls';
+import { requestReadObjects, requestUpdateObject, requestDeleteObject } from '../../../store/thunks';
+import { getObjects, getObjectsReading } from '../../../store/selectors';
+import { getCompletedTodos, getIncompletedTodos } from '../../../store/selectors/todo';
+import { Page, Progress } from '../../../components';
+import TodoList from './TodoList';
+import CreateTodoForm from './CreateTodoForm';
 
 const useStyles = (theme) => ({
   root: {
-    width: '100%',
+    padding: theme.spacing(1),
   },
-  button: {
-    margin: theme.spacing(2),
+  content: {
+    minHeight: 200,
+  },
+  footer: {
+    //width="100%"
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
 });
 
-class TodoPage extends Component {
+class TodoPage extends React.Component {
   state = {
     tab: 0
   };
 
   componentDidMount() {
-    const { setTitle, loadTodos } = this.props;
-    if (setTitle)
-      setTitle('Todo List');
+    const { loadTodos } = this.props;
     if (loadTodos)
       loadTodos();
   }
@@ -43,7 +39,7 @@ class TodoPage extends Component {
   handleTabChange = (event, value) => {
     this.setState({
       tab: value
-    });    
+    });
   };
 
   render() {
@@ -51,64 +47,53 @@ class TodoPage extends Component {
       classes, 
       isLoading = false 
     } = this.props;
-    var todos = []
+    let todos = []
     switch (this.state.tab) {
-      case 0:
+      case 1:
         todos = this.props.incompletedTodos;
         break;
-      case 1:
+      case 2:
         todos = this.props.completedTodos;
         break;
       default:
         todos = this.props.todos;
     }
+
     return (
-      <Box className={classes.root}>
+      <Page
+        className={classes.root}
+        title="Todo List"
+      >
         <Card>
+          <CardHeader title="Todos" />
+          <Divider />
           <Tabs
-              value={this.state.tab}
-              onChange={this.handleTabChange}
-              indicatorColor="primary"
-              textColor="primary"
-              aria-label="todo list tabs"
+            value={this.state.tab}
+            onChange={this.handleTabChange}
+            indicatorColor="primary"
+            textColor="primary"
+            aria-label="todo list tabs"
             >
+              <Tab label="All" />              
               <Tab label="Incompleted" />
               <Tab label="Completed" />
-              <Tab label="All" />
           </Tabs>
-          {isLoading ? (
-            <CardContent>
-              <Box 
-                py={6}
-                width="100%"
-                display="flex" 
-                justifyContent="center"
-              >
-                <CircularProgress disableShrink />
-              </Box>
-            </CardContent>
-          ) : (
-            <Box>
-              <CardContent>
-                <TodoList 
+          <CardContent className={classes.content}>
+            {isLoading ? (
+              <Progress className={classes.content} />
+            ) : (
+              <TodoList 
                 todos={todos}
                 handleDelete={this.props.handleDelete}
                 handleComplete={this.props.handleComplete}
               />
-              </CardContent>
-              <CardActions>
-                <Box 
-                  width="100%"
-                  display="flex" 
-                  justifyContent="flex-end"
-                >
-                  <CreateTodoForm />
-                </Box>
-              </CardActions> 
-            </Box>
-          )}
+            )}
+          </CardContent>
+          <CardActions className={classes.footer}>
+            <CreateTodoForm />
+          </CardActions>
         </Card>
-      </Box>
+      </Page>
     );
   }
 }
@@ -135,3 +120,12 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withStyles(useStyles),
 ) (TodoPage);
+
+/*
+              
+                <Box 
+
+                >
+                  
+                </Box>
+*/

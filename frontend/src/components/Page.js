@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import PropTypes from 'prop-types';
 
 const Page = React.forwardRef(({
-  children, title = '', ...rest
+  children = null, title = '', ...rest
 }, ref) => {
   return (
     <div
@@ -19,7 +19,7 @@ const Page = React.forwardRef(({
 });
 
 Page.propTypes = {
-  children: PropTypes.node.isRequired,
+  /*children: PropTypes.node.isRequired,*/
   title: PropTypes.string
 };
 
