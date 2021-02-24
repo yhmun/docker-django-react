@@ -1,12 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
 import { Divider, Button, IconButton } from '@material-ui/core';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { API_URL_STUDENT } from '../../../store/urls';
-import { requestDeleteObject } from '../../../store/thunks';
-import DeleteIcon from '@material-ui/icons/Delete';
+import CreateIcon from '@material-ui/icons/Create';
+import EditIcon from '@material-ui/icons/Edit';
 
 const styles = (theme) => ({
   root: {
@@ -18,7 +15,7 @@ const styles = (theme) => ({
   },
 });
 
-class DeleteStudentModal extends React.Component {
+class CreateStudentModal extends React.Component {
   state = {
     open: false,
   };
@@ -36,38 +33,54 @@ class DeleteStudentModal extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.root}>
+    const { classes, isCreate } = this.props;
+    let title;
+    let button;
+    if (isCreate) {
+      title = 'Create Student';
+      button = (
+        <Button
+          variant="outlined"
+          color="primary"
+          size="small"
+          startIcon={<CreateIcon />}
+          onClick={this.handleToggle}
+        >
+          Create
+        </Button>        
+      )
+    } else {
+      title = 'Edit Student';
+      button = (
         <IconButton 
           color="secondary" 
           edge="end" 
-          aria-label="delete"
+          aria-label="edit"
           onClick={this.handleToggle}
         >
-          <DeleteIcon />
+          <EditIcon />
         </IconButton>
+      );
+    }
+    return (
+      <div className={classes.root}>
+        {button}
         <Dialog
           fullWidth={false}
           maxWidth="md"
           open={this.state.open} 
           onClose={this.handleToggle}
-          aria-labelledby="delete student modal"
         >
-          <DialogTitle>Delete Student</DialogTitle>
+          <DialogTitle>{title}</DialogTitle>
           <Divider />
-          <DialogContent>
-            <DialogContentText>
-              Do you really want to delete the student?
-            </DialogContentText>            
+          <DialogContent>          
           </DialogContent>
           <DialogActions className={classes.footer}>
             <Button onClick={this.handleToggle}>
-              No
+              Cancel
             </Button>
             <Button color="primary" onClick={this.handleConfirm}>
-              Yes
+              Submit
             </Button>
           </DialogActions>
         </Dialog>
@@ -76,15 +89,4 @@ class DeleteStudentModal extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  handleDelete: id => dispatch(requestDeleteObject(API_URL_STUDENT, id)),
-});
-
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  withStyles(styles),
-) (DeleteStudentModal);
+export default withStyles(styles)(CreateStudentModal);

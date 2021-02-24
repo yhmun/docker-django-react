@@ -2,13 +2,17 @@ import React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { withStyles } from '@material-ui/core/styles';
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import CreateStudentModal from './CreateStudentModal';
 import DeleteStudentModal from './DeleteStudentModal';
 
 const styles = {
   root: {
-    minWidth: 700,    
+    minWidth: 760,
     // border: '1px solid blue',
   },
+  inline: {
+    display: 'inline',
+  }
 };
 
 class StudentTable extends React.Component {
@@ -42,7 +46,13 @@ class StudentTable extends React.Component {
                 <TableCell>{student.phone}</TableCell>
                 <TableCell>{student.registered_on}</TableCell>
                 <TableCell align="right">
-                  <DeleteStudentModal id={student.id} />
+                  <CreateStudentModal 
+                    isCreate={false} 
+                    student={student} 
+                  />
+                  <DeleteStudentModal 
+                    id={student.id} 
+                  />
                 </TableCell>
               </TableRow>
             ))}

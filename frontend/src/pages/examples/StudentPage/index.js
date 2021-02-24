@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Card, CardHeader, CardContent, Divider } from '@material-ui/core';
+import { Card, CardHeader, CardContent, CardActions, Divider } from '@material-ui/core';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { API_URL_STUDENT } from '../../../store/urls';
@@ -8,6 +8,7 @@ import { requestReadObjects } from '../../../store/thunks';
 import { getObjects, getObjectsReading } from '../../../store/selectors';
 import { Page, Progress } from '../../../components';
 import StudentTable from './StudentTable';
+import CreateStudentModal from './CreateStudentModal';
 
 const styles = (theme) => ({
   root: {
@@ -16,6 +17,10 @@ const styles = (theme) => ({
   content: {
     minHeight: 200,
   },
+  footer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },  
 });
 
 class StudentPage extends React.Component {
@@ -47,6 +52,9 @@ class StudentPage extends React.Component {
             <StudentTable students={students} />
           )}
           </CardContent>
+          <CardActions className={classes.footer}>
+            <CreateStudentModal isCreate={true} />
+          </CardActions>          
         </Card>
       </Page>
     );
