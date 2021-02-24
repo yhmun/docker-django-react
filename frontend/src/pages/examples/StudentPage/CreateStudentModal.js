@@ -1,17 +1,14 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
+import { Dialog, DialogTitle } from '@material-ui/core';
 import { Divider, Button, IconButton } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import EditIcon from '@material-ui/icons/Edit';
+import CreateStudentForm from './CreateStudentForm';
 
 const styles = (theme) => ({
   root: {
     display: 'inline',
-  },
-  footer: {
-    marginRight: theme.spacing(2),
-    marginBottom: theme.spacing(1),
   },
 });
 
@@ -33,7 +30,7 @@ class CreateStudentModal extends React.Component {
   }
 
   render() {
-    const { classes, isCreate } = this.props;
+    const { classes, isCreate, student } = this.props;
     let title;
     let button;
     if (isCreate) {
@@ -73,16 +70,10 @@ class CreateStudentModal extends React.Component {
         >
           <DialogTitle>{title}</DialogTitle>
           <Divider />
-          <DialogContent>          
-          </DialogContent>
-          <DialogActions className={classes.footer}>
-            <Button onClick={this.handleToggle}>
-              Cancel
-            </Button>
-            <Button color="primary" onClick={this.handleConfirm}>
-              Submit
-            </Button>
-          </DialogActions>
+          <CreateStudentForm 
+            student={student}
+            handleToggle={this.handleToggle}
+          />
         </Dialog>
       </div>
     );
