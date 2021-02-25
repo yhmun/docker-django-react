@@ -99,6 +99,16 @@ $ npm install --save bootstrap lodash jquery popper.js react-icons
 $ npm install --save antd
 ```
 
+### package.json
+```
+  "scripts": {
+    "start": "PORT=3000 react-scripts start",
+    "build": "react-scripts --max_old_space_size=4096 build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+```
+
 ### npm commands
 ```
 $ npm list --depth=n --prod --dev --global --json

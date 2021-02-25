@@ -25,7 +25,7 @@ export const GlobalStyles = withStyles({
     '#root': {
       width: '100%',
       height: '100%',
-    }
+    },
   },
 })(() => null);
 
