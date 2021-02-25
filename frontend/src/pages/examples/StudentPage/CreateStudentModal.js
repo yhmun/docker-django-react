@@ -44,7 +44,7 @@ class CreateStudentModal extends React.Component {
           onClick={this.handleToggle}
         >
           Create
-        </Button>        
+        </Button>
       )
     } else {
       title = 'Edit Student';
