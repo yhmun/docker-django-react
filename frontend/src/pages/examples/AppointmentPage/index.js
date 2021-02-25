@@ -47,8 +47,30 @@ class AppointmentPage extends React.Component {
   };
 
   render() {
-    const { classes, appointments = [] } = this.props;
-  
+    const { classes } = this.props;
+    const order = this.state.orderDir === 'asc' ? 1 : -1;
+    let filteredApts = this.props.appointments;
+    filteredApts = filteredApts.sort((a, b) => {
+      if (a[this.state.orderBy].toLowerCase() <
+          b[this.state.orderBy].toLowerCase()) {
+        return -1 * order;
+      } else {
+        return 1 * order;
+      }
+    }).filter(eachItem => {
+      return (
+        eachItem['petName']
+          .toLowerCase()
+          .includes(this.state.queryText.toLowerCase()) ||
+        eachItem['ownerName']
+          .toLowerCase()
+          .includes(this.state.queryText.toLowerCase()) ||
+        eachItem['aptNotes']
+          .toLowerCase()
+          .includes(this.state.queryText.toLowerCase())
+      );
+    });
+
     return (
       <Page
         className={classes.root}
@@ -71,7 +93,7 @@ class AppointmentPage extends React.Component {
               <Progress className={classes.content} />
             ) : (
               <ListAppointments 
-                appointments={appointments}
+                appointments={filteredApts}
                 handleDelete={this.props.handleDelete}
               />
             )}
