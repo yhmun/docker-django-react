@@ -21,21 +21,34 @@ const styles = (theme) => ({
 });
 
 class AppointmentPage extends React.Component {
+  state = {
+    orderBy: 'petName',
+    orderDir: 'asc',
+    queryText: '',    
+  };
+
   componentDidMount() {
     const { loadAppointments } = this.props;
     if (loadAppointments)
       loadAppointments();    
   }
 
-  render() {
-    const { 
-      classes, 
-      appointments = [],
-      isLoading,
-      handleCreate,
-      handleDelete,
-    } = this.props;
+  searchApts = (query) => {
+    this.setState({
+      queryText: query
+    });
+  };
 
+  changeOrder = (order, dir) => {
+    this.setState({
+        orderBy: order,
+        orderDir: dir
+    });
+  };
+
+  render() {
+    const { classes, appointments = [] } = this.props;
+  
     return (
       <Page
         className={classes.root}
@@ -46,15 +59,20 @@ class AppointmentPage extends React.Component {
           <Divider />
           <CardContent className={classes.content}>
             <AddAppointments 
-              handleCreate={handleCreate}
+              handleCreate={this.props.handleCreate}
             />
-            <SearchAppointments />
-            {isLoading ? (
+            <SearchAppointments 
+              orderBy={this.state.orderBy}
+              orderDir={this.state.orderDir}
+              changeOrder={this.changeOrder}
+              searchApts={this.searchApts}
+            />
+            {this.props.isLoading ? (
               <Progress className={classes.content} />
             ) : (
               <ListAppointments 
                 appointments={appointments}
-                handleDelete={handleDelete}
+                handleDelete={this.props.handleDelete}
               />
             )}
           </CardContent>
