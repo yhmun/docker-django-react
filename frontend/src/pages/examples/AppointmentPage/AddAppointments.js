@@ -1,7 +1,8 @@
+import clsx from 'clsx';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardContent, CardActions } from '@material-ui/core';
-import { Divider, Typography } from '@material-ui/core';
+import { Divider, Typography, Button } from '@material-ui/core';
 import { FaPlus } from 'react-icons/fa';
 
 const styles = (theme) => ({
@@ -11,16 +12,31 @@ const styles = (theme) => ({
   header: {
     backgroundColor: theme.palette.card.header.background,
     color: theme.palette.card.header.text,
+    padding: theme.spacing(0.5),
   },
-  icon: {
+  content: {
 
   },
-  title: {
-    marginLeft: theme.spacing(1),
+  button: {
+    width: '100%',
+    height: '100%',
+  },
+  hide: {
+    display: 'none',
   },
 });
 
 class AddAppointments extends React.Component {
+  state = {
+    formOpen: false,
+  };
+
+  handleFormToggle = (event) => {
+    this.setState(previous => ({
+      formOpen: !previous.formOpen
+    }));
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -29,34 +45,25 @@ class AddAppointments extends React.Component {
         <CardHeader 
           className={classes.header} 
           title={
-            <Typography>
-              <span >
-                <FaPlus className={classes.icon}/>
-              </span>
-              <span className={classes.title}>
-                Add Appointment
-              </span>
-            </Typography>
-          }
+            <Button
+              className={classes.button}
+              color='inherit'
+              startIcon={<FaPlus />}
+              onClick={this.handleFormToggle}
+            >
+            Add Appointment
+          </Button>
+          }          
         />
+        <CardContent
+          className={clsx(classes.content, {
+            [classes.hide]: !this.state.formOpen,
+          })}
+        >
+        </CardContent>
       </Card>
     );
   }
 }
 
 export default withStyles(styles)(AddAppointments);
-
-/*
-                  <Typography className={classes.primary}>
-                    <span className={classes.pet}>
-                      {item.petName}
-                    </span>
-                    <span className={classes.date}>
-                      <Moment 
-                        date={item.aptDate} 
-                        parse="YYYY-MM-DDThh:mm:ssZ" 
-                        format="MMM-D h:mma"
-                      />
-                    </span>
-                  </Typography>
-                  */
