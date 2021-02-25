@@ -110,9 +110,15 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadAppointments: () => dispatch(requestReadObjects(API_URL_APPOINTMENT)),
-  handleCreate: (data) => dispatch(requestCreateObject(API_URL_APPOINTMENT, data)),
-  handleDelete: id => dispatch(requestDeleteObject(API_URL_APPOINTMENT, id)),
+  loadAppointments: () => dispatch(
+    requestReadObjects(API_URL_APPOINTMENT)
+  ),
+  handleCreate: data => dispatch(
+    requestCreateObject(API_URL_APPOINTMENT, data)
+  ),
+  handleDelete: id => dispatch(
+    requestDeleteObject(API_URL_APPOINTMENT, id)
+  ),
 });
 
 export default compose(
