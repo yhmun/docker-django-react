@@ -4,7 +4,7 @@ import { Card, CardHeader, CardContent, CardActions, Divider } from '@material-u
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { API_URL_APPOINTMENT } from '../../../store/urls';
-import { requestReadObjects, requestDeleteObject } from '../../../store/thunks';
+import { requestReadObjects, requestDeleteObject, requestCreateObject } from '../../../store/thunks';
 import { getObjects, getObjectsReading } from '../../../store/selectors';
 import { Page, Progress } from '../../../components';
 import AddAppointments from './AddAppointments';
@@ -32,6 +32,7 @@ class AppointmentPage extends React.Component {
       classes, 
       appointments = [],
       isLoading,
+      handleCreate,
       handleDelete,
     } = this.props;
 
@@ -44,7 +45,9 @@ class AppointmentPage extends React.Component {
           <CardHeader title={'Wisdom Pet Medicine'} />
           <Divider />
           <CardContent className={classes.content}>
-            <AddAppointments />
+            <AddAppointments 
+              handleCreate={handleCreate}
+            />
             <SearchAppointments />
             {isLoading ? (
               <Progress className={classes.content} />
@@ -68,6 +71,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadAppointments: () => dispatch(requestReadObjects(API_URL_APPOINTMENT)),
+  handleCreate: (data) => dispatch(requestCreateObject(API_URL_APPOINTMENT, data)),
   handleDelete: id => dispatch(requestDeleteObject(API_URL_APPOINTMENT, id)),
 });
 
