@@ -31,6 +31,7 @@ class AppointmentPage extends React.Component {
     const { 
       classes, 
       appointments = [],
+      isLoading,
       handleDelete,
     } = this.props;
 
@@ -40,15 +41,19 @@ class AppointmentPage extends React.Component {
         title="Widsom Pet Medicine"
       >
         <Card className={classes.root}>
-          <CardHeader title="Wisdom Pet Medicine" />
+          <CardHeader title={'Wisdom Pet Medicine'} />
           <Divider />
           <CardContent className={classes.content}>
             <AddAppointments />
             <SearchAppointments />
-            <ListAppointments 
-              appointments={appointments}
-              handleDelete={handleDelete}
-            />
+            {isLoading ? (
+              <Progress className={classes.content} />
+            ) : (
+              <ListAppointments 
+                appointments={appointments}
+                handleDelete={handleDelete}
+              />
+            )}
           </CardContent>
         </Card>
       </Page>
