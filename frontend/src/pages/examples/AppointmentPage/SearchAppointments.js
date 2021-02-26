@@ -135,7 +135,9 @@ class SearchAppointments extends React.Component {
             <MenuItem 
               className={classes.menuItem}
               key={idx}
-              onClick={this.handleClose}
+              onClick={() => 
+                this.props.changeOrder(item.value, this.props.orderDir)
+              }
               selected={this.props.orderBy === item.value}
             >
               {item.title}
@@ -146,7 +148,9 @@ class SearchAppointments extends React.Component {
             <MenuItem 
               className={classes.menuItem}
               key={idx}
-              onClick={this.handleClose}
+              onClick={() => 
+                this.props.changeOrder(this.props.orderBy, item.value)
+              }
               selected={this.props.orderDir === item.value}
             >
               {item.title}
