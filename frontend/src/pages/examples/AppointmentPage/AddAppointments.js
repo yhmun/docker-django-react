@@ -2,8 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardContent, CardActions } from '@material-ui/core';
-import { Button, TextField } from '@material-ui/core';
-import { FaPlus } from 'react-icons/fa';
+import { Button, TextField, Icon } from '@material-ui/core';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 
 const styles = (theme) => ({
@@ -97,7 +96,7 @@ class AddAppointments extends React.Component {
             <Button
               className={classes.headerButton}
               color='inherit'
-              startIcon={<FaPlus />}
+              startIcon={<Icon className="fas fa-plus" />}
               onClick={this.handleFormToggle}
             >
             Add Appointment
