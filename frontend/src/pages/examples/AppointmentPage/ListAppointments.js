@@ -33,24 +33,20 @@ const styles = (theme) => ({
 
 class ListAppointments extends React.Component {
   render() {
-    const { 
-      classes, 
-      appointments,
-      handleDelete,
-    } = this.props;
+    const { classes, entities, handleDelete } = this.props;
 
     return (
       <List dense className={classes.root}>
         <Divider />
-        {appointments.map((item) => (
-          <div key={item.id}>
+        {entities.map((entity) => (
+          <div key={entity.id}>
             <ListItem>
               <ListItemIcon>
                 <IconButton 
                   color="secondary" 
                   edge="start"
                   aria-label="delete"
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => handleDelete(entity.id, entity.type)}
                 >
                   <HighlightOffIcon />
                 </IconButton>
@@ -59,11 +55,11 @@ class ListAppointments extends React.Component {
                 primary={
                   <Typography className={classes.primary}>
                     <span className={classes.pet}>
-                      {item.petName}
+                      {entity.petName}
                     </span>
                     <span className={classes.date}>
                       <Moment 
-                        date={item.aptDate} 
+                        date={entity.aptDate} 
                         parse="YYYY-MM-DDThh:mm:ssZ" 
                         format="MMM-D h:mma"
                       />
@@ -76,9 +72,9 @@ class ListAppointments extends React.Component {
                     variant="body2"
                     color="textPrimary"
                   >
-                    OwnerName: {item.ownerName}
+                    OwnerName: {entity.ownerName}
                     <br/>
-                    {item.aptNotes}
+                    {entity.aptNotes}
                   </Typography>
                 }
               />

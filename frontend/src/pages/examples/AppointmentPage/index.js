@@ -1,11 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Card, CardHeader, CardContent, CardActions, Divider } from '@material-ui/core';
+import { Card, CardHeader, CardContent, Divider } from '@material-ui/core';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { API_URL_APPOINTMENT } from '../../../store/urls';
-import { requestReadObjects, requestDeleteObject, requestCreateObject } from '../../../store/thunks';
-import { getObjects, getObjectsReading } from '../../../store/selectors';
+import { selectStatus, selectEntities, loadEntities, addEntity, removeEntity } from '../../../store/examples/appointmentsSlice';
 import { Page, Progress } from '../../../components';
 import AddAppointments from './AddAppointments';
 import SearchAppointments from './SearchAppointments';
@@ -28,9 +26,8 @@ class AppointmentPage extends React.Component {
   };
 
   componentDidMount() {
-    const { loadAppointments } = this.props;
-    if (loadAppointments)
-      loadAppointments();    
+    const { loadEntities } = this.props;
+    loadEntities();
   }
 
   searchApts = (query) => {
@@ -47,10 +44,11 @@ class AppointmentPage extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, status, entities, handleCreate, handleDelete } = this.props;
+    const { orderBy, orderDir } = this.state;
+    const { changeOrder, searchApts } = this;
     const order = this.state.orderDir === 'asc' ? 1 : -1;
-    let filteredApts = this.props.appointments;
-    filteredApts = filteredApts.sort((a, b) => {
+    const filteredEntities = entities.sort((a, b) => {
       if (a[this.state.orderBy].toLowerCase() <
           b[this.state.orderBy].toLowerCase()) {
         return -1 * order;
@@ -81,20 +79,20 @@ class AppointmentPage extends React.Component {
           <Divider />
           <CardContent className={classes.content}>
             <AddAppointments 
-              handleCreate={this.props.handleCreate}
+              handleCreate={handleCreate}
             />
             <SearchAppointments 
-              orderBy={this.state.orderBy}
-              orderDir={this.state.orderDir}
-              changeOrder={this.changeOrder}
-              searchApts={this.searchApts}
+              orderBy={orderBy}
+              orderDir={orderDir}
+              changeOrder={changeOrder}
+              searchApts={searchApts}
             />
-            {this.props.isLoading ? (
+            {status === 'loading' ? (
               <Progress className={classes.content} />
             ) : (
               <ListAppointments 
-                appointments={filteredApts}
-                handleDelete={this.props.handleDelete}
+                entities={filteredEntities}
+                handleDelete={handleDelete}
               />
             )}
           </CardContent>
@@ -105,20 +103,14 @@ class AppointmentPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  appointments: getObjects(state),
-  isLoading: getObjectsReading(state),  
+  status: selectStatus(state),
+  entities: selectEntities(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadAppointments: () => dispatch(
-    requestReadObjects(API_URL_APPOINTMENT)
-  ),
-  handleCreate: data => dispatch(
-    requestCreateObject(API_URL_APPOINTMENT, data)
-  ),
-  handleDelete: id => dispatch(
-    requestDeleteObject(API_URL_APPOINTMENT, id)
-  ),
+  loadEntities: () => dispatch(loadEntities()),
+  handleCreate: data => dispatch(addEntity(data)),
+  handleDelete: (id, type) => dispatch(removeEntity(id, type)),
 });
 
 export default compose(
