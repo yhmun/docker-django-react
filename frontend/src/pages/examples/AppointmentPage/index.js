@@ -22,7 +22,7 @@ class AppointmentPage extends React.Component {
   state = {
     orderBy: 'petName',
     orderDir: 'asc',
-    queryText: '',    
+    queryText: '',
   };
 
   componentDidMount() {
