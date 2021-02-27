@@ -23,14 +23,8 @@ class CreateStudentModal extends React.Component {
     }));
   };
 
-  handleConfirm = () => {
-    const { id, handleDelete } = this.props;
-    handleDelete(id);
-    this.handleToggle();
-  }
-
   render() {
-    const { classes, isCreate, student } = this.props;
+    const { classes, isCreate, entity } = this.props;
     let title;
     let button;
     if (isCreate) {
@@ -71,7 +65,7 @@ class CreateStudentModal extends React.Component {
           <DialogTitle>{title}</DialogTitle>
           <Divider />
           <CreateStudentForm 
-            student={student}
+            entity={entity}
             handleToggle={this.handleToggle}
           />
         </Dialog>

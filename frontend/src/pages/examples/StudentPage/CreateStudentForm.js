@@ -3,8 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { DialogContent, DialogActions, Button, TextField } from '@material-ui/core';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { API_URL_STUDENT } from '../../../store/urls';
-import { requestCreateObject, requestUpdateObject } from '../../../store/thunks';
+import { addEntity, updateEntity } from '../../../store/examples/studentsSlice';
 
 const styles = (theme) => ({
   root: {
@@ -24,7 +23,6 @@ const styles = (theme) => ({
 
 class CreateStudentForm extends React.Component {
   state = {
-    id: 0,
     name: '',
     email: '',
     document: '',
@@ -32,9 +30,9 @@ class CreateStudentForm extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.student) {
-      const { id, name, document, email, phone } = this.props.student;
-      this.setState({ id, name, document, email, phone });
+    if (this.props.entity) {
+      const { name, document, email, phone } = this.props.entity;
+      this.setState({ name, document, email, phone });
     }
   }
 
@@ -47,8 +45,13 @@ class CreateStudentForm extends React.Component {
   handleSubmit = (event) => {
     const { handleCreate, handleUpdate, handleToggle } = this.props;
     event.preventDefault();
-    if (this.props.student) {
-      handleUpdate(this.state);
+    if (this.props.entity) {
+      let entity = { ...this.props.entity };
+      entity.name = this.state.name;
+      entity.email = this.state.email;
+      entity.document = this.state.document;
+      entity.phone = this.state.phone;
+      handleUpdate(entity);
     } else {
       handleCreate(this.state);
     }
@@ -122,12 +125,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleCreate: (data) => {
-    dispatch(requestCreateObject(API_URL_STUDENT, data))
-  },
-  handleUpdate: (data) => {
-    dispatch(requestUpdateObject(API_URL_STUDENT, data.id, data))
-  },
+  handleCreate: data => dispatch(addEntity(data)),
+  handleUpdate: item => dispatch(updateEntity(item)),
 });
 
 export default compose(

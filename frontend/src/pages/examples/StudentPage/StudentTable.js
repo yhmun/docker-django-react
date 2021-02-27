@@ -17,7 +17,7 @@ const styles = {
 
 class StudentTable extends React.Component {
   render() {
-    const { classes, students = [] } = this.props;
+    const { classes, entities } = this.props;
 
     return (
       <PerfectScrollbar>
@@ -36,29 +36,30 @@ class StudentTable extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {!students || students.length <= 0 ? (              
+            {!entities || entities.length <= 0 ? (              
               <TableRow>
                 <TableCell align="center" colSpan={6}>
                   <b>Ops, no one here yet!</b>
                 </TableCell>
               </TableRow>
             ): (
-              students.map(student => (
-                <TableRow key={student.id}>
+              entities.map(entity => (
+                <TableRow key={entity.id}>
                   <TableCell component="th" scope="row">
-                    {student.name}
+                    {entity.name}
                   </TableCell>
-                  <TableCell>{student.email}</TableCell>
-                  <TableCell>{student.document}</TableCell>
-                  <TableCell>{student.phone}</TableCell>
-                  <TableCell>{student.registered_on}</TableCell>
+                  <TableCell>{entity.email}</TableCell>
+                  <TableCell>{entity.document}</TableCell>
+                  <TableCell>{entity.phone}</TableCell>
+                  <TableCell>{entity.registered_on}</TableCell>
                   <TableCell align="right">
                     <CreateStudentModal 
                       isCreate={false} 
-                      student={student} 
+                      entity={entity} 
                     />
                     <DeleteStudentModal 
-                      id={student.id} 
+                      id={entity.id}
+                      type={entity.type}
                     />
                   </TableCell>
                 </TableRow>

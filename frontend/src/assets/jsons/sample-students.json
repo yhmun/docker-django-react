@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Joe Silver",
+    "email": "joe@gmail.com",
+    "document": "22342343",
+    "phone": "647) 990-1111",
+    "registered_on": "2021-02-11"
+  },  
+  {
+      "name": "Luna Spencer",
+      "email": "luna@spencer.com",
+      "document": "123212321",
+      "phone": "416) 123-3097",
+      "registered_on": "2021-02-11"
+  },
+  {
+      "name": "Carl Hampton",
+      "email": "carl@yahoo.com",
+      "document": "43243211",
+      "phone": "123) 456-7890",
+      "registered_on": "2021-02-11"
+  }
+]

@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { createSlice } from '@reduxjs/toolkit';
-import sampleItems from '../../assets/jsons/sample-appointments.json'
+import sampleItems from '../../assets/jsons/sample-students.json'
 
 const sampleEntities = {};
 sampleItems.forEach((item, id) => {
   sampleEntities[id] = {id: id, type: 'sample', ...item};
 });
 
-const name = 'appointments';
+const name = 'students';
 const Slice = createSlice({
   name,
   initialState: {
@@ -98,9 +98,24 @@ export const removeEntity = (id, type) => {
   };
 };
 
+export const updateEntity = (item) => {
+  return dispatch => {
+    if (item.type && item.type === 'sample') {
+      dispatch(entityUpdated(item));
+    } else {
+      axios.patch(`${process.env.REACT_APP_HOST}/api/${name}/${item.id}/`, item)
+        .then((response) => {
+          const item = response.data;
+          dispatch(entityUpdated(item));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+};
 
-
-export const selectStatus = (state) => state.appointments.status;
-export const selectEntities = (state) => Object.values(state.appointments.entities);
+export const selectStatus = (state) => state.students.status;
+export const selectEntities = (state) => Object.values(state.students.entities);
 
 export default Slice.reducer;

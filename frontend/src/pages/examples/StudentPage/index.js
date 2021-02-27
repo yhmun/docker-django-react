@@ -3,9 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardContent, CardActions, Divider } from '@material-ui/core';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { API_URL_STUDENT } from '../../../store/urls';
-import { requestReadObjects } from '../../../store/thunks';
-import { getObjects, getObjectsReading } from '../../../store/selectors';
+import { selectStatus, selectEntities, loadEntities } from '../../../store/examples/studentsSlice';
 import { Page, Progress } from '../../../components';
 import StudentTable from './StudentTable';
 import CreateStudentModal from './CreateStudentModal';
@@ -25,17 +23,12 @@ const styles = (theme) => ({
 
 class StudentPage extends React.Component {
   componentDidMount() {
-    const { loadStudents } = this.props;
-    if (loadStudents)
-      loadStudents();
+    const { loadEntities } = this.props;
+    loadEntities();
   }
 
   render() {
-    const { 
-      classes, 
-      students = [], 
-      isLoading = false 
-    } = this.props;
+    const { classes, entities, status } = this.props;
 
     return (
       <Page
@@ -46,10 +39,10 @@ class StudentPage extends React.Component {
           <CardHeader title="Students" />
           <Divider />
           <CardContent className={classes.content}>
-          {isLoading ? (
+          {status === 'loading' ? (
             <Progress className={classes.content} />
           ) : (
-            <StudentTable students={students} />
+            <StudentTable entities={entities} />
           )}
           </CardContent>
           <CardActions className={classes.footer}>
@@ -62,12 +55,12 @@ class StudentPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  students: getObjects(state),
-  isLoading: getObjectsReading(state),  
+  status: selectStatus(state),
+  entities: selectEntities(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadStudents: () => dispatch(requestReadObjects(API_URL_STUDENT)),
+  loadEntities: () => dispatch(loadEntities()),
 });
 
 export default compose(

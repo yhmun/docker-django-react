@@ -4,8 +4,7 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
 import { Divider, Button, IconButton } from '@material-ui/core';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { API_URL_STUDENT } from '../../../store/urls';
-import { requestDeleteObject } from '../../../store/thunks';
+import { removeEntity } from '../../../store/examples/studentsSlice';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = (theme) => ({
@@ -30,8 +29,8 @@ class DeleteStudentModal extends React.Component {
   };
 
   handleConfirm = () => {
-    const { id, handleDelete } = this.props;
-    handleDelete(id);
+    const { id, type, handleDelete } = this.props;
+    handleDelete(id, type);
     this.handleToggle();
   }
 
@@ -81,7 +80,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleDelete: id => dispatch(requestDeleteObject(API_URL_STUDENT, id)),
+  handleDelete: (id, type) => dispatch(removeEntity(id, type)),  
 });
 
 export default compose(
