@@ -1,14 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import { objects } from './reducers';
 import appointmentsReducer from './examples/appointmentsSlice';
 import studentsReducer from './examples/studentsSlice';
+import todosReducer from './examples/todosSlice';
 
 const reducers = {
-  objects,
   appointments: appointmentsReducer,
   students: studentsReducer,
+  todos: todosReducer,
 };
 
 const rootReducer = combineReducers(reducers);
