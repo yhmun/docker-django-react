@@ -35,7 +35,7 @@ class StudentPage extends React.Component {
         className={classes.root}
         title="Student List"
       >
-        <Card className={classes.root}>
+        <Card>
           <CardHeader title="Students" />
           <Divider />
           <CardContent className={classes.content}>
