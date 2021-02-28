@@ -3,10 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardContent, CardActions, Divider, Tabs, Tab } from '@material-ui/core';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { API_URL_TODO } from '../../../store/urls';
-import { requestReadObjects, requestUpdateObject, requestDeleteObject } from '../../../store/thunks';
-import { getObjects, getObjectsReading } from '../../../store/selectors';
-import { getCompletedTodos, getIncompletedTodos } from '../../../store/selectors/todo';
+import { selectStatus, selectTodos, selectIncompletedTodos, selectCompletedTodos } from '../../../store/examples/todosSlice';
+import { loadEntities, removeEntity, updateEntity } from '../../../store/examples/todosSlice';
 import { Page, Progress } from '../../../components';
 import TodoList from './TodoList';
 import CreateTodoForm from './CreateTodoForm';
@@ -30,9 +28,8 @@ class TodoPage extends React.Component {
   };
 
   componentDidMount() {
-    const { loadTodos } = this.props;
-    if (loadTodos)
-      loadTodos();
+    const { loadEntities } = this.props;
+    loadEntities();
   }
 
   handleTabChange = (event, value) => {
@@ -42,13 +39,8 @@ class TodoPage extends React.Component {
   };
 
   render() {
-    const { 
-      classes, 
-      isLoading = false,
-      handleDelete,
-      handleComplete,
-    } = this.props;
-    let todos = []
+    const { classes, status, handleDelete, handleComplete } = this.props;
+    let todos = [];
     switch (this.state.tab) {
       case 1:
         todos = this.props.incompletedTodos;
@@ -79,8 +71,9 @@ class TodoPage extends React.Component {
               <Tab label="Incompleted" />
               <Tab label="Completed" />
           </Tabs>
+          <Divider />
           <CardContent className={classes.content}>
-            {isLoading ? (
+            {status === 'loading' ? (
               <Progress className={classes.content} />
             ) : (
               <TodoList 
@@ -90,6 +83,7 @@ class TodoPage extends React.Component {
               />
             )}
           </CardContent>
+          <Divider />
           <CardActions className={classes.footer}>
             <CreateTodoForm />
           </CardActions>
@@ -100,20 +94,18 @@ class TodoPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  incompletedTodos: getIncompletedTodos(state),
-  completedTodos: getCompletedTodos(state),
-  todos: getObjects(state),
-  isLoading: getObjectsReading(state),
+  status: selectStatus(state),
+  todos: selectTodos(state),
+  incompletedTodos: selectIncompletedTodos(state),
+  completedTodos: selectCompletedTodos(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadTodos: () => dispatch(requestReadObjects(API_URL_TODO)),
-  handleDelete: id => dispatch(requestDeleteObject(API_URL_TODO, id)),
-  handleComplete: id => {
-    const data = {
-      completed: true,
-    };
-    dispatch(requestUpdateObject(API_URL_TODO, id, data))
+  loadEntities: () => dispatch(loadEntities()),  
+  handleDelete: (id) => dispatch(removeEntity(id)),  
+  handleComplete: (id) => {
+    const data = { completed: true};
+    dispatch(updateEntity(id, data));
   },
 });
 

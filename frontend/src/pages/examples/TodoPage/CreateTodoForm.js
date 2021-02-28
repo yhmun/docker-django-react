@@ -3,15 +3,12 @@ import { withStyles } from '@material-ui/core/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, TextField } from '@material-ui/core';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { API_URL_TODO } from '../../../store/urls';
-import { requestCreateObject } from '../../../store/thunks';
-import { getObjects } from '../../../store/selectors';
+import { selectTodos, addEntity } from '../../../store/examples/todosSlice';
 import CreateIcon from '@material-ui/icons/Create';
 
 const styles = (theme) => ({
   root: {
-    marginRight: theme.spacing(3),
-    marginBottom: theme.spacing(3),
+    margin: theme.spacing(2),
   },
   form: {
 
@@ -150,16 +147,13 @@ class CreateTodoForm extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  todos: getObjects(state),
+  todos: selectTodos(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleCreate: (title, description) => {
-    const data = {
-      title: title,
-      description: description,
-    };
-    dispatch(requestCreateObject(API_URL_TODO, data))
+    const data = { title, description };
+    dispatch(addEntity(data));
   },
 });
 
